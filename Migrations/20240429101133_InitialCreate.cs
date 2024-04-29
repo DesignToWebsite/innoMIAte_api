@@ -38,7 +38,7 @@ namespace innomiate_api.Migrations
                         .Annotation("MySql:CharSet", "utf8mb4"),
                     Linkedin = table.Column<string>(type: "longtext", nullable: true)
                         .Annotation("MySql:CharSet", "utf8mb4"),
-                    image = table.Column<string>(type: "longtext", nullable: true)
+                    Image = table.Column<string>(type: "longtext", nullable: true)
                         .Annotation("MySql:CharSet", "utf8mb4"),
                     Skills = table.Column<string>(type: "longtext", nullable: true)
                         .Annotation("MySql:CharSet", "utf8mb4"),
