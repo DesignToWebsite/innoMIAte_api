@@ -1,0 +1,3 @@
+﻿<Project>
+  <Import Project="..\build\innomiate_api.props" />
+</Project>
