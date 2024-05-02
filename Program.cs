@@ -17,6 +17,7 @@ builder.Services.AddDbContext<ApplicationDbContext>(
 builder.Services.AddScoped<UserService>();
 builder.Services.AddScoped<CompetitionService>();
 builder.Services.AddScoped<UserCompetitionService>();
+builder.Services.AddScoped<PrizeService>();
 
 //Add controllers
 builder.Services.AddControllers()

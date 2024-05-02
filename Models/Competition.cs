@@ -12,11 +12,17 @@ public class Competition{
     public required string Location {get; set;}
     public required string DescriptionTop {get; set;} 
     public required string OverviewDescription {get; set;} 
-    public required List<Prizes> Prizes {get; set;}
     public required List<string> Theme {get; set;}
     public required List<string> Tags {get; set;}
 
+    public virtual ICollection<Prize> Prizes {get; set;} = new List<Prize>();
+
     public virtual ICollection<UserCompetition> UserCompetitions {get; set;} = new List<UserCompetition>();
-    
+
+    public static implicit operator Competition(List<Competition> v)
+    {
+        throw new NotImplementedException();
+    }
+
     // Navigation property for the many-to-many relationship with Competitions
 }

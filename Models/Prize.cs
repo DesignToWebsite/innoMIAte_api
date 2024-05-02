@@ -3,7 +3,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace INNOMIATE_API.Models;
 
-public class Prizes{
+public class Prize{
     [Key]
     public int Id {get; set;}
     public required string Price {get; set;}
@@ -14,6 +14,6 @@ public class Prizes{
 
     [ForeignKey("Competition")]
     public int CompetitionId {get; set;}
-    public required virtual Competition Competition {get; set;}
+    public virtual Competition? Competition {get; set;}
     
 }

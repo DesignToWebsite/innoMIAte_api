@@ -1,9 +1,7 @@
-using System.ComponentModel.DataAnnotations;
-using INNOMIATE_API.Models;
 
 namespace INNOMIATE_API.DTOs;
 
-public class PrizesDto{
+public class PrizeDto{
     public int Id {get; set;}
     public int CompetitionId {get; set;}
     public required string Price {get; set;}
