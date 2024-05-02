@@ -4,6 +4,7 @@ using INNOMIATE_API.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace innomiate_api.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20240502123520_InitialMigration2")]
+    partial class InitialMigration2
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -172,7 +175,10 @@ namespace innomiate_api.Migrations
             modelBuilder.Entity("INNOMIATE_API.Models.UserCompetition", b =>
                 {
                     b.Property<int>("UserId")
+                        .ValueGeneratedOnAdd()
                         .HasColumnType("int");
+
+                    MySqlPropertyBuilderExtensions.UseMySqlIdentityColumn(b.Property<int>("UserId"));
 
                     b.Property<int>("CompetitionId")
                         .HasColumnType("int");
@@ -184,9 +190,14 @@ namespace innomiate_api.Migrations
                         .IsRequired()
                         .HasColumnType("longtext");
 
+                    b.Property<int>("UserId1")
+                        .HasColumnType("int");
+
                     b.HasKey("UserId");
 
                     b.HasIndex("CompetitionId");
+
+                    b.HasIndex("UserId1");
 
                     b.ToTable("UserCompetitions");
                 });
@@ -200,21 +211,17 @@ namespace innomiate_api.Migrations
 
             modelBuilder.Entity("INNOMIATE_API.Models.UserCompetition", b =>
                 {
-                    b.HasOne("INNOMIATE_API.Models.Competition", "Competition")
+                    b.HasOne("INNOMIATE_API.Models.Competition", null)
                         .WithMany("UserCompetitions")
                         .HasForeignKey("CompetitionId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("INNOMIATE_API.Models.User", "User")
+                    b.HasOne("INNOMIATE_API.Models.User", null)
                         .WithMany("UserCompetitions")
-                        .HasForeignKey("UserId")
+                        .HasForeignKey("UserId1")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
-
-                    b.Navigation("Competition");
-
-                    b.Navigation("User");
                 });
 
             modelBuilder.Entity("INNOMIATE_API.Models.Competition", b =>

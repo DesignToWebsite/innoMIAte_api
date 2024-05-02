@@ -15,9 +15,15 @@ builder.Services.AddDbContext<ApplicationDbContext>(
 
 // Add services
 builder.Services.AddScoped<UserService>();
+builder.Services.AddScoped<CompetitionService>();
+builder.Services.AddScoped<UserCompetitionService>();
 
 //Add controllers
-builder.Services.AddControllers();
+builder.Services.AddControllers()
+            .AddJsonOptions(options =>
+    {
+        options.JsonSerializerOptions.ReferenceHandler = System.Text.Json.Serialization.ReferenceHandler.Preserve;
+    });
 
 // Configure Swagger
 builder.Services.AddEndpointsApiExplorer();

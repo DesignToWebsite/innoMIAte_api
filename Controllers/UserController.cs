@@ -1,5 +1,3 @@
-using INNOMIATE_API.Data;
-using INNOMIATE_API.Models;
 using INNOMIATE_API.DTOs;
 using INNOMIATE_API.Services;
 using Microsoft.AspNetCore.Mvc;
@@ -35,7 +33,10 @@ public class UserController(UserService userService) : ControllerBase
     public async Task<IActionResult> CreateUser(UserDto userDto)
     {
         var createdUser = await _userService.CreateUser(userDto);
-        return CreatedAtAction(nameof(GetUserById), new { id = createdUser.Id }, createdUser);
+        return CreatedAtAction(
+            nameof(GetUserById), 
+            new { id = createdUser.Id }, 
+            createdUser);
     }
 
     [HttpPut("{id}")]

@@ -33,6 +33,7 @@ public class UserService(ApplicationDbContext context)
             Github = userDto.Github,
             Linkedin = userDto.Linkedin,
             Image = userDto.Image,
+            LastModified = DateTime.UtcNow,
             Skills = userDto.Skills,
             Interests = userDto.Interests,
             Followers = userDto.Followers,
