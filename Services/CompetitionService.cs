@@ -1,11 +1,12 @@
 using INNOMIATE_API.Data;
 using INNOMIATE_API.DTOs;
 using INNOMIATE_API.Models;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
 namespace INNOMIATE_API.Services;
 
-public class CompetitionService(ApplicationDbContext context)
+public class CompetitionService(ApplicationDbContext context) : ControllerBase
 {
     private readonly ApplicationDbContext _context = context;
 
@@ -39,7 +40,8 @@ public class CompetitionService(ApplicationDbContext context)
             Location = competitionDto.Location,
             DescriptionTop = competitionDto.DescriptionTop,
             OverviewDescription = competitionDto.OverviewDescription,
-            Prizes = competitionDto.Prizes,
+            Rules = competitionDto.Rules,
+            Public = competitionDto.Public,
             Theme = competitionDto.Theme,
             Tags = competitionDto.Tags
         };
@@ -47,5 +49,22 @@ public class CompetitionService(ApplicationDbContext context)
         await _context.SaveChangesAsync();
         return competition;
     }
+    
+
+    public async Task<IActionResult> UploadProfilePicture(IFormFile file)
+{
+    if (file == null || file.Length == 0)
+    {
+        return BadRequest("Invalid file.");
+    }
+
+    byte[] imageData;
+    using (var memoryStream = new MemoryStream())
+    {
+        await file.CopyToAsync(memoryStream);
+        imageData = memoryStream.ToArray();
+    }
+    return Ok(imageData);
+}
 
 }

@@ -16,9 +16,9 @@ public class ApplicationDbContext(DbContextOptions<ApplicationDbContext> options
 
         // Configure the User entity
         modelBuilder.Entity<User>().HasKey(u => u.Id);
-        modelBuilder.Entity<Prize>().HasKey(p=> p.Id);
         modelBuilder.Entity<Competition>().HasKey(c=>c.Id);
         modelBuilder.Entity<UserCompetition>().HasKey(u=> u.UserId);
+        modelBuilder.Entity<Prize>().HasKey(p=> p.Id);
 
         // Add additional model configuration as needed
     }

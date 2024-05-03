@@ -17,7 +17,8 @@ public class PrizeService(ApplicationDbContext context)
             Others = prizeDto.Others,
             Title = prizeDto.Title,
             Description = prizeDto.Description,
-            ImageUrl = prizeDto.ImageUrl
+            ImageUrl = prizeDto.ImageUrl,
+            CompetitionId = prizeDto.CompetitionId
         };
 
         _context.Prizes.Add(prize);
@@ -44,7 +45,7 @@ public class PrizeService(ApplicationDbContext context)
             .ToListAsync();
     }
 
-    public async Task<IEnumerable<Prize?>> GetPrizes(){
+    public async Task<IEnumerable<Prize>> GetPrizes(){
         return await _context.Prizes.ToListAsync();
     }
 

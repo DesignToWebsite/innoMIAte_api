@@ -14,9 +14,11 @@ public class CompetitionDto{
     public required string Location {get; set;}
     public required string DescriptionTop {get; set;} 
     public required string OverviewDescription {get; set;} 
-    public List<Prizes> Prizes {get; set;} = [];
     public required List<string> Theme {get; set;}
     public required List<string> Tags {get; set;}
+
+    public required string Rules {get; set;} 
+    public required string Public {get; set;} 
 
 
 

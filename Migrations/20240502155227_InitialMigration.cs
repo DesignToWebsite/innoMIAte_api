@@ -103,7 +103,7 @@ namespace innomiate_api.Migrations
                         .Annotation("MySql:CharSet", "utf8mb4"),
                     ImageUrl = table.Column<string>(type: "longtext", nullable: true)
                         .Annotation("MySql:CharSet", "utf8mb4"),
-                    CompetitionId = table.Column<int>(type: "int", nullable: true)
+                    CompetitionId = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -112,7 +112,8 @@ namespace innomiate_api.Migrations
                         name: "FK_Prizes_Competitions_CompetitionId",
                         column: x => x.CompetitionId,
                         principalTable: "Competitions",
-                        principalColumn: "Id");
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
                 })
                 .Annotation("MySql:CharSet", "utf8mb4");
 
@@ -120,12 +121,11 @@ namespace innomiate_api.Migrations
                 name: "UserCompetitions",
                 columns: table => new
                 {
-                    UserId = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
+                    UserId = table.Column<int>(type: "int", nullable: false),
+                    Id = table.Column<int>(type: "int", nullable: false),
                     CompetitionId = table.Column<int>(type: "int", nullable: false),
                     Role = table.Column<string>(type: "longtext", nullable: false)
-                        .Annotation("MySql:CharSet", "utf8mb4"),
-                    UserId1 = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("MySql:CharSet", "utf8mb4")
                 },
                 constraints: table =>
                 {
@@ -137,8 +137,8 @@ namespace innomiate_api.Migrations
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_UserCompetitions_Users_UserId1",
-                        column: x => x.UserId1,
+                        name: "FK_UserCompetitions_Users_UserId",
+                        column: x => x.UserId,
                         principalTable: "Users",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
@@ -154,11 +154,6 @@ namespace innomiate_api.Migrations
                 name: "IX_UserCompetitions_CompetitionId",
                 table: "UserCompetitions",
                 column: "CompetitionId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_UserCompetitions_UserId1",
-                table: "UserCompetitions",
-                column: "UserId1");
         }
 
         /// <inheritdoc />

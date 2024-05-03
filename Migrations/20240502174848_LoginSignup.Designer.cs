@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace innomiate_api.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20240502123107_InitialMigration")]
-    partial class InitialMigration
+    [Migration("20240502174848_LoginSignup")]
+    partial class LoginSignup
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -75,7 +75,7 @@ namespace innomiate_api.Migrations
                     b.ToTable("Competitions");
                 });
 
-            modelBuilder.Entity("INNOMIATE_API.Models.Prizes", b =>
+            modelBuilder.Entity("INNOMIATE_API.Models.Prize", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -83,7 +83,7 @@ namespace innomiate_api.Migrations
 
                     MySqlPropertyBuilderExtensions.UseMySqlIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<int?>("CompetitionId")
+                    b.Property<int>("CompetitionId")
                         .HasColumnType("int");
 
                     b.Property<string>("Description")
@@ -157,6 +157,10 @@ namespace innomiate_api.Migrations
                     b.Property<string>("Location")
                         .HasColumnType("longtext");
 
+                    b.Property<string>("Password")
+                        .IsRequired()
+                        .HasColumnType("longtext");
+
                     b.Property<string>("Skills")
                         .HasColumnType("longtext");
 
@@ -175,50 +179,53 @@ namespace innomiate_api.Migrations
             modelBuilder.Entity("INNOMIATE_API.Models.UserCompetition", b =>
                 {
                     b.Property<int>("UserId")
-                        .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    MySqlPropertyBuilderExtensions.UseMySqlIdentityColumn(b.Property<int>("UserId"));
-
                     b.Property<int>("CompetitionId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("Id")
                         .HasColumnType("int");
 
                     b.Property<string>("Role")
                         .IsRequired()
                         .HasColumnType("longtext");
 
-                    b.Property<int>("UserId1")
-                        .HasColumnType("int");
-
                     b.HasKey("UserId");
 
                     b.HasIndex("CompetitionId");
 
-                    b.HasIndex("UserId1");
-
                     b.ToTable("UserCompetitions");
                 });
 
-            modelBuilder.Entity("INNOMIATE_API.Models.Prizes", b =>
+            modelBuilder.Entity("INNOMIATE_API.Models.Prize", b =>
                 {
-                    b.HasOne("INNOMIATE_API.Models.Competition", null)
+                    b.HasOne("INNOMIATE_API.Models.Competition", "Competition")
                         .WithMany("Prizes")
-                        .HasForeignKey("CompetitionId");
+                        .HasForeignKey("CompetitionId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Competition");
                 });
 
             modelBuilder.Entity("INNOMIATE_API.Models.UserCompetition", b =>
                 {
-                    b.HasOne("INNOMIATE_API.Models.Competition", null)
+                    b.HasOne("INNOMIATE_API.Models.Competition", "Competition")
                         .WithMany("UserCompetitions")
                         .HasForeignKey("CompetitionId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("INNOMIATE_API.Models.User", null)
+                    b.HasOne("INNOMIATE_API.Models.User", "User")
                         .WithMany("UserCompetitions")
-                        .HasForeignKey("UserId1")
+                        .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+
+                    b.Navigation("Competition");
+
+                    b.Navigation("User");
                 });
 
             modelBuilder.Entity("INNOMIATE_API.Models.Competition", b =>

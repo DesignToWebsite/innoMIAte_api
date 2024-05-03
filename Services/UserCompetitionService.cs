@@ -66,13 +66,6 @@ public class UserCompetitionService(ApplicationDbContext context)
     public async Task<UserCompetition?> GetUserCompetition(int id, bool includeRelated = false)
     {
         // Query to get the UserCompetition
-
-        // Query the database to find the UserCompetition record matching the given UserId and CompetitionId
-        // var userCompetition = await _context.UserCompetitions.FindAsync(id);
-        
-        // return userCompetition;
-
-        // Query to get the UserCompetition
         IQueryable<UserCompetition> query = _context.UserCompetitions.Where(uc => uc.Id == id);
 
         // Conditionally include related entities based on the includeRelated parameter

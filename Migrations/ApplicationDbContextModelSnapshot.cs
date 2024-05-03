@@ -72,7 +72,7 @@ namespace innomiate_api.Migrations
                     b.ToTable("Competitions");
                 });
 
-            modelBuilder.Entity("INNOMIATE_API.Models.Prizes", b =>
+            modelBuilder.Entity("INNOMIATE_API.Models.Prize", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -80,7 +80,7 @@ namespace innomiate_api.Migrations
 
                     MySqlPropertyBuilderExtensions.UseMySqlIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<int?>("CompetitionId")
+                    b.Property<int>("CompetitionId")
                         .HasColumnType("int");
 
                     b.Property<string>("Description")
@@ -154,6 +154,10 @@ namespace innomiate_api.Migrations
                     b.Property<string>("Location")
                         .HasColumnType("longtext");
 
+                    b.Property<string>("Password")
+                        .IsRequired()
+                        .HasColumnType("longtext");
+
                     b.Property<string>("Skills")
                         .HasColumnType("longtext");
 
@@ -191,11 +195,15 @@ namespace innomiate_api.Migrations
                     b.ToTable("UserCompetitions");
                 });
 
-            modelBuilder.Entity("INNOMIATE_API.Models.Prizes", b =>
+            modelBuilder.Entity("INNOMIATE_API.Models.Prize", b =>
                 {
-                    b.HasOne("INNOMIATE_API.Models.Competition", null)
+                    b.HasOne("INNOMIATE_API.Models.Competition", "Competition")
                         .WithMany("Prizes")
-                        .HasForeignKey("CompetitionId");
+                        .HasForeignKey("CompetitionId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Competition");
                 });
 
             modelBuilder.Entity("INNOMIATE_API.Models.UserCompetition", b =>

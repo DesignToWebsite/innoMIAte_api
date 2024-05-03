@@ -14,6 +14,6 @@ public class Prize{
 
     [ForeignKey("Competition")]
     public int CompetitionId {get; set;}
-    public virtual Competition? Competition {get; set;}
+    public virtual  Competition? Competition {get; set;}
     
 }

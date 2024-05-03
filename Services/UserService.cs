@@ -27,6 +27,7 @@ public class UserService(ApplicationDbContext context)
             LastName = userDto.LastName,
             UserName = userDto.UserName,
             Email = userDto.Email,
+            Password = userDto.Password,
             Bio = userDto.Bio,
             Location = userDto.Location,
             Website = userDto.Website,

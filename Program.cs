@@ -18,6 +18,8 @@ builder.Services.AddScoped<UserService>();
 builder.Services.AddScoped<CompetitionService>();
 builder.Services.AddScoped<UserCompetitionService>();
 builder.Services.AddScoped<PrizeService>();
+builder.Services.AddScoped<AuthenticationService>();
+builder.Services.AddScoped<UploadImageService>();
 
 //Add controllers
 builder.Services.AddControllers()
@@ -38,9 +40,21 @@ builder.Services.AddSwaggerGen(c =>
     });
 });
 
+builder.Services.AddCors(options =>
+    {
+        options.AddPolicy("AllowAllOrigins", builder =>
+        {
+            builder.AllowAnyOrigin()
+                   .AllowAnyMethod()
+                   .AllowAnyHeader();
+        });
+    });
+
 // Build the app
 var app = builder.Build();
 
+//Use CORS
+app.UseCors("AllowAllOrigins");
 // Use Swagger
 if (app.Environment.IsDevelopment())
 {
