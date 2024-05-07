@@ -1,3 +1,5 @@
+using INNOMIATE_API.Models;
+
 namespace INNOMIATE_API.DTOs;
 
 public class UserDto
@@ -19,5 +21,7 @@ public class UserDto
     public List<int>? Followers { get; set; }
     public List<int>? Following { get; set; }
     public List<int>? Likes { get; set; }
+    public ICollection<CompetitionParticipant>? ParticipatedCompetitions { get; set; }
+
 
 }

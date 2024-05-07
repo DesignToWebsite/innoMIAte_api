@@ -16,7 +16,8 @@ public class UserService(ApplicationDbContext context)
 
     public async Task<User?> GetUserById(int id)
     {
-        return await _context.Users.FindAsync(id);
+        var userInfo = _context.Users.FindAsync(id);
+        return await userInfo;
     }
 
     public async Task<User> CreateUser(UserDto userDto)

@@ -9,7 +9,7 @@ namespace INNOMIATE_API.Models
         public User User { get; set; }
         public Competition Competition { get; set; }
         public int? TeamId { get; set; }
-        public Team Team { get; set; }
+        public Team? Team { get; set; }
         
     }
 }
