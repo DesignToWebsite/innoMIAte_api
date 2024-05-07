@@ -21,6 +21,7 @@ namespace INNOMIATE_API.Models
         public List<string>? Interests { get; set; }
         public List<int>? Followers { get; set; }
         public List<int>? Following { get; set; }
+        public List<int>? Likes { get; set; }
 
         //Navigation References 
         public ICollection<CompetitionParticipant> ParticipatedCompetitions { get; set; }

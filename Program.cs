@@ -49,9 +49,10 @@ builder.Services.AddScoped<TeamStepSubmissionService>();
 // Add controllers
 builder.Services.AddControllers();
 builder.Services.AddCors(options => options.AddPolicy(name: policyName, builder => builder
-    .WithOrigins("http://localhost:5174") 
+    .WithOrigins("http://localhost:5173") 
     .AllowAnyHeader()
     .AllowAnyMethod()));
+
 // Add distributed memory cache for session
 builder.Services.AddDistributedMemoryCache();
 builder.Services.AddSession(options => options.IdleTimeout = TimeSpan.FromMinutes(100));

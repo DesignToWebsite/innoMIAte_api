@@ -10,22 +10,32 @@ namespace INNOMIATE_API.Models
     {
         public int CompetitionId { get; set; }
         public string Name { get; set; }
+        public  string DescriptionTop {get; set;} 
         public string Description { get; set; }
         public string ResponsibleEmail { get; set; }
         public DateTime Date { get; set; }
-        public TimeSpan Timing { get; set; }
         public List<String> Tags { get; set; }
+        public List<string> Theme { get; set; }
+        public string? Rules { get; set; }
+        public List<NameImageMapping>? Organizers {get; set;}
+        public List<NameImageMapping>? Partnerships {get; set;}
+        public List<NameImageMapping>? Sponsors {get; set;}
         public string TargetAudience { get; set; }
         public string URL { get; set; }
+        public string Location { get; set; }
         public string Photo { get; set; }
         public string CoverPhoto { get; set; }
-
+        public  DateTime StartDate {get; set;}
+        public  DateTime DeadLine {get; set;}
+        public string? PdfRules {get; set;}
+        public string? Resource {get; set;}
+        public List<string>? Gallery {get; set;}
         // Navigation references 
         public ICollection<CompetitionParticipant> Participants { get; set; }
         public ICollection<CompetitionCoach> Coaches { get; set; }
         public ICollection<CompetitionJudge> Judges { get; set; }
         public ICollection<CompetitionContributor> Contributors { get; set; }
-        public ICollection<CompetitionSponsor> Sponsors { get; set; }
+        // public ICollection<CompetitionSponsor> Sponsors { get; set; }
         public List<StepModel> StepModels { get; set; }
         public List<Team> Teams { get; set; }
         public SubmissionModel SubmissionModel { get; set; }

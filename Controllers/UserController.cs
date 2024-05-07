@@ -7,7 +7,8 @@ using Microsoft.AspNetCore.Http;
 using System.Threading.Tasks;
 using innomiate_api.DTOs;
 
-namespace INNOMIATE_API.Controllers
+namespace INNOMIATE_API.Controllers 
+
 {
     [ApiController]
     [Route("api/[controller]")]

@@ -32,7 +32,7 @@ namespace INNOMIATE_API.Data
         public DbSet<TeamSubmission> TeamSubmissions { get; set; }
 
 
-        public DbSet<SubmissionModel> SubmissionModels { get; set; } 
+        public DbSet<SubmissionModel> SubmissionModels { get; set; }
         public DbSet<FileModel> FileModels { get; set; }
 
         ///Step Models <summary>
@@ -49,7 +49,7 @@ namespace INNOMIATE_API.Data
         public DbSet<Prize> Prizes { get; set; }
         public DbSet<PrizeType> PrizeTypes { get; set; }
         public DbSet<Badge> Badges { get; set; }
-        public DbSet<Badging> Badgings { get; set; } 
+        public DbSet<Badging> Badgings { get; set; }
         public DbSet<PlatformAdmin> PlateformAdmins { get; set; }
         public DbSet<HostingRequest> HostingRequests { get; set; }
 
@@ -121,7 +121,7 @@ namespace INNOMIATE_API.Data
                 .WithMany(c => c.Teams)
                 .HasForeignKey(t => t.CompetitionId);
 
-        
+
 
             // Steps Relations 
             modelBuilder.Entity<TeamStepSubmission>()
@@ -141,7 +141,7 @@ namespace INNOMIATE_API.Data
     .HasOne(t => t.TeamLeader)
     .WithMany()
     .HasForeignKey(t => new { t.TeamLeaderUserId, t.TeamLeaderCompetitionId })
-    .IsRequired(false) 
+    .IsRequired(false)
     .OnDelete(DeleteBehavior.SetNull);
 
             // Configure one-to-many relationship between SubmissionModel and Competition
@@ -187,7 +187,7 @@ namespace INNOMIATE_API.Data
                 .HasForeignKey(p => p.PrizingId);
 
 
-           
+
 
             // Configure one-to-many relationship between Badge and Badging
             modelBuilder.Entity<Badge>()
@@ -200,7 +200,32 @@ namespace INNOMIATE_API.Data
                 .HasOne(hr => hr.User)
                 .WithMany(u => u.HostingRequests)
                 .HasForeignKey(hr => hr.UserId);
+            // Configure Competition's relationship with Organizers
+            modelBuilder.Entity<Competition>().OwnsMany(c => c.Organizers, organizers =>
+            {
+                organizers.WithOwner().HasForeignKey("CompetitionId"); 
+                organizers.Property(mapping => mapping.Name).IsRequired();
+                organizers.Property(mapping => mapping.ImageUrl).IsRequired();
+                organizers.ToTable("CompetitionOrganizers"); 
+            });
 
+            // Configure Competition's relationship with Partnerships
+            modelBuilder.Entity<Competition>().OwnsMany(c => c.Partnerships, partnerships =>
+            {
+                partnerships.WithOwner().HasForeignKey("CompetitionId"); 
+                partnerships.Property(mapping => mapping.Name).IsRequired();
+                partnerships.Property(mapping => mapping.ImageUrl).IsRequired();
+                partnerships.ToTable("CompetitionPartnerships"); 
+            });
+
+            // Configure Competition's relationship with Sponsors
+            modelBuilder.Entity<Competition>().OwnsMany(c => c.Sponsors, sponsors =>
+            {
+                sponsors.WithOwner().HasForeignKey("CompetitionId"); 
+                sponsors.Property(mapping => mapping.Name).IsRequired();
+                sponsors.Property(mapping => mapping.ImageUrl).IsRequired();
+                sponsors.ToTable("CompetitionSponsors"); 
+            });
 
         }
 

@@ -11,7 +11,6 @@ namespace innomiate_api.Models.Prizing
         // Navigation properties
         public int PrizeTypeId { get; set; }
         public PrizeType PrizeType { get; set; }
-
         public int PrizingId { get; set; }
         public Prizing Prizing { get; set; }
     }

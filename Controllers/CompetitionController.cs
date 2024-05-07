@@ -7,6 +7,7 @@ using Microsoft.EntityFrameworkCore;
 using INNOMIATE_API.Data;
 using INNOMIATE_API.Models;
 using INNOMIATE_API.DTOs;
+using INNOMIATE_API.Services;
 
 namespace INNOMIATE_API.Controllers
 {
@@ -15,15 +16,25 @@ namespace INNOMIATE_API.Controllers
     public class CompetitionController : ControllerBase
     {
         private readonly ApplicationDbContext _context;
-
-        public CompetitionController(ApplicationDbContext context)
+        private readonly CompetitionService _competitionService;
+        public CompetitionController(ApplicationDbContext context, CompetitionService competitionService)
         {
             _context = context;
+            _competitionService = competitionService;
         }
 
+        
+        // GET all the competition
+        [HttpGet]
+        public async Task<IActionResult> GetAllCompetitions()
+        {
+            var competitions = await _competitionService.GetAllCompetitions();
+            return Ok(competitions);
+        }
+        
         // GET: api/Competition/5
         [HttpGet("{id}")]
-        public async Task<ActionResult<CompetitionDto>> GetCompetition(int id)
+        public async Task<ActionResult<CompetitionDto>> GetCompetitionById(int id)
         {
             var competition = await _context.Competitions.FindAsync(id);
 
@@ -39,17 +50,43 @@ namespace INNOMIATE_API.Controllers
                 Description = competition.Description,
                 ResponsibleEmail = competition.ResponsibleEmail,
                 Date = competition.Date,
-                Timing = competition.Timing,
+                DescriptionTop = competition.DescriptionTop,
+                DeadLine = competition.DeadLine,
+                StartDate = competition.StartDate,
                 Tags = competition.Tags,
                 TargetAudience = competition.TargetAudience,
                 URL = competition.URL,
                 Photo = competition.Photo,
-                CoverPhoto = competition.CoverPhoto
+                CoverPhoto = competition.CoverPhoto,
+                Theme = competition.Theme,
+                Rules = competition.Rules,
+                Organizers = competition.Organizers,
+                Partnerships = competition.Partnerships,
+                Sponsors = competition.Sponsors,
+                Location = competition.Location,
+                PdfRules = competition.PdfRules,
+                Resource = competition.Resource,
+                Gallery = competition.Gallery
             };
 
             return competitionDto;
         }
 
+// GET: api/Competition/5
+        [HttpGet("/url/{url}")]
+        public async Task<ActionResult<CompetitionDto>> GetCompetitionByUrl(string url)
+        {
+            var competition = await _competitionService.GetCompetitionByUrl(url);
+
+            if (competition == null)
+            {
+                return NotFound();
+            }
+           
+            return competition;
+        }
+
+        
         // POST: api/Competition
         [HttpPost]
         public async Task<ActionResult<CompetitionDto>> CreateCompetition(CompetitionDto competitionDto)
@@ -60,18 +97,29 @@ namespace INNOMIATE_API.Controllers
                 Description = competitionDto.Description,
                 ResponsibleEmail = competitionDto.ResponsibleEmail,
                 Date = competitionDto.Date,
-                Timing = competitionDto.Timing,
                 Tags = competitionDto.Tags,
                 TargetAudience = competitionDto.TargetAudience,
                 URL = competitionDto.URL,
                 Photo = competitionDto.Photo,
-                CoverPhoto = competitionDto.CoverPhoto
+                CoverPhoto = competitionDto.CoverPhoto,
+                DescriptionTop = competitionDto.DescriptionTop,
+                DeadLine = competitionDto.DeadLine,
+                StartDate = competitionDto.StartDate,
+                Theme = competitionDto.Theme,
+                Rules = competitionDto.Rules,
+                Organizers = competitionDto.Organizers,
+                Partnerships = competitionDto.Partnerships,
+                Sponsors = competitionDto.Sponsors,
+                 Location = competitionDto.Location,
+                 PdfRules = competitionDto.PdfRules,
+                Resource = competitionDto.Resource,
+                Gallery = competitionDto.Gallery
             };
 
             _context.Competitions.Add(competition);
             await _context.SaveChangesAsync();
 
-            return CreatedAtAction(nameof(GetCompetition), new { id = competition.CompetitionId }, competitionDto);
+            return CreatedAtAction(nameof(GetCompetitionById), new { id = competition.CompetitionId }, competitionDto);
         }
 
         // PUT: api/Competition/5
@@ -90,12 +138,23 @@ namespace INNOMIATE_API.Controllers
                 Description = competitionDto.Description,
                 ResponsibleEmail = competitionDto.ResponsibleEmail,
                 Date = competitionDto.Date,
-                Timing = competitionDto.Timing,
+                DescriptionTop = competitionDto.DescriptionTop,
+                DeadLine = competitionDto.DeadLine,
+                StartDate = competitionDto.StartDate,
                 Tags = competitionDto.Tags,
                 TargetAudience = competitionDto.TargetAudience,
                 URL = competitionDto.URL,
                 Photo = competitionDto.Photo,
-                CoverPhoto = competitionDto.CoverPhoto
+                CoverPhoto = competitionDto.CoverPhoto,
+                Theme = competitionDto.Theme,
+                Rules = competitionDto.Rules,
+                Organizers = competitionDto.Organizers,
+                Partnerships = competitionDto.Partnerships,
+                Sponsors = competitionDto.Sponsors,
+                 Location = competitionDto.Location,
+                 PdfRules = competitionDto.PdfRules,
+                Resource = competitionDto.Resource,
+                Gallery = competitionDto.Gallery
             };
 
             _context.Entry(competition).State = EntityState.Modified;
@@ -135,6 +194,7 @@ namespace INNOMIATE_API.Controllers
             return NoContent();
         }
 
+        
         private bool CompetitionExists(int id)
         {
             return _context.Competitions.Any(e => e.CompetitionId == id);

@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace innomiate_api.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20240504145349_tables")]
-    partial class tables
+    [Migration("20240507182339_competitionUser3")]
+    partial class competitionUser3
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -40,7 +40,21 @@ namespace innomiate_api.Migrations
                     b.Property<DateTime>("Date")
                         .HasColumnType("datetime(6)");
 
+                    b.Property<DateTime>("DeadLine")
+                        .HasColumnType("datetime(6)");
+
                     b.Property<string>("Description")
+                        .IsRequired()
+                        .HasColumnType("longtext");
+
+                    b.Property<string>("DescriptionTop")
+                        .IsRequired()
+                        .HasColumnType("longtext");
+
+                    b.Property<string>("Gallery")
+                        .HasColumnType("longtext");
+
+                    b.Property<string>("Location")
                         .IsRequired()
                         .HasColumnType("longtext");
 
@@ -48,13 +62,25 @@ namespace innomiate_api.Migrations
                         .IsRequired()
                         .HasColumnType("longtext");
 
+                    b.Property<string>("PdfRules")
+                        .HasColumnType("longtext");
+
                     b.Property<string>("Photo")
                         .IsRequired()
+                        .HasColumnType("longtext");
+
+                    b.Property<string>("Resource")
                         .HasColumnType("longtext");
 
                     b.Property<string>("ResponsibleEmail")
                         .IsRequired()
                         .HasColumnType("longtext");
+
+                    b.Property<string>("Rules")
+                        .HasColumnType("longtext");
+
+                    b.Property<DateTime>("StartDate")
+                        .HasColumnType("datetime(6)");
 
                     b.Property<string>("Tags")
                         .IsRequired()
@@ -64,8 +90,9 @@ namespace innomiate_api.Migrations
                         .IsRequired()
                         .HasColumnType("longtext");
 
-                    b.Property<TimeSpan>("Timing")
-                        .HasColumnType("time(6)");
+                    b.Property<string>("Theme")
+                        .IsRequired()
+                        .HasColumnType("longtext");
 
                     b.Property<string>("URL")
                         .IsRequired()
@@ -124,6 +151,10 @@ namespace innomiate_api.Migrations
 
                     b.Property<int>("CompetitionId")
                         .HasColumnType("int");
+
+                    b.Property<string>("Role")
+                        .IsRequired()
+                        .HasColumnType("longtext");
 
                     b.HasKey("UserId", "CompetitionId");
 
@@ -282,6 +313,9 @@ namespace innomiate_api.Migrations
 
                     b.Property<string>("LastName")
                         .IsRequired()
+                        .HasColumnType("longtext");
+
+                    b.Property<string>("Likes")
                         .HasColumnType("longtext");
 
                     b.Property<string>("Linkedin")
@@ -796,6 +830,96 @@ namespace innomiate_api.Migrations
                     b.ToTable("TeamStepSubmissions");
                 });
 
+            modelBuilder.Entity("INNOMIATE_API.Models.Competition", b =>
+                {
+                    b.OwnsMany("innomiate_api.Models.NameImageMapping", "Organizers", b1 =>
+                        {
+                            b1.Property<int>("CompetitionId")
+                                .HasColumnType("int");
+
+                            b1.Property<int>("Id")
+                                .ValueGeneratedOnAdd()
+                                .HasColumnType("int");
+
+                            MySqlPropertyBuilderExtensions.UseMySqlIdentityColumn(b1.Property<int>("Id"));
+
+                            b1.Property<string>("ImageUrl")
+                                .IsRequired()
+                                .HasColumnType("longtext");
+
+                            b1.Property<string>("Name")
+                                .IsRequired()
+                                .HasColumnType("longtext");
+
+                            b1.HasKey("CompetitionId", "Id");
+
+                            b1.ToTable("CompetitionOrganizers", (string)null);
+
+                            b1.WithOwner()
+                                .HasForeignKey("CompetitionId");
+                        });
+
+                    b.OwnsMany("innomiate_api.Models.NameImageMapping", "Partnerships", b1 =>
+                        {
+                            b1.Property<int>("CompetitionId")
+                                .HasColumnType("int");
+
+                            b1.Property<int>("Id")
+                                .ValueGeneratedOnAdd()
+                                .HasColumnType("int");
+
+                            MySqlPropertyBuilderExtensions.UseMySqlIdentityColumn(b1.Property<int>("Id"));
+
+                            b1.Property<string>("ImageUrl")
+                                .IsRequired()
+                                .HasColumnType("longtext");
+
+                            b1.Property<string>("Name")
+                                .IsRequired()
+                                .HasColumnType("longtext");
+
+                            b1.HasKey("CompetitionId", "Id");
+
+                            b1.ToTable("CompetitionPartnerships", (string)null);
+
+                            b1.WithOwner()
+                                .HasForeignKey("CompetitionId");
+                        });
+
+                    b.OwnsMany("innomiate_api.Models.NameImageMapping", "Sponsors", b1 =>
+                        {
+                            b1.Property<int>("CompetitionId")
+                                .HasColumnType("int");
+
+                            b1.Property<int>("Id")
+                                .ValueGeneratedOnAdd()
+                                .HasColumnType("int");
+
+                            MySqlPropertyBuilderExtensions.UseMySqlIdentityColumn(b1.Property<int>("Id"));
+
+                            b1.Property<string>("ImageUrl")
+                                .IsRequired()
+                                .HasColumnType("longtext");
+
+                            b1.Property<string>("Name")
+                                .IsRequired()
+                                .HasColumnType("longtext");
+
+                            b1.HasKey("CompetitionId", "Id");
+
+                            b1.ToTable("CompetitionSponsors", (string)null);
+
+                            b1.WithOwner()
+                                .HasForeignKey("CompetitionId");
+                        });
+
+                    b.Navigation("Organizers");
+
+                    b.Navigation("Partnerships");
+
+                    b.Navigation("Sponsors");
+                });
+
             modelBuilder.Entity("INNOMIATE_API.Models.CompetitionCoach", b =>
                 {
                     b.HasOne("INNOMIATE_API.Models.Competition", "Competition")
@@ -892,7 +1016,7 @@ namespace innomiate_api.Migrations
             modelBuilder.Entity("INNOMIATE_API.Models.CompetitionSponsor", b =>
                 {
                     b.HasOne("INNOMIATE_API.Models.Competition", "Competition")
-                        .WithMany("Sponsors")
+                        .WithMany()
                         .HasForeignKey("CompetitionId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -1144,8 +1268,6 @@ namespace innomiate_api.Migrations
 
                     b.Navigation("Prizing")
                         .IsRequired();
-
-                    b.Navigation("Sponsors");
 
                     b.Navigation("StepModels");
 

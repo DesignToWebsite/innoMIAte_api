@@ -28,6 +28,7 @@ public class UserService(ApplicationDbContext context)
             UserName = userDto.UserName,
             Email = userDto.Email,
             Bio = userDto.Bio,
+            Password = userDto.Password,
             Location = userDto.Location,
             Website = userDto.Website,
             Github = userDto.Github,
@@ -36,7 +37,8 @@ public class UserService(ApplicationDbContext context)
             Skills = userDto.Skills,
             Interests = userDto.Interests,
             Followers = userDto.Followers,
-            Following = userDto.Following
+            Following = userDto.Following,
+            Likes = userDto.Likes
         };
 
         _context.Users.Add(user);
@@ -65,6 +67,7 @@ public class UserService(ApplicationDbContext context)
         user.Interests = userDto.Interests;
         user.Followers = userDto.Followers;
         user.Following = userDto.Following;
+        user.Likes = userDto.Likes;
 
         await _context.SaveChangesAsync();
         return user;
