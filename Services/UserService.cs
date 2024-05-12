@@ -14,11 +14,23 @@ public class UserService(ApplicationDbContext context)
         return await _context.Users.ToListAsync();
     }
 
-    public async Task<User?> GetUserById(int id)
+    public async Task<User?> GetUserById(int id, bool compInfo)
     {
-        var userInfo = _context.Users.FindAsync(id);
-        return await userInfo;
-    }
+        // var userInfo = _context.Users.FindAsync(id);
+        // var userInfo = _context.Users
+        //     .Include(u=>u.ParticipatedCompetitions)
+        //     .ThenInclude(pc => pc.Competition)
+        //     .FirstOrDefaultAsync(u=> u.Id == id);
+
+        // return await userInfo;
+        IQueryable<User> query = _context.Users.Where(u=>u.Id == id);
+        if(compInfo){
+            query = query
+                .Include(c=>c.ParticipatedCompetitions)
+                .ThenInclude(u=>u.Competition);
+        }
+        return await query.FirstOrDefaultAsync();
+        }
 
     public async Task<User> CreateUser(UserDto userDto)
     {

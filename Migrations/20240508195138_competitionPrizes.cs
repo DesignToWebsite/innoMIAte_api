@@ -7,7 +7,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace innomiate_api.Migrations
 {
     /// <inheritdoc />
-    public partial class competitionUser3 : Migration
+    public partial class competitionPrizes : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -75,26 +75,6 @@ namespace innomiate_api.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_PlateformAdmins", x => x.PlatformAdminId);
-                })
-                .Annotation("MySql:CharSet", "utf8mb4");
-
-            migrationBuilder.CreateTable(
-                name: "PrizeTypes",
-                columns: table => new
-                {
-                    PrizeTypeId = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
-                    Name = table.Column<string>(type: "longtext", nullable: false)
-                        .Annotation("MySql:CharSet", "utf8mb4"),
-                    Amount = table.Column<decimal>(type: "decimal(65,30)", nullable: false),
-                    Currency = table.Column<string>(type: "longtext", nullable: false)
-                        .Annotation("MySql:CharSet", "utf8mb4"),
-                    Description = table.Column<string>(type: "longtext", nullable: false)
-                        .Annotation("MySql:CharSet", "utf8mb4")
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_PrizeTypes", x => x.PrizeTypeId);
                 })
                 .Annotation("MySql:CharSet", "utf8mb4");
 
@@ -280,6 +260,35 @@ namespace innomiate_api.Migrations
                 .Annotation("MySql:CharSet", "utf8mb4");
 
             migrationBuilder.CreateTable(
+                name: "CompetitionPrizes",
+                columns: table => new
+                {
+                    CompetitionId = table.Column<int>(type: "int", nullable: false),
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
+                    BeginningRank = table.Column<int>(type: "int", nullable: false),
+                    EndingRank = table.Column<int>(type: "int", nullable: false),
+                    Name = table.Column<string>(type: "longtext", nullable: false)
+                        .Annotation("MySql:CharSet", "utf8mb4"),
+                    Amount = table.Column<decimal>(type: "decimal(65,30)", nullable: false),
+                    Currency = table.Column<string>(type: "longtext", nullable: false)
+                        .Annotation("MySql:CharSet", "utf8mb4"),
+                    Description = table.Column<string>(type: "longtext", nullable: false)
+                        .Annotation("MySql:CharSet", "utf8mb4")
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_CompetitionPrizes", x => new { x.CompetitionId, x.Id });
+                    table.ForeignKey(
+                        name: "FK_CompetitionPrizes_Competitions_CompetitionId",
+                        column: x => x.CompetitionId,
+                        principalTable: "Competitions",
+                        principalColumn: "CompetitionId",
+                        onDelete: ReferentialAction.Cascade);
+                })
+                .Annotation("MySql:CharSet", "utf8mb4");
+
+            migrationBuilder.CreateTable(
                 name: "CompetitionSponsors",
                 columns: table => new
                 {
@@ -320,26 +329,6 @@ namespace innomiate_api.Migrations
                     table.PrimaryKey("PK_Contributors", x => x.ContributorId);
                     table.ForeignKey(
                         name: "FK_Contributors_Competitions_CompetitionId",
-                        column: x => x.CompetitionId,
-                        principalTable: "Competitions",
-                        principalColumn: "CompetitionId",
-                        onDelete: ReferentialAction.Cascade);
-                })
-                .Annotation("MySql:CharSet", "utf8mb4");
-
-            migrationBuilder.CreateTable(
-                name: "Prizings",
-                columns: table => new
-                {
-                    PrizingId = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
-                    CompetitionId = table.Column<int>(type: "int", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Prizings", x => x.PrizingId);
-                    table.ForeignKey(
-                        name: "FK_Prizings_Competitions_CompetitionId",
                         column: x => x.CompetitionId,
                         principalTable: "Competitions",
                         principalColumn: "CompetitionId",
@@ -584,35 +573,6 @@ namespace innomiate_api.Migrations
                         column: x => x.BadgingId,
                         principalTable: "Badgings",
                         principalColumn: "BadgingId",
-                        onDelete: ReferentialAction.Cascade);
-                })
-                .Annotation("MySql:CharSet", "utf8mb4");
-
-            migrationBuilder.CreateTable(
-                name: "Prizes",
-                columns: table => new
-                {
-                    PrizeId = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
-                    BeginningRank = table.Column<int>(type: "int", nullable: false),
-                    EndingRank = table.Column<int>(type: "int", nullable: false),
-                    PrizeTypeId = table.Column<int>(type: "int", nullable: false),
-                    PrizingId = table.Column<int>(type: "int", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Prizes", x => x.PrizeId);
-                    table.ForeignKey(
-                        name: "FK_Prizes_PrizeTypes_PrizeTypeId",
-                        column: x => x.PrizeTypeId,
-                        principalTable: "PrizeTypes",
-                        principalColumn: "PrizeTypeId",
-                        onDelete: ReferentialAction.Cascade);
-                    table.ForeignKey(
-                        name: "FK_Prizes_Prizings_PrizingId",
-                        column: x => x.PrizingId,
-                        principalTable: "Prizings",
-                        principalColumn: "PrizingId",
                         onDelete: ReferentialAction.Cascade);
                 })
                 .Annotation("MySql:CharSet", "utf8mb4");
@@ -886,22 +846,6 @@ namespace innomiate_api.Migrations
                 column: "TeamId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Prizes_PrizeTypeId",
-                table: "Prizes",
-                column: "PrizeTypeId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_Prizes_PrizingId",
-                table: "Prizes",
-                column: "PrizingId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_Prizings_CompetitionId",
-                table: "Prizings",
-                column: "CompetitionId",
-                unique: true);
-
-            migrationBuilder.CreateIndex(
                 name: "IX_Requirements_CompetitionId",
                 table: "Requirements",
                 column: "CompetitionId");
@@ -1020,6 +964,9 @@ namespace innomiate_api.Migrations
                 name: "CompetitionPendingCoaches");
 
             migrationBuilder.DropTable(
+                name: "CompetitionPrizes");
+
+            migrationBuilder.DropTable(
                 name: "CompetitionSponsors");
 
             migrationBuilder.DropTable(
@@ -1038,9 +985,6 @@ namespace innomiate_api.Migrations
                 name: "PlateformAdmins");
 
             migrationBuilder.DropTable(
-                name: "Prizes");
-
-            migrationBuilder.DropTable(
                 name: "Requirements");
 
             migrationBuilder.DropTable(
@@ -1057,12 +1001,6 @@ namespace innomiate_api.Migrations
 
             migrationBuilder.DropTable(
                 name: "Badgings");
-
-            migrationBuilder.DropTable(
-                name: "PrizeTypes");
-
-            migrationBuilder.DropTable(
-                name: "Prizings");
 
             migrationBuilder.DropTable(
                 name: "StepModels");

@@ -1,6 +1,5 @@
 ﻿using innomiate_api.Models;
 using innomiate_api.Models.Badging;
-using innomiate_api.Models.Prizing;
 using innomiate_api.Models.Submission;
 using innomiate_api.Models.ValidationSteps;
 
@@ -20,6 +19,7 @@ namespace INNOMIATE_API.Models
         public List<NameImageMapping>? Organizers {get; set;}
         public List<NameImageMapping>? Partnerships {get; set;}
         public List<NameImageMapping>? Sponsors {get; set;}
+        public List<CompetitionPrize>? Prizes {get; set;}
         public string TargetAudience { get; set; }
         public string URL { get; set; }
         public string Location { get; set; }
@@ -31,17 +31,19 @@ namespace INNOMIATE_API.Models
         public string? Resource {get; set;}
         public List<string>? Gallery {get; set;}
         // Navigation references 
-        public ICollection<CompetitionParticipant> Participants { get; set; }
-        public ICollection<CompetitionCoach> Coaches { get; set; }
-        public ICollection<CompetitionJudge> Judges { get; set; }
-        public ICollection<CompetitionContributor> Contributors { get; set; }
+        public virtual ICollection<CompetitionParticipant> Participants { get; set; }
+        public virtual ICollection<CompetitionCoach> Coaches { get; set; }
+        public virtual ICollection<CompetitionJudge> Judges { get; set; }
+        public virtual ICollection<CompetitionContributor> Contributors { get; set; }
         // public ICollection<CompetitionSponsor> Sponsors { get; set; }
-        public List<StepModel> StepModels { get; set; }
-        public List<Team> Teams { get; set; }
-        public SubmissionModel SubmissionModel { get; set; }
-        public Prizing Prizing { get; set; }
-        public Badging Badging { get; set; }
+        public virtual List<StepModel> StepModels { get; set; }
+        public virtual List<StepCompetition> StepCompetitions {get; set;}
+        public virtual List<Team> Teams { get; set; }
+        public virtual SubmissionModel SubmissionModel { get; set; }
+        // public Prizing Prizing { get; set; }
+        public virtual Badging Badging { get; set; }
 
+        public virtual ICollection<StepCompetition> Steps { get; set; }
 
         public CompetitionCreator Creator { get; set; }
 

@@ -24,12 +24,12 @@ namespace INNOMIATE_API.Models
         public List<int>? Likes { get; set; }
 
         //Navigation References 
-        public ICollection<CompetitionParticipant> ParticipatedCompetitions { get; set; }
-        public ICollection<CompetitionCoach> CoachedCompetitions { get; set; }
-        public ICollection<CompetitionJudge> JudgedCompetitions { get; set; }
-        public ICollection<CompetitionCreator> CreatedCompetitions { get; set; }
-        public ICollection<Team> Teams { get; set; }
-        public ICollection<HostingRequest> HostingRequests { get; set; }
+        public virtual ICollection<CompetitionParticipant> ParticipatedCompetitions { get; set; }
+        public virtual ICollection<CompetitionCoach> CoachedCompetitions { get; set; }
+        public virtual ICollection<CompetitionJudge> JudgedCompetitions { get; set; }
+        public virtual ICollection<CompetitionCreator> CreatedCompetitions { get; set; }
+        public virtual ICollection<Team> Teams { get; set; }
+        public virtual ICollection<HostingRequest> HostingRequests { get; set; }
 
 
 

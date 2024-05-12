@@ -34,49 +34,26 @@ namespace INNOMIATE_API.Controllers
         
         // GET: api/Competition/5
         [HttpGet("{id}")]
-        public async Task<ActionResult<CompetitionDto>> GetCompetitionById(int id)
+        public async Task<ActionResult> GetCompetitionById(int id)
         {
-            var competition = await _context.Competitions.FindAsync(id);
+            var competition = await _competitionService.GetCompetitionById(id);
 
             if (competition == null)
             {
                 return NotFound();
             }
 
-            var competitionDto = new CompetitionDto
-            {
-                CompetitionId = competition.CompetitionId,
-                Name = competition.Name,
-                Description = competition.Description,
-                ResponsibleEmail = competition.ResponsibleEmail,
-                Date = competition.Date,
-                DescriptionTop = competition.DescriptionTop,
-                DeadLine = competition.DeadLine,
-                StartDate = competition.StartDate,
-                Tags = competition.Tags,
-                TargetAudience = competition.TargetAudience,
-                URL = competition.URL,
-                Photo = competition.Photo,
-                CoverPhoto = competition.CoverPhoto,
-                Theme = competition.Theme,
-                Rules = competition.Rules,
-                Organizers = competition.Organizers,
-                Partnerships = competition.Partnerships,
-                Sponsors = competition.Sponsors,
-                Location = competition.Location,
-                PdfRules = competition.PdfRules,
-                Resource = competition.Resource,
-                Gallery = competition.Gallery
-            };
-
-            return competitionDto;
+            
+            return Ok(competition);
         }
 
 // GET: api/Competition/5
         [HttpGet("/url/{url}")]
-        public async Task<ActionResult<CompetitionDto>> GetCompetitionByUrl(string url)
+        public async Task<ActionResult<Competition>> GetCompetitionByUrl(string url, [FromQuery] bool ParticipantInfo = false)
         {
-            var competition = await _competitionService.GetCompetitionByUrl(url);
+            var competition = ParticipantInfo? 
+                        await _competitionService.GetParticipantsCompetitionByUrl(url) :
+                        await _competitionService.GetCompetitionByUrl(url);
 
             if (competition == null)
             {
@@ -113,7 +90,8 @@ namespace INNOMIATE_API.Controllers
                  Location = competitionDto.Location,
                  PdfRules = competitionDto.PdfRules,
                 Resource = competitionDto.Resource,
-                Gallery = competitionDto.Gallery
+                Gallery = competitionDto.Gallery,
+                Prizes = competitionDto.Prizes
             };
 
             _context.Competitions.Add(competition);
@@ -154,7 +132,8 @@ namespace INNOMIATE_API.Controllers
                  Location = competitionDto.Location,
                  PdfRules = competitionDto.PdfRules,
                 Resource = competitionDto.Resource,
-                Gallery = competitionDto.Gallery
+                Gallery = competitionDto.Gallery,
+                Prizes = competitionDto.Prizes
             };
 
             _context.Entry(competition).State = EntityState.Modified;

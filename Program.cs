@@ -9,6 +9,8 @@ var builder = WebApplication.CreateBuilder(args);
 // Configure database context
 var serverVersion = new MySqlServerVersion(new Version(8, 0, 29));
 var connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
+
+
 var policyName = "_myAllowSpecificOrigins";
 
 builder.Services.AddHttpContextAccessor();
@@ -26,12 +28,12 @@ builder.Services.AddScoped<CompetitionContributorService>();
 builder.Services.AddScoped<CompetitionJudgeService>();
 builder.Services.AddScoped<CompetitionParticipantService>();
 builder.Services.AddScoped<CompetitionSponsorService>();
-builder.Services.AddScoped<PrizeService>();
 builder.Services.AddScoped<BadgeService>();
 builder.Services.AddScoped<TeamService>();
 builder.Services.AddScoped<StepModelService>();
 builder.Services.AddScoped<StepTemplateModelService>();
 builder.Services.AddScoped<TeamStepSubmissionService>(); 
+builder.Services.AddScoped<StepCompetitionService>();
 
 
 
@@ -43,11 +45,13 @@ builder.Services.AddScoped<TeamStepSubmissionService>();
 
 
 
+//Add controllers
+builder.Services.AddControllers()
+            .AddJsonOptions(options =>
+    {
+        options.JsonSerializerOptions.ReferenceHandler = System.Text.Json.Serialization.ReferenceHandler.Preserve;
+    });
 
-
-
-// Add controllers
-builder.Services.AddControllers();
 builder.Services.AddCors(options => options.AddPolicy(name: policyName, builder => builder
     .WithOrigins("http://localhost:5173") 
     .AllowAnyHeader()
@@ -72,6 +76,8 @@ builder.Services.AddSwaggerGen(c =>
 
 var app = builder.Build();
 app.UseSession();
+app.UseStaticFiles();
+app.UseRouting();
 app.UseCors("_myAllowSpecificOrigins");
 
 app.UseSwagger();

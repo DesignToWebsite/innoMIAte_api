@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using innomiate_api.DTOs;
 using innomiate_api.DTOs.Badging;
-using innomiate_api.DTOs.Prizing;
 using innomiate_api.DTOs.Submission;
 using innomiate_api.Models;
 using innomiate_api.Models.ValidationSteps;
@@ -25,6 +24,8 @@ namespace INNOMIATE_API.DTOs
         public List<NameImageMapping>? Organizers {get; set;}
         public List<NameImageMapping>? Partnerships {get; set;}
         public List<NameImageMapping>? Sponsors {get; set;}
+        public List<CompetitionPrize>? Prizes {get; set;}
+
         public string Location { get; set; }
         public string TargetAudience { get; set; }
         public string URL { get; set; }

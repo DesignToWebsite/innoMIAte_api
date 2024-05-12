@@ -21,7 +21,7 @@ public class UserDto
     public List<int>? Followers { get; set; }
     public List<int>? Following { get; set; }
     public List<int>? Likes { get; set; }
-    public ICollection<CompetitionParticipant>? ParticipatedCompetitions { get; set; }
+    // public ICollection<CompetitionParticipant>? ParticipatedCompetitions { get; set; }
 
 
 }

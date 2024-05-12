@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace innomiate_api.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20240507182454_competition")]
-    partial class competition
+    [Migration("20240508195138_competitionPrizes")]
+    partial class competitionPrizes
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -520,82 +520,6 @@ namespace innomiate_api.Migrations
                     b.ToTable("PlateformAdmins");
                 });
 
-            modelBuilder.Entity("innomiate_api.Models.Prizing.Prize", b =>
-                {
-                    b.Property<int>("PrizeId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    MySqlPropertyBuilderExtensions.UseMySqlIdentityColumn(b.Property<int>("PrizeId"));
-
-                    b.Property<int>("BeginningRank")
-                        .HasColumnType("int");
-
-                    b.Property<int>("EndingRank")
-                        .HasColumnType("int");
-
-                    b.Property<int>("PrizeTypeId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("PrizingId")
-                        .HasColumnType("int");
-
-                    b.HasKey("PrizeId");
-
-                    b.HasIndex("PrizeTypeId");
-
-                    b.HasIndex("PrizingId");
-
-                    b.ToTable("Prizes");
-                });
-
-            modelBuilder.Entity("innomiate_api.Models.Prizing.PrizeType", b =>
-                {
-                    b.Property<int>("PrizeTypeId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    MySqlPropertyBuilderExtensions.UseMySqlIdentityColumn(b.Property<int>("PrizeTypeId"));
-
-                    b.Property<decimal>("Amount")
-                        .HasColumnType("decimal(65,30)");
-
-                    b.Property<string>("Currency")
-                        .IsRequired()
-                        .HasColumnType("longtext");
-
-                    b.Property<string>("Description")
-                        .IsRequired()
-                        .HasColumnType("longtext");
-
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasColumnType("longtext");
-
-                    b.HasKey("PrizeTypeId");
-
-                    b.ToTable("PrizeTypes");
-                });
-
-            modelBuilder.Entity("innomiate_api.Models.Prizing.Prizing", b =>
-                {
-                    b.Property<int>("PrizingId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    MySqlPropertyBuilderExtensions.UseMySqlIdentityColumn(b.Property<int>("PrizingId"));
-
-                    b.Property<int>("CompetitionId")
-                        .HasColumnType("int");
-
-                    b.HasKey("PrizingId");
-
-                    b.HasIndex("CompetitionId")
-                        .IsUnique();
-
-                    b.ToTable("Prizings");
-                });
-
             modelBuilder.Entity("innomiate_api.Models.Submission.FileModel", b =>
                 {
                     b.Property<int>("FileModelId")
@@ -913,9 +837,51 @@ namespace innomiate_api.Migrations
                                 .HasForeignKey("CompetitionId");
                         });
 
+                    b.OwnsMany("innomiate_api.Models.CompetitionPrize", "Prizes", b1 =>
+                        {
+                            b1.Property<int>("CompetitionId")
+                                .HasColumnType("int");
+
+                            b1.Property<int>("Id")
+                                .ValueGeneratedOnAdd()
+                                .HasColumnType("int");
+
+                            MySqlPropertyBuilderExtensions.UseMySqlIdentityColumn(b1.Property<int>("Id"));
+
+                            b1.Property<decimal>("Amount")
+                                .HasColumnType("decimal(65,30)");
+
+                            b1.Property<int>("BeginningRank")
+                                .HasColumnType("int");
+
+                            b1.Property<string>("Currency")
+                                .IsRequired()
+                                .HasColumnType("longtext");
+
+                            b1.Property<string>("Description")
+                                .IsRequired()
+                                .HasColumnType("longtext");
+
+                            b1.Property<int>("EndingRank")
+                                .HasColumnType("int");
+
+                            b1.Property<string>("Name")
+                                .IsRequired()
+                                .HasColumnType("longtext");
+
+                            b1.HasKey("CompetitionId", "Id");
+
+                            b1.ToTable("CompetitionPrizes", (string)null);
+
+                            b1.WithOwner()
+                                .HasForeignKey("CompetitionId");
+                        });
+
                     b.Navigation("Organizers");
 
                     b.Navigation("Partnerships");
+
+                    b.Navigation("Prizes");
 
                     b.Navigation("Sponsors");
                 });
@@ -1101,36 +1067,6 @@ namespace innomiate_api.Migrations
                     b.Navigation("User");
                 });
 
-            modelBuilder.Entity("innomiate_api.Models.Prizing.Prize", b =>
-                {
-                    b.HasOne("innomiate_api.Models.Prizing.PrizeType", "PrizeType")
-                        .WithMany()
-                        .HasForeignKey("PrizeTypeId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("innomiate_api.Models.Prizing.Prizing", "Prizing")
-                        .WithMany("Prizes")
-                        .HasForeignKey("PrizingId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("PrizeType");
-
-                    b.Navigation("Prizing");
-                });
-
-            modelBuilder.Entity("innomiate_api.Models.Prizing.Prizing", b =>
-                {
-                    b.HasOne("INNOMIATE_API.Models.Competition", "Competition")
-                        .WithOne("Prizing")
-                        .HasForeignKey("innomiate_api.Models.Prizing.Prizing", "CompetitionId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Competition");
-                });
-
             modelBuilder.Entity("innomiate_api.Models.Submission.FileModel", b =>
                 {
                     b.HasOne("innomiate_api.Models.Submission.SubmissionModel", "SubmissionModel")
@@ -1266,9 +1202,6 @@ namespace innomiate_api.Migrations
 
                     b.Navigation("Participants");
 
-                    b.Navigation("Prizing")
-                        .IsRequired();
-
                     b.Navigation("StepModels");
 
                     b.Navigation("SubmissionModel")
@@ -1295,11 +1228,6 @@ namespace innomiate_api.Migrations
             modelBuilder.Entity("innomiate_api.Models.Badging.Badging", b =>
                 {
                     b.Navigation("Badges");
-                });
-
-            modelBuilder.Entity("innomiate_api.Models.Prizing.Prizing", b =>
-                {
-                    b.Navigation("Prizes");
                 });
 
             modelBuilder.Entity("innomiate_api.Models.Submission.SubmissionModel", b =>

@@ -9,100 +9,80 @@ using INNOMIATE_API.DTOs;
 
 namespace INNOMIATE_API.Services
 {
-    public class CompetitionService
+    public class CompetitionService(ApplicationDbContext context)
     {
-        private readonly ApplicationDbContext _context;
+        private readonly ApplicationDbContext _context = context;
 
-        public CompetitionService(ApplicationDbContext context)
+        public async Task<Competition?> GetCompetitionById(int id)
         {
-            _context = context;
+            // var competition = await _context.Competitions.FindAsync(id);
+            // if (competition == null)
+            //     return null;
+
+            // var competitionDto = new CompetitionDto
+            // {
+            //     CompetitionId = competition.CompetitionId,
+            //     Name = competition.Name,
+            //     Description = competition.Description,
+            //     ResponsibleEmail = competition.ResponsibleEmail,
+            //     Date = competition.Date,
+            //     Tags = competition.Tags,
+            //     TargetAudience = competition.TargetAudience,
+            //     URL = competition.URL,
+            //     Photo = competition.Photo,
+            //     CoverPhoto = competition.CoverPhoto,
+            //     Theme = competition.Theme,
+            //     Rules = competition.Rules,
+            //     Organizers = competition.Organizers,
+            //     Partnerships = competition.Partnerships,
+            //     Sponsors = competition.Sponsors,
+            //     Location = competition.Location,
+            //     PdfRules = competition.PdfRules,
+            //     Resource = competition.Resource,
+            //     Gallery = competition.Gallery,
+            //     Prizes = competition.Prizes
+            // };
+
+            return await _context.Competitions
+                            .Include(c => c.Participants)
+                            .FirstOrDefaultAsync(c => c.CompetitionId == id);
         }
 
-        public async Task<CompetitionDto> GetCompetitionById(int id)
-        {
-            var competition = await _context.Competitions.FindAsync(id);
-            if (competition == null)
-                return null;
-
-            var competitionDto = new CompetitionDto
-            {
-                CompetitionId = competition.CompetitionId,
-                Name = competition.Name,
-                Description = competition.Description,
-                ResponsibleEmail = competition.ResponsibleEmail,
-                Date = competition.Date,
-                Tags = competition.Tags,
-                TargetAudience = competition.TargetAudience,
-                URL = competition.URL,
-                Photo = competition.Photo,
-                CoverPhoto = competition.CoverPhoto,
-                Theme = competition.Theme,
-                Rules = competition.Rules,
-                Organizers = competition.Organizers,
-                Partnerships = competition.Partnerships,
-                Sponsors = competition.Sponsors,
-                Location = competition.Location,
-                PdfRules = competition.PdfRules,
-                Resource = competition.Resource,
-                Gallery = competition.Gallery
-            };
-
-            return competitionDto;
-        }
-
-        public async Task<CompetitionDto?> GetCompetitionByUrl(string id)
+        public async Task<Competition?> GetCompetitionByUrl(string id)
         {
             var competition = await _context.Competitions
+                    .Include(c => c.Participants)
+                    .Include(c => c.Coaches)
+                    .ThenInclude(u=> u.User)
+                    .Include(c=> c.Judges)
+                    .ThenInclude(u=> u.User)                    
                     .FirstOrDefaultAsync(c => c.URL == id);
             if (competition == null)
                 return null;
 
-            var competitionDto = new CompetitionDto
-            {
-                CompetitionId = competition.CompetitionId,
-                Name = competition.Name,
-                Description = competition.Description,
-                ResponsibleEmail = competition.ResponsibleEmail,
-                Date = competition.Date,
-                Tags = competition.Tags,
-                TargetAudience = competition.TargetAudience,
-                URL = competition.URL,
-                Photo = competition.Photo,
-                CoverPhoto = competition.CoverPhoto,
-                Theme = competition.Theme,
-                Rules = competition.Rules,
-                Organizers = competition.Organizers,
-                Partnerships = competition.Partnerships,
-                Sponsors = competition.Sponsors,
-                Location = competition.Location,
-                PdfRules = competition.PdfRules,
-                Resource = competition.Resource,
-                Gallery = competition.Gallery
-            };
+          
+            return competition;
+        }
 
-            return competitionDto;
+        public async Task<Competition?> GetParticipantsCompetitionByUrl(string id)
+        {
+            var competition = await _context.Competitions
+                    .Include(c => c.Participants)
+                    .ThenInclude(u=> u.User)
+                    .FirstOrDefaultAsync(c => c.URL == id);
+            if (competition == null)
+                return null;
+
+            return competition;
         }
 
         public async Task<IEnumerable<Competition>> GetAllCompetitions()
         {
-            // var competitions = await _context.Competitions.ToListAsync();
-            // var competitionDtos = competitions.Select(c => new CompetitionDto
-            // {
-            //     CompetitionId = c.CompetitionId,
-            //     Name = c.Name,
-            //     Description = c.Description,
-            //     ResponsibleEmail = c.ResponsibleEmail,
-            //     Date = c.Date,
-            //     Timing = c.Timing,
-            //     Tags = c.Tags,
-            //     TargetAudience = c.TargetAudience,
-            //     URL = c.URL,
-            //     Photo = c.Photo,
-            //     CoverPhoto = c.CoverPhoto
-            // }).ToList();
-
-            // return competitionDtos;
-            return await _context.Competitions.ToListAsync();
+            
+            return await _context
+                    .Competitions
+                    .Include(c => c.Participants)
+                    .ToListAsync();
         }
 
         public async Task<bool> CreateCompetition(CompetitionDto competitionDto)
@@ -129,7 +109,8 @@ namespace INNOMIATE_API.Services
                 Location = competitionDto.Location,
                 PdfRules = competitionDto.PdfRules,
                 Resource = competitionDto.Resource,
-                Gallery = competitionDto.Gallery
+                Gallery = competitionDto.Gallery,
+                Prizes = competitionDto.Prizes
             };
 
             try
@@ -174,7 +155,8 @@ namespace INNOMIATE_API.Services
                 Location = competitionDto.Location,
                 PdfRules = competitionDto.PdfRules,
                 Resource = competitionDto.Resource,
-                Gallery = competitionDto.Gallery
+                Gallery = competitionDto.Gallery,
+                Prizes = competitionDto.Prizes
             };
 
             _context.Entry(competition).State = EntityState.Modified;

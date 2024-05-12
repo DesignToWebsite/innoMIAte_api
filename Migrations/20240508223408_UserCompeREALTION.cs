@@ -5,7 +5,7 @@
 namespace innomiate_api.Migrations
 {
     /// <inheritdoc />
-    public partial class competition : Migration
+    public partial class UserCompeREALTION : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)

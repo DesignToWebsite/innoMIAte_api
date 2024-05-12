@@ -31,9 +31,9 @@ namespace INNOMIATE_API.Controllers
         }
 
         [HttpGet("{id}")]
-        public async Task<IActionResult> GetUserById(int id)
+        public async Task<IActionResult> GetUserById(int id, [FromQuery] bool compInfo = false)
         {
-            var user = await _userService.GetUserById(id);
+            var user = await _userService.GetUserById(id, compInfo);
             if (user == null)
             {
                 return NotFound();

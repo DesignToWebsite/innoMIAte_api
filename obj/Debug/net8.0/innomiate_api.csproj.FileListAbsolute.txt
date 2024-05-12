@@ -210,3 +210,4 @@ C:\Users\ikram\Desktop\pfa\Api\innoMIAte_api\obj\Debug\net8.0\refint\innomiate_a
 C:\Users\ikram\Desktop\pfa\Api\innoMIAte_api\obj\Debug\net8.0\innomiate_api.pdb
 C:\Users\ikram\Desktop\pfa\Api\innoMIAte_api\obj\Debug\net8.0\innomiate_api.genruntimeconfig.cache
 C:\Users\ikram\Desktop\pfa\Api\innoMIAte_api\obj\Debug\net8.0\ref\innomiate_api.dll
+C:\Users\ikram\Desktop\pfa\Api\innoMIAte_api\bin\Debug\net8.0\Newtonsoft.Json.dll

@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "ZB/ZHLseBdf43+7hwuF7ZhhexJwxYH1GL9scWgR5WfCAY3v2y87t46pz8HmLFHJpSEF9gp7P89hhzNRL1TX6+g==",
+  "dgSpecHash": "cXdZLwogQ1G7iua0+CwT5u2L20CpW+0rBdfVgUFK0P1JgobAVPRfI/wgF5vX5JQYirlyamda/9arxcwUr6wBjg==",
   "success": true,
   "projectFilePath": "C:\\Users\\ikram\\Desktop\\pfa\\Api\\innoMIAte_api\\innomiate_api.csproj",
   "expectedPackageFiles": [
@@ -32,6 +32,7 @@
     "C:\\Users\\ikram\\.nuget\\packages\\microsoft.openapi\\1.2.3\\microsoft.openapi.1.2.3.nupkg.sha512",
     "C:\\Users\\ikram\\.nuget\\packages\\mono.texttemplating\\2.2.1\\mono.texttemplating.2.2.1.nupkg.sha512",
     "C:\\Users\\ikram\\.nuget\\packages\\mysqlconnector\\2.3.5\\mysqlconnector.2.3.5.nupkg.sha512",
+    "C:\\Users\\ikram\\.nuget\\packages\\newtonsoft.json\\13.0.3\\newtonsoft.json.13.0.3.nupkg.sha512",
     "C:\\Users\\ikram\\.nuget\\packages\\pomelo.entityframeworkcore.mysql\\8.0.2\\pomelo.entityframeworkcore.mysql.8.0.2.nupkg.sha512",
     "C:\\Users\\ikram\\.nuget\\packages\\swashbuckle.aspnetcore\\6.5.0\\swashbuckle.aspnetcore.6.5.0.nupkg.sha512",
     "C:\\Users\\ikram\\.nuget\\packages\\swashbuckle.aspnetcore.swagger\\6.5.0\\swashbuckle.aspnetcore.swagger.6.5.0.nupkg.sha512",

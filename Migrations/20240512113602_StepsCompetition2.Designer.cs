@@ -4,6 +4,7 @@ using INNOMIATE_API.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace innomiate_api.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20240512113602_StepsCompetition2")]
+    partial class StepsCompetition2
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -295,14 +298,14 @@ namespace innomiate_api.Migrations
                     b.Property<int>("IdCompetition")
                         .HasColumnType("int");
 
+                    b.Property<int>("IdTeam")
+                        .HasColumnType("int");
+
                     b.Property<string>("SecondTitle")
                         .HasColumnType("longtext");
 
                     b.Property<bool>("StepOpen")
                         .HasColumnType("tinyint(1)");
-
-                    b.Property<int?>("TeamId")
-                        .HasColumnType("int");
 
                     b.Property<string>("Title")
                         .IsRequired()
@@ -314,7 +317,7 @@ namespace innomiate_api.Migrations
 
                     b.HasIndex("IdCompetition");
 
-                    b.HasIndex("TeamId");
+                    b.HasIndex("IdTeam");
 
                     b.ToTable("StepCompetitions");
                 });
@@ -1055,9 +1058,11 @@ namespace innomiate_api.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("innomiate_api.Models.Team", null)
+                    b.HasOne("innomiate_api.Models.Team", "Team")
                         .WithMany("Steps")
-                        .HasForeignKey("TeamId");
+                        .HasForeignKey("IdTeam")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.OwnsMany("innomiate_api.Models.StepInput", "ToComplete", b1 =>
                         {
@@ -1077,9 +1082,6 @@ namespace innomiate_api.Migrations
                             b1.Property<string>("Label")
                                 .IsRequired()
                                 .HasColumnType("longtext");
-
-                            b1.Property<int?>("MaxCaracter")
-                                .HasColumnType("int");
 
                             b1.Property<string>("Placeholder")
                                 .HasColumnType("longtext");
@@ -1104,6 +1106,8 @@ namespace innomiate_api.Migrations
                         });
 
                     b.Navigation("Competition");
+
+                    b.Navigation("Team");
 
                     b.Navigation("ToComplete");
                 });

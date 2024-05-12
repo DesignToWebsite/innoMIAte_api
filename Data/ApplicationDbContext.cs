@@ -3,7 +3,6 @@ using INNOMIATE_API.Models;
 using innomiate_api.Models;
 using innomiate_api.Models.ValidationSteps;
 using innomiate_api.Models.Submission;
-using innomiate_api.Models.Prizing;
 using innomiate_api.Models.Badging;
 
 namespace INNOMIATE_API.Data
@@ -30,6 +29,8 @@ namespace INNOMIATE_API.Data
         public DbSet<Team> Teams { get; set; }
         public DbSet<TeamSubmissionFile> TeamSubmissionFiles { get; set; }
         public DbSet<TeamSubmission> TeamSubmissions { get; set; }
+        public DbSet<StepCompetition> StepCompetitions { get; set; }
+
 
 
         public DbSet<SubmissionModel> SubmissionModels { get; set; }
@@ -44,10 +45,6 @@ namespace INNOMIATE_API.Data
         public DbSet<StepTemplateModel> StepTemplateModels { get; set; }
 
 
-
-        public DbSet<Prizing> Prizings { get; set; }
-        public DbSet<Prize> Prizes { get; set; }
-        public DbSet<PrizeType> PrizeTypes { get; set; }
         public DbSet<Badge> Badges { get; set; }
         public DbSet<Badging> Badgings { get; set; }
         public DbSet<PlatformAdmin> PlateformAdmins { get; set; }
@@ -138,11 +135,11 @@ namespace INNOMIATE_API.Data
                 .HasForeignKey(tss => tss.StepId);
 
             modelBuilder.Entity<Team>()
-    .HasOne(t => t.TeamLeader)
-    .WithMany()
-    .HasForeignKey(t => new { t.TeamLeaderUserId, t.TeamLeaderCompetitionId })
-    .IsRequired(false)
-    .OnDelete(DeleteBehavior.SetNull);
+                .HasOne(t => t.TeamLeader)
+                .WithMany()
+                .HasForeignKey(t => new { t.TeamLeaderUserId, t.TeamLeaderCompetitionId })
+                .IsRequired(false)
+                .OnDelete(DeleteBehavior.SetNull);
 
             // Configure one-to-many relationship between SubmissionModel and Competition
             modelBuilder.Entity<SubmissionModel>()
@@ -169,22 +166,7 @@ namespace INNOMIATE_API.Data
                 .HasOne(tsf => tsf.FileModel)
                 .WithMany()
                 .HasForeignKey(tsf => tsf.FileModelId);
-
-            // Configure Prizing relationships
-            modelBuilder.Entity<Prizing>()
-                .HasOne(p => p.Competition)
-                .WithOne(c => c.Prizing)
-                .HasForeignKey<Prizing>(p => p.CompetitionId);
-
-            modelBuilder.Entity<Prize>()
-                .HasOne(p => p.PrizeType)
-                .WithMany()
-                .HasForeignKey(p => p.PrizeTypeId);
-
-            modelBuilder.Entity<Prize>()
-                .HasOne(p => p.Prizing)
-                .WithMany(pr => pr.Prizes)
-                .HasForeignKey(p => p.PrizingId);
+           
 
 
 
@@ -203,30 +185,94 @@ namespace INNOMIATE_API.Data
             // Configure Competition's relationship with Organizers
             modelBuilder.Entity<Competition>().OwnsMany(c => c.Organizers, organizers =>
             {
-                organizers.WithOwner().HasForeignKey("CompetitionId"); 
+                organizers.WithOwner().HasForeignKey("CompetitionId");
                 organizers.Property(mapping => mapping.Name).IsRequired();
                 organizers.Property(mapping => mapping.ImageUrl).IsRequired();
-                organizers.ToTable("CompetitionOrganizers"); 
+                organizers.ToTable("CompetitionOrganizers");
             });
 
             // Configure Competition's relationship with Partnerships
             modelBuilder.Entity<Competition>().OwnsMany(c => c.Partnerships, partnerships =>
             {
-                partnerships.WithOwner().HasForeignKey("CompetitionId"); 
+                partnerships.WithOwner().HasForeignKey("CompetitionId");
                 partnerships.Property(mapping => mapping.Name).IsRequired();
                 partnerships.Property(mapping => mapping.ImageUrl).IsRequired();
-                partnerships.ToTable("CompetitionPartnerships"); 
+                partnerships.ToTable("CompetitionPartnerships");
             });
 
             // Configure Competition's relationship with Sponsors
             modelBuilder.Entity<Competition>().OwnsMany(c => c.Sponsors, sponsors =>
             {
-                sponsors.WithOwner().HasForeignKey("CompetitionId"); 
+                sponsors.WithOwner().HasForeignKey("CompetitionId");
                 sponsors.Property(mapping => mapping.Name).IsRequired();
                 sponsors.Property(mapping => mapping.ImageUrl).IsRequired();
-                sponsors.ToTable("CompetitionSponsors"); 
+                sponsors.ToTable("CompetitionSponsors");
             });
 
+            // Configure Competition's relationship with prizes
+            modelBuilder.Entity<Competition>().OwnsMany(c => c.Prizes, prize =>
+            {
+                prize.WithOwner().HasForeignKey("CompetitionId");
+                prize.Property(mapping => mapping.Amount).IsRequired();
+                prize.Property(mapping => mapping.BeginningRank).IsRequired();
+                prize.Property(mapping => mapping.Currency).IsRequired();
+                prize.Property(mapping => mapping.Description).IsRequired();
+                prize.Property(mapping => mapping.EndingRank).IsRequired();
+                prize.ToTable("CompetitionPrizes");
+            });
+           
+           modelBuilder.Entity<StepCompetition>()
+            .HasKey(sc=>sc.IdSteps);
+
+        //    modelBuilder.Entity<StepCompetition>()
+        //     .HasOne(sc=>sc.Team)
+        //     .WithMany(t=>t.Steps)
+        //     .HasForeignKey(sc=>sc.IdTeam)
+        //     .OnDelete(DeleteBehavior.Cascade);
+
+            modelBuilder.Entity<StepCompetition>()
+              .HasOne(sc=>sc.Competition)
+              .WithMany(c=>c.Steps)
+              .HasForeignKey(sc => sc.IdCompetition)
+              .OnDelete(DeleteBehavior.Cascade);
+
+              modelBuilder.Entity<StepCompetition>().OwnsMany(c => c.ToComplete, step =>
+            {
+                step.WithOwner().HasForeignKey("IdSteps");
+                step.Property(mapping => mapping.Type).IsRequired();
+                step.Property(mapping => mapping.Tag).IsRequired();
+                step.Property(mapping => mapping.Label).IsRequired();
+                step.Property(mapping => mapping.Placeholder);
+                step.Property(mapping => mapping.IdName).IsRequired();
+                step.Property(mapping => mapping.ValueInput);
+
+                step.ToTable("StepsToComplete");
+            });
+
+        //    modelBuilder.Entity<Competition>().OwnsMany(c => c.Prizes, prize =>
+        //     {
+        //         prize.WithOwner().HasForeignKey("CompetitionId");
+        //         prize.Property(mapping => mapping.Amount).IsRequired();
+        //         prize.Property(mapping => mapping.BeginningRank).IsRequired();
+        //         prize.Property(mapping => mapping.Currency).IsRequired();
+        //         prize.Property(mapping => mapping.Description).IsRequired();
+        //         prize.Property(mapping => mapping.EndingRank).IsRequired();
+        //         prize.ToTable("CompetitionPrizes");
+        //     });
+
+            //          modelBuilder.Entity<StepCompetition>().OwnsMany(sc=>sc.ToComplete, input =>
+            // {
+            //     input.WithOwner().HasForeignKey("IdSteps");
+
+            //     input.Property(mapping => mapping.Type).IsRequired();
+            //     input.Property(mapping => mapping.Tag).IsRequired();
+            //     input.Property(mapping => mapping.Label).IsRequired();
+            //     input.Property(mapping => mapping.Placeholder);
+            //     input.Property(mapping => mapping.Type).IsRequired();
+            //     input.Property(mapping => mapping.UrlStorage);
+            //     input.ToTable("CompetitionSteps");
+            // });
+            
         }
 
 
