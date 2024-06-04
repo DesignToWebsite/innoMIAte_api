@@ -1,8 +1,9 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using innomiate_api.DTOs;
-using innomiate_api.Services;
 
-namespace innomiate_api.Controllers
+using INNOMIATE_API.Services;
+using innomiate_api.DTOs;
+
+namespace INNOMIATE_API.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
@@ -15,39 +16,44 @@ namespace innomiate_api.Controllers
             _teamService = teamService;
         }
 
-        [HttpPost]
-        public IActionResult CreateTeam([FromBody] TeamDto teamDto)
+        [HttpPost("create")]
+        public async Task<IActionResult> CreateTeam([FromBody] CreateTeamDto createTeamDto)
         {
-            var createdTeam = _teamService.CreateTeam(teamDto);
+            var createdTeam = await _teamService.CreateTeamAsync(createTeamDto);
             return Ok(createdTeam);
         }
 
-        [HttpPut("{id}")]
-        public IActionResult UpdateTeam(int id, [FromBody] TeamDto teamDto)
+        [HttpDelete("delete/{teamId}")]
+        public async Task<IActionResult> DeleteTeam(int teamId)
         {
-            var updatedTeam = _teamService.UpdateTeam(id, teamDto);
-            return Ok(updatedTeam);
-        }
-
-        [HttpDelete("{id}")]
-        public IActionResult DeleteTeam(int id)
-        {
-            _teamService.DeleteTeam(id);
+            var result = await _teamService.DeleteTeamAsync(teamId);
+            if (!result)
+            {
+                return NotFound();
+            }
             return Ok();
         }
 
-        [HttpGet("by-competition/{competitionId}")]
-        public IActionResult GetTeamsByCompetitionId(int competitionId)
+        [HttpPut("update")]
+        public async Task<IActionResult> UpdateTeam([FromBody] UpdateTeamDto updateTeamDto)
         {
-            try
+            var updatedTeam = await _teamService.UpdateTeamAsync(updateTeamDto);
+            if (updatedTeam == null)
             {
-                var teams = _teamService.GetTeamsByCompetitionId(competitionId);
-                return Ok(teams);
+                return NotFound();
             }
-            catch (Exception ex)
+            return Ok(updatedTeam);
+        }
+
+        [HttpGet("get/{teamId}")]
+        public async Task<IActionResult> GetTeamById(int teamId)
+        {
+            var team = await _teamService.GetTeamByIdAsync(teamId);
+            if (team == null)
             {
-                return StatusCode(500, $"Internal server error: {ex.Message}");
+                return NotFound();
             }
+            return Ok(team);
         }
     }
 }

@@ -1,7 +1,6 @@
 using Microsoft.EntityFrameworkCore;
 using INNOMIATE_API.Models;
 using innomiate_api.Models;
-using innomiate_api.Models.ValidationSteps;
 using innomiate_api.Models.Submission;
 using innomiate_api.Models.Badging;
 
@@ -22,34 +21,29 @@ namespace INNOMIATE_API.Data
         public DbSet<CompetitionJudge> Judges { get; set; }
         public DbSet<CompetitionCreator> Creators { get; set; }
         public DbSet<CompetitionParticipant> Participants { get; set; }
-        public DbSet<CompetitionContributor> Contributors { get; set; }
-        public DbSet<CompetitionSponsor> Sponsors { get; set; }
+
         public DbSet<Requirement> Requirements { get; set; }
         public DbSet<User> Users { get; set; }
         public DbSet<Team> Teams { get; set; }
-        public DbSet<TeamSubmissionFile> TeamSubmissionFiles { get; set; }
-        public DbSet<TeamSubmission> TeamSubmissions { get; set; }
-        public DbSet<StepCompetition> StepCompetitions { get; set; }
-
-
+ 
 
         public DbSet<SubmissionModel> SubmissionModels { get; set; }
         public DbSet<FileModel> FileModels { get; set; }
+ 
 
         ///Step Models <summary>
         /// Step Models
         /// </summary>
         /// 
-        public DbSet<StepModel> StepModels { get; set; }
-        public DbSet<TeamStepSubmission> TeamStepSubmissions { get; set; }
-        public DbSet<StepTemplateModel> StepTemplateModels { get; set; }
 
 
+        public DbSet<StepCompetition> stepCompetitions { get; set; }
+        public DbSet<StepInput> stepInputs { get; set; }
+        public DbSet<SubmittedInput> submittedInputs { get; set; }
         public DbSet<Badge> Badges { get; set; }
         public DbSet<Badging> Badgings { get; set; }
         public DbSet<PlatformAdmin> PlateformAdmins { get; set; }
         public DbSet<HostingRequest> HostingRequests { get; set; }
-
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -94,24 +88,22 @@ namespace INNOMIATE_API.Data
                 .WithMany(c => c.Participants)
                 .HasForeignKey(cp => cp.CompetitionId);
 
-            // Configure one-to-many relationship between User and CompetitionCreator
+
             modelBuilder.Entity<CompetitionCreator>()
-                .HasKey(cc => new { cc.UserId, cc.CompetitionId });
+                .HasKey(cc => cc.CreatorId);
 
             modelBuilder.Entity<CompetitionCreator>()
                 .HasOne(cc => cc.User)
                 .WithMany(u => u.CreatedCompetitions)
                 .HasForeignKey(cc => cc.UserId);
 
-            modelBuilder.Entity<CompetitionCreator>()
-                .HasOne(cc => cc.Competition)
-                .WithOne(c => c.Creator)
-                .HasForeignKey<CompetitionCreator>(cc => cc.CompetitionId);
+
             // Team relations 
+
             modelBuilder.Entity<CompetitionParticipant>()
-    .HasOne(cp => cp.Team)
-    .WithMany(t => t.Participants)
-    .HasForeignKey(cp => cp.TeamId);
+                .HasOne(cp => cp.Team)
+                .WithMany(t => t.Participants)
+                .HasForeignKey(cp => cp.TeamId);
 
             modelBuilder.Entity<Team>()
                 .HasOne(t => t.Competition)
@@ -119,27 +111,9 @@ namespace INNOMIATE_API.Data
                 .HasForeignKey(t => t.CompetitionId);
 
 
+            
 
-            // Steps Relations 
-            modelBuilder.Entity<TeamStepSubmission>()
-    .HasKey(tss => tss.TeamStepSubmissionId);
 
-            modelBuilder.Entity<TeamStepSubmission>()
-                .HasOne(tss => tss.Team)
-                .WithMany(t => t.TeamStepsSubmissions)
-                .HasForeignKey(tss => tss.TeamId);
-
-            modelBuilder.Entity<TeamStepSubmission>()
-                .HasOne(tss => tss.Step)
-                .WithMany(s => s.TeamStepSubmissions)
-                .HasForeignKey(tss => tss.StepId);
-
-            modelBuilder.Entity<Team>()
-                .HasOne(t => t.TeamLeader)
-                .WithMany()
-                .HasForeignKey(t => new { t.TeamLeaderUserId, t.TeamLeaderCompetitionId })
-                .IsRequired(false)
-                .OnDelete(DeleteBehavior.SetNull);
 
             // Configure one-to-many relationship between SubmissionModel and Competition
             modelBuilder.Entity<SubmissionModel>()
@@ -236,18 +210,10 @@ namespace INNOMIATE_API.Data
               .HasForeignKey(sc => sc.IdCompetition)
               .OnDelete(DeleteBehavior.Cascade);
 
-              modelBuilder.Entity<StepCompetition>().OwnsMany(c => c.ToComplete, step =>
-            {
-                step.WithOwner().HasForeignKey("IdSteps");
-                step.Property(mapping => mapping.Type).IsRequired();
-                step.Property(mapping => mapping.Tag).IsRequired();
-                step.Property(mapping => mapping.Label).IsRequired();
-                step.Property(mapping => mapping.Placeholder);
-                step.Property(mapping => mapping.IdName).IsRequired();
-                step.Property(mapping => mapping.ValueInput);
-
-                step.ToTable("StepsToComplete");
-            });
+            modelBuilder.Entity<StepCompetition>().HasMany(sc => sc.ToComplete).WithOne().OnDelete(DeleteBehavior.Cascade);
+            modelBuilder.Entity<SubmittedInput>().HasOne(si => si.Team).WithMany(t => t.SubmittedInputs).HasForeignKey(si => si.TeamId);
+            modelBuilder.Entity<SubmittedInput>().HasOne(si => si.StepInput).WithMany(i => i.InputValues).HasForeignKey(si=>si.StepInputId);
+     
 
         //    modelBuilder.Entity<Competition>().OwnsMany(c => c.Prizes, prize =>
         //     {

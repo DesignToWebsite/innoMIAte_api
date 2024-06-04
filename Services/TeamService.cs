@@ -1,10 +1,9 @@
-﻿using innomiate_api.DTOs;
+﻿using INNOMIATE_API.Data;
 using innomiate_api.Models;
-using INNOMIATE_API.Data;
 using Microsoft.EntityFrameworkCore;
-using System;
+using innomiate_api.DTOs;
 
-namespace innomiate_api.Services
+namespace INNOMIATE_API.Services
 {
     public class TeamService
     {
@@ -15,123 +14,84 @@ namespace innomiate_api.Services
             _context = context;
         }
 
-        public TeamDto CreateTeam(TeamDto teamDto)
+        public async Task<TeamDto> CreateTeamAsync(CreateTeamDto createTeamDto)
         {
-            try
+            var team = new Team
             {
-                var team = new Team
-                {
-                    Name = teamDto.Name,
-                    Slogan = teamDto.Slogan,
-                    TeamLeaderUserId = teamDto.TeamLeaderUserId,
-                    TeamLeaderCompetitionId = teamDto.TeamLeaderCompetitionId,
-                    CompetitionId = teamDto.CompetitionId,
-                };
+                Name = createTeamDto.Name,
+                Slogan = createTeamDto.Slogan,
+                CompetitionId = createTeamDto.CompetitionId
+            };
 
-                _context.Teams.Add(team);
-                _context.SaveChanges();
+            _context.Teams.Add(team);
+            await _context.SaveChangesAsync();
 
-                var createdTeamDto = new TeamDto
-                {
-                    TeamId = team.TeamId,
-                    Name = team.Name,
-                    Slogan = team.Slogan,
-                    TeamLeaderUserId = team.TeamLeaderUserId,
-                    TeamLeaderCompetitionId = team.TeamLeaderCompetitionId,
-                    CompetitionId = team.CompetitionId,
-                    // Map other properties accordingly
-                };
-
-                return createdTeamDto;
-            }
-            catch (Exception ex)
+            return new TeamDto
             {
-                throw new Exception("Failed to create team", ex);
-            }
+                TeamId = team.TeamId,
+                Name = team.Name,
+                Slogan = team.Slogan,
+                CompetitionId = team.CompetitionId
+            };
         }
 
-        public TeamDto UpdateTeam(int teamId, TeamDto teamDto)
+        public async Task<bool> DeleteTeamAsync(int teamId)
         {
-            try
+            var team = await _context.Teams.FindAsync(teamId);
+            if (team == null)
             {
-                var team = _context.Teams.Find(teamId);
-
-                if (team == null)
-                {
-                    throw new ArgumentException("Team not found");
-                }
-
-                team.Name = teamDto.Name;
-                team.Slogan = teamDto.Slogan;
-                team.TeamLeaderUserId = teamDto.TeamLeaderUserId;
-                team.TeamLeaderCompetitionId = teamDto.TeamLeaderCompetitionId;
-                team.CompetitionId = teamDto.CompetitionId;
-
-                _context.SaveChanges();
-
-                var updatedTeamDto = new TeamDto
-                {
-                    TeamId = team.TeamId,
-                    Name = team.Name,
-                    Slogan = team.Slogan,
-                    TeamLeaderUserId = team.TeamLeaderUserId,
-                    TeamLeaderCompetitionId = team.TeamLeaderCompetitionId,
-                    CompetitionId = team.CompetitionId,
-                };
-
-                return updatedTeamDto;
+                return false;
             }
-            catch (Exception ex)
-            {
-                throw new Exception("Failed to update team", ex);
-            }
+
+            _context.Teams.Remove(team);
+            await _context.SaveChangesAsync();
+            return true;
         }
 
-        public void DeleteTeam(int teamId)
+        public async Task<TeamDto> UpdateTeamAsync(UpdateTeamDto updateTeamDto)
         {
-            try
+            var existingTeam = await _context.Teams.FindAsync(updateTeamDto.TeamId);
+            if (existingTeam == null)
             {
-                var team = _context.Teams.Find(teamId);
-
-                if (team == null)
-                {
-                    throw new ArgumentException("Team not found");
-                }
-
-                _context.Teams.Remove(team);
-                _context.SaveChanges();
+                return null;
             }
-            catch (Exception ex)
+
+            existingTeam.Name = updateTeamDto.Name;
+            existingTeam.Slogan = updateTeamDto.Slogan;
+            existingTeam.CompetitionId = updateTeamDto.CompetitionId;
+
+            _context.Teams.Update(existingTeam);
+            await _context.SaveChangesAsync();
+
+            return new TeamDto
             {
-                // Log exception or handle as needed
-                throw new Exception("Failed to delete team", ex);
-            }
+                TeamId = existingTeam.TeamId,
+                Name = existingTeam.Name,
+                Slogan = existingTeam.Slogan,
+                CompetitionId = existingTeam.CompetitionId
+            };
         }
 
-        public List<TeamDto> GetTeamsByCompetitionId(int competitionId)
+        public async Task<TeamDto> GetTeamByIdAsync(int teamId)
         {
-            try
-            {
-                var teams = _context.Teams
-                    .Where(t => t.CompetitionId == competitionId)
-                    .Select(t => new TeamDto
-                    {
-                        TeamId = t.TeamId,
-                        Name = t.Name,
-                        Slogan = t.Slogan,
-                        TeamLeaderUserId = t.TeamLeaderUserId,
-                        TeamLeaderCompetitionId = t.TeamLeaderCompetitionId,
-                        CompetitionId = t.CompetitionId,
-                        // Map other properties accordingly
-                    })
-                    .ToList();
+            var team = await _context.Teams
+                .Include(t => t.Participants)
+                .ThenInclude(p => p.User)
+                .Include(t => t.SubmittedInputs)
+                .FirstOrDefaultAsync(t => t.TeamId == teamId);
 
-                return teams;
-            }
-            catch (Exception ex)
+            if (team == null)
             {
-                throw new Exception("Failed to retrieve teams by competition ID", ex);
+                return null;
             }
+
+            return new TeamDto
+            {
+                TeamId = team.TeamId,
+                Name = team.Name,
+                Slogan = team.Slogan,
+                CompetitionId = team.CompetitionId
+            };
         }
     }
 }

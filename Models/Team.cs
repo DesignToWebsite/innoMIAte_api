@@ -1,24 +1,22 @@
 ﻿using innomiate_api.Models.ValidationSteps;
 using INNOMIATE_API.Models;
+using System.ComponentModel.DataAnnotations.Schema;
+using System.ComponentModel.DataAnnotations;
 
 namespace innomiate_api.Models
 {
     public class Team
     {
+        [Key]
         public int TeamId { get; set; }
         public string Name { get; set; }
         public string Slogan { get; set; }
-        public int? TeamLeaderUserId { get; set; } // Foreign key for UserId
-        public int? TeamLeaderCompetitionId { get; set; } // Foreign key for CompetitionId
-        // Navigation properties
         public int CompetitionId { get; set; }
+        [ForeignKey("CompetitionId")]
         public Competition Competition { get; set; }
 
-        public ICollection<CompetitionParticipant>? Participants { get; set; }
-        public ICollection<TeamStepSubmission>? TeamStepsSubmissions { get; set; }
-        public CompetitionParticipant TeamLeader { get; set; } // Navigation property for TeamLeader
+        public ICollection<CompetitionParticipant> Participants { get; set; } = new List<CompetitionParticipant>();
+        public ICollection<SubmittedInput>? SubmittedInputs { get; set; }
 
-
-        public ICollection<StepCompetition> Steps { get; set; } 
     }
 }

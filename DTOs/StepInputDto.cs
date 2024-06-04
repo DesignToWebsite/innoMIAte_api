@@ -1,8 +1,6 @@
-using INNOMIATE_API.Models;
-
-namespace innomiate_api.Models
+﻿namespace innomiate_api.DTOs
 {
-    public class StepInput
+    public class StepInputDto
     {
         public int Id { get; set; }
         public required string Type { get; set; }
@@ -11,7 +9,6 @@ namespace innomiate_api.Models
         public string? Placeholder { get; set; }
         public required string IdName { get; set; }
         public int? MaxCaracter { get; set; }
-
-        public List<SubmittedInput>? InputValues { get; set; }
+        public IFormFile? File { get; set; }
     }
 }

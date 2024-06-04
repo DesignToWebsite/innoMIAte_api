@@ -1,4 +1,7 @@
+using innomiate_api.Models;
 using innomiate_api.Services;
+using innomiate_api.Services.innomiate_api.Services;
+using innomiate_api.Services.INNOMIATE_API.Services;
 using INNOMIATE_API.Data;
 using INNOMIATE_API.Services;
 using Microsoft.EntityFrameworkCore;
@@ -24,16 +27,15 @@ builder.Services.AddScoped<HostingRequestService>();
 builder.Services.AddScoped<CompetitionService>();
 builder.Services.AddScoped<CoachingManagingService>();
 builder.Services.AddScoped<CompetitionCoachService>();
-builder.Services.AddScoped<CompetitionContributorService>();
-builder.Services.AddScoped<CompetitionJudgeService>();
+
 builder.Services.AddScoped<CompetitionParticipantService>();
-builder.Services.AddScoped<CompetitionSponsorService>();
 builder.Services.AddScoped<BadgeService>();
 builder.Services.AddScoped<TeamService>();
-builder.Services.AddScoped<StepModelService>();
-builder.Services.AddScoped<StepTemplateModelService>();
-builder.Services.AddScoped<TeamStepSubmissionService>(); 
-builder.Services.AddScoped<StepCompetitionService>();
+builder.Services.AddScoped<SubmittedInputService>();
+builder.Services.AddScoped<StepsService>();
+builder.Services.AddScoped<ParticipantService>();
+
+
 
 
 

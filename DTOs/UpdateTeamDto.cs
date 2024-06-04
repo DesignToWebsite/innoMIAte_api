@@ -1,8 +1,6 @@
-﻿using innomiate_api.DTOs.ValidationSteps;
-
-namespace innomiate_api.DTOs
+﻿namespace innomiate_api.DTOs
 {
-    public class TeamDto
+    public class UpdateTeamDto
     {
         public int TeamId { get; set; }
         public string Name { get; set; }
