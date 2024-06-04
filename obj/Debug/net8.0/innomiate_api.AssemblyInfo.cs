@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("innomiate_api")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+7fc17d05a402dbbb01d9acf50e631314584c92a7")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+57c23dd67cc4addeb5f4516edcf878d243409418")]
 [assembly: System.Reflection.AssemblyProductAttribute("innomiate_api")]
 [assembly: System.Reflection.AssemblyTitleAttribute("innomiate_api")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
