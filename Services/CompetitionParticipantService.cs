@@ -7,6 +7,7 @@ using innomiate_api.Models;
 using INNOMIATE_API.Data;
 using INNOMIATE_API.DTOs;
 using INNOMIATE_API.Models;
+using Microsoft.EntityFrameworkCore;
 
 namespace innomiate_api.Services
 {
@@ -46,6 +47,7 @@ namespace innomiate_api.Services
 
             participantToUpdate.UserId = participantDto.UserId;
             participantToUpdate.TeamId = participantDto.TeamId;
+            participantToUpdate.IsLeader = participantDto.IsLeader;
 
             await _context.SaveChangesAsync();
         }
@@ -71,11 +73,42 @@ namespace innomiate_api.Services
                 {
                     UserId = participant.UserId,
                     CompetitionId = participant.CompetitionId,
-                    TeamId = participant.TeamId
+                    TeamId = participant.TeamId,
+                    IsLeader = participant.IsLeader,
                 })
                 .ToList();
 
             return participants;
+        }
+
+        public async Task CreateTeamAndAssignLeader(int participantId, TeamDto teamDto)
+        {
+            var team = new Team
+            {
+                Name = teamDto.Name,
+                Slogan = teamDto.Slogan,
+                ProjectName = teamDto.ProjectName,
+                ProjectDescription = teamDto.ProjectDescription,
+                CompetitionId = teamDto.CompetitionId,
+                ProjectImage = teamDto.ProjectImage,
+            };
+
+            // Add the team to the database
+            _context.Teams.Add(team);
+            await _context.SaveChangesAsync();
+
+            // Retrieve the existing participant
+            var participant = await _context.Participants
+                    .SingleOrDefaultAsync(p => p.UserId == participantId && p.CompetitionId == team.CompetitionId)
+                    ?? throw new Exception("Participant not found");
+            //Update the participant"s TeamId and ISleader 
+            participant.TeamId = team.TeamId;
+            participant.IsLeader = true;
+
+            //Save the changes
+            _context.Participants.Update(participant);
+            await _context.SaveChangesAsync();
+
         }
     }
 }

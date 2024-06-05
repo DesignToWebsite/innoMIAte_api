@@ -29,7 +29,6 @@ C:\Users\ikram\Desktop\pfa\innomiate_api\bin\Debug\net8.0\Swashbuckle.AspNetCore
 C:\Users\ikram\Desktop\pfa\innomiate_api\bin\Debug\net8.0\Swashbuckle.AspNetCore.SwaggerUI.dll
 C:\Users\ikram\Desktop\pfa\innomiate_api\obj\Debug\net8.0\innomiate_api.csproj.AssemblyReference.cache
 C:\Users\ikram\Desktop\pfa\innomiate_api\obj\Debug\net8.0\innomiate_api.MvcApplicationPartsAssemblyInfo.cs
-C:\Users\ikram\Desktop\pfa\innomiate_api\obj\Debug\net8.0\innomiate_api.csproj.CopyComplete
 C:\Users\ikram\Desktop\pfa\innomiate_api\bin\Debug\net8.0\Humanizer.dll
 C:\Users\ikram\Desktop\pfa\innomiate_api\bin\Debug\net8.0\Microsoft.Bcl.AsyncInterfaces.dll
 C:\Users\ikram\Desktop\pfa\innomiate_api\bin\Debug\net8.0\Microsoft.CodeAnalysis.dll
@@ -211,3 +210,5 @@ C:\Users\ikram\Desktop\pfa\Api\innoMIAte_api\obj\Debug\net8.0\innomiate_api.pdb
 C:\Users\ikram\Desktop\pfa\Api\innoMIAte_api\obj\Debug\net8.0\innomiate_api.genruntimeconfig.cache
 C:\Users\ikram\Desktop\pfa\Api\innoMIAte_api\obj\Debug\net8.0\ref\innomiate_api.dll
 C:\Users\ikram\Desktop\pfa\Api\innoMIAte_api\bin\Debug\net8.0\Newtonsoft.Json.dll
+C:\Users\ikram\Desktop\pfa\innoMIAte_api\bin\Debug\net8.0\Newtonsoft.Json.dll
+C:\Users\ikram\Desktop\pfa\innoMIAte_api\obj\Debug\net8.0\innomiat.4F756679.Up2Date

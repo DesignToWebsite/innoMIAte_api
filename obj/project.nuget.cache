@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "cXdZLwogQ1G7iua0+CwT5u2L20CpW+0rBdfVgUFK0P1JgobAVPRfI/wgF5vX5JQYirlyamda/9arxcwUr6wBjg==",
+  "dgSpecHash": "/Jd2osmwq8SU9mb2peNsHm/4MNVxADolW8wMNG1nFcuYd18cq0w2dz8ZQG5gFfmtzxacTohiSpOkMoXrQc15qw==",
   "success": true,
-  "projectFilePath": "C:\\Users\\ikram\\Desktop\\pfa\\Api\\innoMIAte_api\\innomiate_api.csproj",
+  "projectFilePath": "C:\\Users\\ikram\\Desktop\\pfa\\innoMIAte_api\\innomiate_api.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\ikram\\.nuget\\packages\\humanizer.core\\2.14.1\\humanizer.core.2.14.1.nupkg.sha512",
     "C:\\Users\\ikram\\.nuget\\packages\\microsoft.bcl.asyncinterfaces\\6.0.0\\microsoft.bcl.asyncinterfaces.6.0.0.nupkg.sha512",

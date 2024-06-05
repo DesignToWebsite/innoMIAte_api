@@ -198,11 +198,6 @@ namespace INNOMIATE_API.Data
            modelBuilder.Entity<StepCompetition>()
             .HasKey(sc=>sc.IdSteps);
 
-        //    modelBuilder.Entity<StepCompetition>()
-        //     .HasOne(sc=>sc.Team)
-        //     .WithMany(t=>t.Steps)
-        //     .HasForeignKey(sc=>sc.IdTeam)
-        //     .OnDelete(DeleteBehavior.Cascade);
 
             modelBuilder.Entity<StepCompetition>()
               .HasOne(sc=>sc.Competition)
@@ -210,35 +205,21 @@ namespace INNOMIATE_API.Data
               .HasForeignKey(sc => sc.IdCompetition)
               .OnDelete(DeleteBehavior.Cascade);
 
-            modelBuilder.Entity<StepCompetition>().HasMany(sc => sc.ToComplete).WithOne().OnDelete(DeleteBehavior.Cascade);
-            modelBuilder.Entity<SubmittedInput>().HasOne(si => si.Team).WithMany(t => t.SubmittedInputs).HasForeignKey(si => si.TeamId);
-            modelBuilder.Entity<SubmittedInput>().HasOne(si => si.StepInput).WithMany(i => i.InputValues).HasForeignKey(si=>si.StepInputId);
-     
+            modelBuilder.Entity<StepCompetition>()
+            .HasMany(sc => sc.ToComplete)
+            .WithOne()
+            .OnDelete(DeleteBehavior.Cascade);
 
-        //    modelBuilder.Entity<Competition>().OwnsMany(c => c.Prizes, prize =>
-        //     {
-        //         prize.WithOwner().HasForeignKey("CompetitionId");
-        //         prize.Property(mapping => mapping.Amount).IsRequired();
-        //         prize.Property(mapping => mapping.BeginningRank).IsRequired();
-        //         prize.Property(mapping => mapping.Currency).IsRequired();
-        //         prize.Property(mapping => mapping.Description).IsRequired();
-        //         prize.Property(mapping => mapping.EndingRank).IsRequired();
-        //         prize.ToTable("CompetitionPrizes");
-        //     });
-
-            //          modelBuilder.Entity<StepCompetition>().OwnsMany(sc=>sc.ToComplete, input =>
-            // {
-            //     input.WithOwner().HasForeignKey("IdSteps");
-
-            //     input.Property(mapping => mapping.Type).IsRequired();
-            //     input.Property(mapping => mapping.Tag).IsRequired();
-            //     input.Property(mapping => mapping.Label).IsRequired();
-            //     input.Property(mapping => mapping.Placeholder);
-            //     input.Property(mapping => mapping.Type).IsRequired();
-            //     input.Property(mapping => mapping.UrlStorage);
-            //     input.ToTable("CompetitionSteps");
-            // });
+            modelBuilder.Entity<SubmittedInput>()
+            .HasOne(si => si.Team)
+            .WithMany(t => t.SubmittedInputs)
+            .HasForeignKey(si => si.TeamId);
             
+            modelBuilder.Entity<SubmittedInput>()
+            .HasOne(si => si.StepInput)
+            .WithMany(i => i.InputValues)
+            .HasForeignKey(si=>si.StepInputId);
+     
         }
 
 

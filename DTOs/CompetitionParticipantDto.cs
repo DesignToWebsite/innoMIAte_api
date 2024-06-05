@@ -6,5 +6,6 @@
         public int CompetitionId { get; set; }
 
         public int? TeamId { get; set; }
+        public bool IsLeader { get; set; } = false;
     }
 }

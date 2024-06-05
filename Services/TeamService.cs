@@ -14,13 +14,16 @@ namespace INNOMIATE_API.Services
             _context = context;
         }
 
-        public async Task<TeamDto> CreateTeamAsync(CreateTeamDto createTeamDto)
+        public async Task<TeamDto> CreateTeamAsync(TeamDto teamDto)
         {
             var team = new Team
             {
-                Name = createTeamDto.Name,
-                Slogan = createTeamDto.Slogan,
-                CompetitionId = createTeamDto.CompetitionId
+                Name = teamDto.Name,
+                Slogan = teamDto.Slogan,
+                CompetitionId = teamDto.CompetitionId ,
+                ProjectName = teamDto.ProjectName,
+                ProjectDescription = teamDto.ProjectDescription,
+                ProjectImage = teamDto.ProjectDescription  
             };
 
             _context.Teams.Add(team);
@@ -31,7 +34,10 @@ namespace INNOMIATE_API.Services
                 TeamId = team.TeamId,
                 Name = team.Name,
                 Slogan = team.Slogan,
-                CompetitionId = team.CompetitionId
+                CompetitionId = team.CompetitionId,
+                ProjectName = teamDto.ProjectName,
+                ProjectDescription = teamDto.ProjectDescription,
+                ProjectImage = teamDto.ProjectDescription  
             };
         }
 

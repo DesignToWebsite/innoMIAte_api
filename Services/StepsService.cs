@@ -42,7 +42,8 @@ namespace INNOMIATE_API.Services
                 Label = inputDto.Label,
                 Placeholder = inputDto.Placeholder,
                 IdName = inputDto.IdName,
-                MaxCaracter = inputDto.MaxCaracter
+                MaxCaracter = inputDto.MaxCaracter,
+                Description = inputDto.Description
             };
 
             _context.stepInputs.Add(stepInput);
@@ -50,25 +51,17 @@ namespace INNOMIATE_API.Services
             return stepInput;
         }
 
-        public async Task<StepCompetition> CreateStepWithInputsAsync(StepWithInputsDto stepWithInputsDto)
+        public async Task<StepCompetition> CreateStepWithInputsAsync(StepCompetitionDto stepCompetitionDto)
         {
             var step = new StepCompetition
             {
-                IdCompetition = stepWithInputsDto.Step.IdCompetition,
-                Title = stepWithInputsDto.Step.Title,
-                Description = stepWithInputsDto.Step.Description,
-                SecondTitle = stepWithInputsDto.Step.SecondTitle,
-                StepOpen = stepWithInputsDto.Step.StepOpen,
-                DeadLineEnd = stepWithInputsDto.Step.DeadLineEnd,
-                ToComplete = stepWithInputsDto.Inputs.Select(i => new StepInput
-                {
-                    Type = i.Type,
-                    Tag = i.Tag,
-                    Label = i.Label,
-                    Placeholder = i.Placeholder,
-                    IdName = i.IdName,
-                    MaxCaracter = i.MaxCaracter
-                }).ToList()
+                IdCompetition = stepCompetitionDto.IdCompetition,
+                Title = stepCompetitionDto.Title,
+                Description = stepCompetitionDto.Description,
+                SecondTitle = stepCompetitionDto.SecondTitle,
+                StepOpen = stepCompetitionDto.StepOpen,
+                DeadLineEnd = stepCompetitionDto.DeadLineEnd,
+                ToComplete = stepCompetitionDto.ToComplete,
             };
 
             _context.stepCompetitions.Add(step);

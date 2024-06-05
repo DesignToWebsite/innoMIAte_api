@@ -2805,11 +2805,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\ikram\\Desktop\\pfa\\Api\\innoMIAte_api\\innomiate_api.csproj",
+      "projectUniqueName": "C:\\Users\\ikram\\Desktop\\pfa\\innoMIAte_api\\innomiate_api.csproj",
       "projectName": "innomiate_api",
-      "projectPath": "C:\\Users\\ikram\\Desktop\\pfa\\Api\\innoMIAte_api\\innomiate_api.csproj",
+      "projectPath": "C:\\Users\\ikram\\Desktop\\pfa\\innoMIAte_api\\innomiate_api.csproj",
       "packagesPath": "C:\\Users\\ikram\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\ikram\\Desktop\\pfa\\Api\\innoMIAte_api\\obj\\",
+      "outputPath": "C:\\Users\\ikram\\Desktop\\pfa\\innoMIAte_api\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\ikram\\AppData\\Roaming\\NuGet\\NuGet.Config"

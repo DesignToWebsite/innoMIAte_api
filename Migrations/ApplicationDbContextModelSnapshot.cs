@@ -549,6 +549,9 @@ namespace innomiate_api.Migrations
 
                     MySqlPropertyBuilderExtensions.UseMySqlIdentityColumn(b.Property<int>("Id"));
 
+                    b.Property<string>("Description")
+                        .HasColumnType("longtext");
+
                     b.Property<string>("IdName")
                         .IsRequired()
                         .HasColumnType("longtext");
@@ -732,8 +735,18 @@ namespace innomiate_api.Migrations
                         .IsRequired()
                         .HasColumnType("longtext");
 
-                    b.Property<string>("Slogan")
+                    b.Property<string>("ProjectDescription")
                         .IsRequired()
+                        .HasColumnType("longtext");
+
+                    b.Property<string>("ProjectImage")
+                        .HasColumnType("longtext");
+
+                    b.Property<string>("ProjectName")
+                        .IsRequired()
+                        .HasColumnType("longtext");
+
+                    b.Property<string>("Slogan")
                         .HasColumnType("longtext");
 
                     b.Property<int?>("UserId")

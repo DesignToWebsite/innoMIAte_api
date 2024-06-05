@@ -17,7 +17,7 @@ namespace INNOMIATE_API.Controllers
         }
 
         [HttpPost("create")]
-        public async Task<IActionResult> CreateTeam([FromBody] CreateTeamDto createTeamDto)
+        public async Task<IActionResult> CreateTeam([FromBody] TeamDto createTeamDto)
         {
             var createdTeam = await _teamService.CreateTeamAsync(createTeamDto);
             return Ok(createdTeam);

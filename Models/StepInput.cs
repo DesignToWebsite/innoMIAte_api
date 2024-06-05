@@ -11,6 +11,7 @@ namespace innomiate_api.Models
         public string? Placeholder { get; set; }
         public required string IdName { get; set; }
         public int? MaxCaracter { get; set; }
+        public string? Description { get; set; }
 
         public List<SubmittedInput>? InputValues { get; set; }
     }

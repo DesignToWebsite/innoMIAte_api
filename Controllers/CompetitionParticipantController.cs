@@ -74,5 +74,20 @@ namespace innomiate_api.Controllers
                 return BadRequest(ex.Message);
             }
         }
+    
+        [HttpPost("createTeamAssignLeader")]
+        public async Task<IActionResult> CreateTeamAndAssignLeader(int participantId, [FromBody] TeamDto teamDto)
+        {
+            try
+            {
+                await _participantService.CreateTeamAndAssignLeader(participantId, teamDto);
+                return Ok(new {message = "Team created and participant assigned as leader successfully."});
+            }
+            catch(Exception ex)
+            {
+                return BadRequest(new {ùessage = ex.Message});
+            }
+        }
+    
     }
 }

@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace innomiate_api.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20240604183705_initial")]
-    partial class initial
+    [Migration("20240605222713_stepInputValue")]
+    partial class stepInputValue
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -552,6 +552,9 @@ namespace innomiate_api.Migrations
 
                     MySqlPropertyBuilderExtensions.UseMySqlIdentityColumn(b.Property<int>("Id"));
 
+                    b.Property<string>("Description")
+                        .HasColumnType("longtext");
+
                     b.Property<string>("IdName")
                         .IsRequired()
                         .HasColumnType("longtext");
@@ -735,8 +738,18 @@ namespace innomiate_api.Migrations
                         .IsRequired()
                         .HasColumnType("longtext");
 
-                    b.Property<string>("Slogan")
+                    b.Property<string>("ProjectDescription")
                         .IsRequired()
+                        .HasColumnType("longtext");
+
+                    b.Property<string>("ProjectImage")
+                        .HasColumnType("longtext");
+
+                    b.Property<string>("ProjectName")
+                        .IsRequired()
+                        .HasColumnType("longtext");
+
+                    b.Property<string>("Slogan")
                         .HasColumnType("longtext");
 
                     b.Property<int?>("UserId")

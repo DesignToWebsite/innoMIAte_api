@@ -13,7 +13,7 @@ namespace INNOMIATE_API.Models
         public string? SecondTitle { get; set; }
         public required bool StepOpen { get; set; }
         public required bool DeadLineEnd { get; set; }
-        public List<StepInput> ToComplete { get; set; }
+        public List<StepInput>? ToComplete { get; set; }
         public Competition Competition { get; set; }
 
 

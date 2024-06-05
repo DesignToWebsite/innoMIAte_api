@@ -8,5 +8,8 @@ namespace innomiate_api.DTOs
         public string Name { get; set; }
         public string Slogan { get; set; }
         public int CompetitionId { get; set; }
+        public string ProjectName { get; set; }
+        public string ProjectDescription { get; set; }
+        public string? ProjectImage  { get; set; }
     }
 }
