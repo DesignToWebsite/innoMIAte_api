@@ -4,6 +4,7 @@ using innomiate_api.DTOs;
 using Microsoft.EntityFrameworkCore;
 using System.Threading.Tasks;
 using innomiate_api.Models;
+using Microsoft.AspNetCore.Http.HttpResults;
 
 namespace INNOMIATE_API.Services
 {
@@ -51,5 +52,17 @@ namespace INNOMIATE_API.Services
             await _context.SaveChangesAsync();
             return step;
         }
+    
+        public async Task<IEnumerable<StepCompetition>> GetSteps(int idCompetition)
+        {
+            return await _context.stepCompetitions
+                    .Include(s=>s.ToComplete)
+                    .Where(s=> s.IdCompetition == idCompetition)
+                    .ToListAsync();;
+            
+            
+        }
+    
+    
     }
 }

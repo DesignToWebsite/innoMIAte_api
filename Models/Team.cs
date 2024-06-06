@@ -9,10 +9,10 @@ namespace innomiate_api.Models
     {
         [Key]
         public int TeamId { get; set; }
-        public string Name { get; set; } //Team name
+        public string? Name { get; set; } //Team name
         public string? Slogan { get; set; }
-        public string ProjectName { get; set; }
-        public string ProjectDescription { get; set; }
+        public string? ProjectName { get; set; }
+        public string? ProjectDescription { get; set; }
         public string? ProjectImage  { get; set; }
         public int CompetitionId { get; set; }
         [ForeignKey("CompetitionId")]

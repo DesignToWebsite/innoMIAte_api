@@ -69,6 +69,7 @@ namespace INNOMIATE_API.Services
             var competition = await _context.Competitions
                     .Include(c => c.Participants)
                     .ThenInclude(u=> u.User)
+                    .Include(t => t.Teams)
                     .FirstOrDefaultAsync(c => c.URL == id);
             if (competition == null)
                 return null;

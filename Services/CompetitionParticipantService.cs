@@ -26,7 +26,9 @@ namespace innomiate_api.Services
             {
                 UserId = participantDto.UserId,
                 CompetitionId = participantDto.CompetitionId,
-                TeamId = participantDto.TeamId
+                TeamId = participantDto.TeamId,
+                IsConfirmed = participantDto.IsConfirmed,
+                GroupId = participantDto.GroupId,
             };
 
             _context.Participants.Add(participant);
@@ -48,6 +50,9 @@ namespace innomiate_api.Services
             participantToUpdate.UserId = participantDto.UserId;
             participantToUpdate.TeamId = participantDto.TeamId;
             participantToUpdate.IsLeader = participantDto.IsLeader;
+            participantToUpdate.IsConfirmed = participantDto.IsConfirmed;
+            participantToUpdate.GroupId = participantDto.GroupId;
+
 
             await _context.SaveChangesAsync();
         }
@@ -75,6 +80,9 @@ namespace innomiate_api.Services
                     CompetitionId = participant.CompetitionId,
                     TeamId = participant.TeamId,
                     IsLeader = participant.IsLeader,
+                    IsConfirmed = participant.IsConfirmed,
+                    GroupId = participant.GroupId
+
                 })
                 .ToList();
 
@@ -104,7 +112,7 @@ namespace innomiate_api.Services
             //Update the participant"s TeamId and ISleader 
             participant.TeamId = team.TeamId;
             participant.IsLeader = true;
-
+            // participant.IsConfirmed = true;
             //Save the changes
             _context.Participants.Update(participant);
             await _context.SaveChangesAsync();

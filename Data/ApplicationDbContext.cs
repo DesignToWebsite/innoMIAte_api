@@ -105,6 +105,12 @@ namespace INNOMIATE_API.Data
                 .WithMany(t => t.Participants)
                 .HasForeignKey(cp => cp.TeamId);
 
+                   //  Group
+            modelBuilder.Entity<CompetitionParticipant>()
+      .HasOne(cp => cp.Group)                    
+      .WithMany(g => g.Participants)            
+      .HasForeignKey(cp => cp.GroupId);         
+
             modelBuilder.Entity<Team>()
                 .HasOne(t => t.Competition)
                 .WithMany(c => c.Teams)
