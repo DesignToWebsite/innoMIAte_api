@@ -566,7 +566,7 @@ namespace innomiate_api.Migrations
                     b.Property<string>("Placeholder")
                         .HasColumnType("longtext");
 
-                    b.Property<int?>("StepCompetitionIdSteps")
+                    b.Property<int>("StepCompetitionId")
                         .HasColumnType("int");
 
                     b.Property<string>("Tag")
@@ -579,7 +579,7 @@ namespace innomiate_api.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("StepCompetitionIdSteps");
+                    b.HasIndex("StepCompetitionId");
 
                     b.ToTable("stepInputs");
                 });
@@ -1165,10 +1165,13 @@ namespace innomiate_api.Migrations
 
             modelBuilder.Entity("innomiate_api.Models.StepInput", b =>
                 {
-                    b.HasOne("INNOMIATE_API.Models.StepCompetition", null)
+                    b.HasOne("INNOMIATE_API.Models.StepCompetition", "StepCompetition")
                         .WithMany("ToComplete")
-                        .HasForeignKey("StepCompetitionIdSteps")
-                        .OnDelete(DeleteBehavior.Cascade);
+                        .HasForeignKey("StepCompetitionId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("StepCompetition");
                 });
 
             modelBuilder.Entity("innomiate_api.Models.Submission.FileModel", b =>

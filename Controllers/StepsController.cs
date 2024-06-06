@@ -1,7 +1,7 @@
-﻿using System.Threading.Tasks;
+﻿using System.Collections.Generic;
+using System.Threading.Tasks;
 using innomiate_api.DTOs;
 using innomiate_api.Services;
-using INNOMIATE_API.DTOs;
 using INNOMIATE_API.Services;
 using Microsoft.AspNetCore.Mvc;
 
@@ -18,24 +18,15 @@ namespace innomiate_api.Controllers
             _stepsService = stepsService;
         }
 
-        [HttpPost("create-step-input")]
-        public async Task<IActionResult> CreateStepInput([FromForm] StepInputDto stepInputDto)
+        [HttpPost("create-step-with-inputs")]
+        public async Task<IActionResult> CreateStepWithInputs([FromBody] StepWithInputsDto stepWithInputsDto)
         {
-            var result = await _stepsService.CreateStepInputAsync(stepInputDto);
-            return Ok(result);
-        }
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
 
-        [HttpPost("create-step")]
-        public async Task<IActionResult> CreateStep([FromForm] StepCompetitionDto stepCompetitionDto)
-        {
-            var result = await _stepsService.CreateStepAsync(stepCompetitionDto);
-            return Ok(result);
-        }
-        //CreateStepWithInputsAsync
-        [HttpPost("create-step-with-input")]
-        public async Task<IActionResult> CreateStepWithInput([FromForm] StepCompetitionDto stepCompetitionDto)
-        {
-            var result = await _stepsService.CreateStepWithInputsAsync(stepCompetitionDto);
+            var result = await _stepsService.CreateStepWithInputsAsync(stepWithInputsDto);
             return Ok(result);
         }
     }

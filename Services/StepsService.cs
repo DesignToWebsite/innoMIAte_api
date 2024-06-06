@@ -1,8 +1,8 @@
 ﻿using INNOMIATE_API.Data;
 using INNOMIATE_API.Models;
-using Microsoft.EntityFrameworkCore;
 using innomiate_api.DTOs;
-using INNOMIATE_API.DTOs;
+using Microsoft.EntityFrameworkCore;
+using System.Threading.Tasks;
 using innomiate_api.Models;
 
 namespace INNOMIATE_API.Services
@@ -16,65 +16,40 @@ namespace INNOMIATE_API.Services
             _context = context;
         }
 
-        public async Task<StepCompetition> CreateStepAsync(StepCompetitionDto stepDto)
+        public async Task<StepCompetition> CreateStepWithInputsAsync(StepWithInputsDto stepWithInputsDto)
         {
             var step = new StepCompetition
             {
-                IdCompetition = stepDto.IdCompetition,
-                Title = stepDto.Title,
-                Description = stepDto.Description,
-                SecondTitle = stepDto.SecondTitle,
-                StepOpen = stepDto.StepOpen,
-                DeadLineEnd = stepDto.DeadLineEnd
+                IdCompetition = stepWithInputsDto.Step.IdCompetition,
+                Title = stepWithInputsDto.Step.Title,
+                Description = stepWithInputsDto.Step.Description,
+                SecondTitle = stepWithInputsDto.Step.SecondTitle,
+                StepOpen = stepWithInputsDto.Step.StepOpen,
+                DeadLineEnd = stepWithInputsDto.Step.DeadLineEnd
             };
 
             _context.stepCompetitions.Add(step);
             await _context.SaveChangesAsync();
-            return step;
-        }
 
-        public async Task<StepInput> CreateStepInputAsync(StepInputDto inputDto)
-        {
-            var stepInput = new StepInput
+            foreach (var inputDto in stepWithInputsDto.Inputs)
             {
-                Type = inputDto.Type,
-                Tag = inputDto.Tag,
-                Label = inputDto.Label,
-                Placeholder = inputDto.Placeholder,
-                IdName = inputDto.IdName,
-                MaxCaracter = inputDto.MaxCaracter,
-                Description = inputDto.Description
-            };
+                var stepInput = new StepInput
+                {
+                    Type = inputDto.Type,
+                    Tag = inputDto.Tag,
+                    Label = inputDto.Label,
+                    Placeholder = inputDto.Placeholder,
+                    IdName = inputDto.IdName,
+                    MaxCaracter = inputDto.MaxCaracter,
+                    Description = inputDto.Description,
+                    StepCompetitionId = step.IdSteps
+                };
 
-            _context.stepInputs.Add(stepInput);
-            await _context.SaveChangesAsync();
-            return stepInput;
-        }
+                _context.stepInputs.Add(stepInput);
+            }
 
-        public async Task<StepCompetition> CreateStepWithInputsAsync(StepCompetitionDto stepCompetitionDto)
-        {
-            var step = new StepCompetition
-            {
-                IdCompetition = stepCompetitionDto.IdCompetition,
-                Title = stepCompetitionDto.Title,
-                Description = stepCompetitionDto.Description,
-                SecondTitle = stepCompetitionDto.SecondTitle,
-                StepOpen = stepCompetitionDto.StepOpen,
-                DeadLineEnd = stepCompetitionDto.DeadLineEnd,
-                ToComplete = stepCompetitionDto.ToComplete,
-            };
-
-            _context.stepCompetitions.Add(step);
             await _context.SaveChangesAsync();
             return step;
-        }
-
-        public async Task<List<StepCompetition>> GetStepsByCompetitionIdAsync(int competitionId)
-        {
-            return await _context.stepCompetitions
-                .Where(sc => sc.IdCompetition == competitionId)
-                .Include(sc => sc.ToComplete)
-                .ToListAsync();
         }
     }
 }

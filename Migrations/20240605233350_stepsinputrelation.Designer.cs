@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace innomiate_api.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20240605222713_stepInputValue")]
-    partial class stepInputValue
+    [Migration("20240605233350_stepsinputrelation")]
+    partial class stepsinputrelation
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -569,7 +569,7 @@ namespace innomiate_api.Migrations
                     b.Property<string>("Placeholder")
                         .HasColumnType("longtext");
 
-                    b.Property<int?>("StepCompetitionIdSteps")
+                    b.Property<int>("StepCompetitionId")
                         .HasColumnType("int");
 
                     b.Property<string>("Tag")
@@ -582,7 +582,7 @@ namespace innomiate_api.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("StepCompetitionIdSteps");
+                    b.HasIndex("StepCompetitionId");
 
                     b.ToTable("stepInputs");
                 });
@@ -1168,10 +1168,13 @@ namespace innomiate_api.Migrations
 
             modelBuilder.Entity("innomiate_api.Models.StepInput", b =>
                 {
-                    b.HasOne("INNOMIATE_API.Models.StepCompetition", null)
+                    b.HasOne("INNOMIATE_API.Models.StepCompetition", "StepCompetition")
                         .WithMany("ToComplete")
-                        .HasForeignKey("StepCompetitionIdSteps")
-                        .OnDelete(DeleteBehavior.Cascade);
+                        .HasForeignKey("StepCompetitionId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("StepCompetition");
                 });
 
             modelBuilder.Entity("innomiate_api.Models.Submission.FileModel", b =>

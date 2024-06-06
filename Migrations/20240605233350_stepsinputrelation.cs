@@ -7,7 +7,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace innomiate_api.Migrations
 {
     /// <inheritdoc />
-    public partial class stepInputValue : Migration
+    public partial class stepsinputrelation : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -629,6 +629,7 @@ namespace innomiate_api.Migrations
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
+                    StepCompetitionId = table.Column<int>(type: "int", nullable: false),
                     Type = table.Column<string>(type: "longtext", nullable: false)
                         .Annotation("MySql:CharSet", "utf8mb4"),
                     Tag = table.Column<string>(type: "longtext", nullable: false)
@@ -641,15 +642,14 @@ namespace innomiate_api.Migrations
                         .Annotation("MySql:CharSet", "utf8mb4"),
                     MaxCaracter = table.Column<int>(type: "int", nullable: true),
                     Description = table.Column<string>(type: "longtext", nullable: true)
-                        .Annotation("MySql:CharSet", "utf8mb4"),
-                    StepCompetitionIdSteps = table.Column<int>(type: "int", nullable: true)
+                        .Annotation("MySql:CharSet", "utf8mb4")
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_stepInputs", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_stepInputs_stepCompetitions_StepCompetitionIdSteps",
-                        column: x => x.StepCompetitionIdSteps,
+                        name: "FK_stepInputs_stepCompetitions_StepCompetitionId",
+                        column: x => x.StepCompetitionId,
                         principalTable: "stepCompetitions",
                         principalColumn: "IdSteps",
                         onDelete: ReferentialAction.Cascade);
@@ -943,9 +943,9 @@ namespace innomiate_api.Migrations
                 column: "IdCompetition");
 
             migrationBuilder.CreateIndex(
-                name: "IX_stepInputs_StepCompetitionIdSteps",
+                name: "IX_stepInputs_StepCompetitionId",
                 table: "stepInputs",
-                column: "StepCompetitionIdSteps");
+                column: "StepCompetitionId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_StepModel_CompetitionId",

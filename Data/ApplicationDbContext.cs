@@ -205,10 +205,7 @@ namespace INNOMIATE_API.Data
               .HasForeignKey(sc => sc.IdCompetition)
               .OnDelete(DeleteBehavior.Cascade);
 
-            modelBuilder.Entity<StepCompetition>()
-            .HasMany(sc => sc.ToComplete)
-            .WithOne()
-            .OnDelete(DeleteBehavior.Cascade);
+         
 
             modelBuilder.Entity<SubmittedInput>()
             .HasOne(si => si.Team)
@@ -219,8 +216,20 @@ namespace INNOMIATE_API.Data
             .HasOne(si => si.StepInput)
             .WithMany(i => i.InputValues)
             .HasForeignKey(si=>si.StepInputId);
-     
+            modelBuilder.Entity<StepCompetition>()
+    .HasKey(sc => sc.IdSteps);
+
+            modelBuilder.Entity<StepInput>()
+                .HasKey(si => si.Id);
+
+            modelBuilder.Entity<StepInput>()
+                .HasOne(si => si.StepCompetition)  
+                .WithMany(sc => sc.ToComplete)      
+                .HasForeignKey(si => si.StepCompetitionId) 
+                .OnDelete(DeleteBehavior.Cascade);
+
         }
+
 
 
 
