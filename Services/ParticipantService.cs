@@ -47,7 +47,7 @@
                 await _context.SaveChangesAsync();
                 return true;
             }
-
+            /*
             public async Task<ParticipantDto> UpdateParticipantTeamAsync(UpdateParticipantTeamDto updateParticipantTeamDto)
             {
                 var participant = await _context.Participants.FindAsync(updateParticipantTeamDto.ParticipantId);
@@ -67,7 +67,7 @@
                     TeamId = participant.TeamId,
                     IsLeader = participant.IsLeader
                 };
-            }
+            } */
 
             public async Task<ParticipantDto> UpdateParticipantAsync(UpdateParticipantDto updateParticipantDto)
             {
@@ -77,7 +77,7 @@
                     return null;
                 }
 
-                participant.TeamId = updateParticipantDto.TeamId;
+              //  participant.TeamId = updateParticipantDto.TeamId;
                 participant.IsLeader = updateParticipantDto.IsLeader;
                 await _context.SaveChangesAsync();
 
@@ -86,7 +86,7 @@
                     ParticipantId = participant.Id,
                     UserId = participant.UserId,
                     CompetitionId = participant.CompetitionId,
-                    TeamId = participant.TeamId,
+                  //  TeamId = participant.TeamId,
                     IsLeader = participant.IsLeader
                 };
             }

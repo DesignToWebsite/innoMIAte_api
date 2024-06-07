@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace innomiate_api.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20240606051758_initial")]
+    [Migration("20240607131528_initial")]
     partial class initial
     {
         /// <inheritdoc />
@@ -185,28 +185,72 @@ namespace innomiate_api.Migrations
 
             modelBuilder.Entity("INNOMIATE_API.Models.CompetitionParticipant", b =>
                 {
-                    b.Property<int>("UserId")
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
                         .HasColumnType("int");
+
+                    MySqlPropertyBuilderExtensions.UseMySqlIdentityColumn(b.Property<int>("Id"));
 
                     b.Property<int>("CompetitionId")
                         .HasColumnType("int");
 
-                    b.Property<int>("Id")
+                    b.Property<int?>("GroupId")
                         .HasColumnType("int");
+
+                    b.Property<bool>("IsConfirmed")
+                        .HasColumnType("tinyint(1)");
 
                     b.Property<bool>("IsLeader")
                         .HasColumnType("tinyint(1)");
 
-                    b.Property<int?>("TeamId")
+                    b.Property<int>("UserId")
                         .HasColumnType("int");
 
-                    b.HasKey("UserId", "CompetitionId");
+                    b.HasKey("Id");
 
                     b.HasIndex("CompetitionId");
 
-                    b.HasIndex("TeamId");
+                    b.HasIndex("GroupId");
+
+                    b.HasIndex("UserId");
 
                     b.ToTable("Participants");
+                });
+
+            modelBuilder.Entity("INNOMIATE_API.Models.Group", b =>
+                {
+                    b.Property<int>("GroupId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    MySqlPropertyBuilderExtensions.UseMySqlIdentityColumn(b.Property<int>("GroupId"));
+
+                    b.Property<int>("CompetitionId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("longtext");
+
+                    b.Property<string>("ProjectDescription")
+                        .IsRequired()
+                        .HasColumnType("longtext");
+
+                    b.Property<string>("ProjectImage")
+                        .HasColumnType("longtext");
+
+                    b.Property<string>("ProjectName")
+                        .IsRequired()
+                        .HasColumnType("longtext");
+
+                    b.Property<string>("Slogan")
+                        .HasColumnType("longtext");
+
+                    b.HasKey("GroupId");
+
+                    b.HasIndex("CompetitionId");
+
+                    b.ToTable("Groups");
                 });
 
             modelBuilder.Entity("INNOMIATE_API.Models.Requirement", b =>
@@ -259,46 +303,6 @@ namespace innomiate_api.Migrations
                     b.HasIndex("CompetitionId");
 
                     b.ToTable("Requirements");
-                });
-
-            modelBuilder.Entity("INNOMIATE_API.Models.StepCompetition", b =>
-                {
-                    b.Property<int>("IdSteps")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    MySqlPropertyBuilderExtensions.UseMySqlIdentityColumn(b.Property<int>("IdSteps"));
-
-                    b.Property<int?>("CompetitionId")
-                        .HasColumnType("int");
-
-                    b.Property<bool>("DeadLineEnd")
-                        .HasColumnType("tinyint(1)");
-
-                    b.Property<string>("Description")
-                        .IsRequired()
-                        .HasColumnType("longtext");
-
-                    b.Property<int>("IdCompetition")
-                        .HasColumnType("int");
-
-                    b.Property<string>("SecondTitle")
-                        .HasColumnType("longtext");
-
-                    b.Property<bool>("StepOpen")
-                        .HasColumnType("tinyint(1)");
-
-                    b.Property<string>("Title")
-                        .IsRequired()
-                        .HasColumnType("longtext");
-
-                    b.HasKey("IdSteps");
-
-                    b.HasIndex("CompetitionId");
-
-                    b.HasIndex("IdCompetition");
-
-                    b.ToTable("stepCompetitions");
                 });
 
             modelBuilder.Entity("INNOMIATE_API.Models.User", b =>
@@ -544,311 +548,6 @@ namespace innomiate_api.Migrations
                     b.ToTable("PlateformAdmins");
                 });
 
-            modelBuilder.Entity("innomiate_api.Models.StepInput", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    MySqlPropertyBuilderExtensions.UseMySqlIdentityColumn(b.Property<int>("Id"));
-
-                    b.Property<string>("Description")
-                        .HasColumnType("longtext");
-
-                    b.Property<string>("IdName")
-                        .IsRequired()
-                        .HasColumnType("longtext");
-
-                    b.Property<string>("Label")
-                        .IsRequired()
-                        .HasColumnType("longtext");
-
-                    b.Property<int?>("MaxCaracter")
-                        .HasColumnType("int");
-
-                    b.Property<string>("Placeholder")
-                        .HasColumnType("longtext");
-
-                    b.Property<int>("StepCompetitionId")
-                        .HasColumnType("int");
-
-                    b.Property<string>("Tag")
-                        .IsRequired()
-                        .HasColumnType("longtext");
-
-                    b.Property<string>("Type")
-                        .IsRequired()
-                        .HasColumnType("longtext");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("StepCompetitionId");
-
-                    b.ToTable("stepInputs");
-                });
-
-            modelBuilder.Entity("innomiate_api.Models.Submission.FileModel", b =>
-                {
-                    b.Property<int>("FileModelId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    MySqlPropertyBuilderExtensions.UseMySqlIdentityColumn(b.Property<int>("FileModelId"));
-
-                    b.Property<string>("Description")
-                        .IsRequired()
-                        .HasColumnType("longtext");
-
-                    b.Property<int>("SubmissionModelId")
-                        .HasColumnType("int");
-
-                    b.Property<string>("Title")
-                        .IsRequired()
-                        .HasColumnType("longtext");
-
-                    b.Property<string>("Type")
-                        .IsRequired()
-                        .HasColumnType("longtext");
-
-                    b.HasKey("FileModelId");
-
-                    b.HasIndex("SubmissionModelId");
-
-                    b.ToTable("FileModels");
-                });
-
-            modelBuilder.Entity("innomiate_api.Models.Submission.SubmissionModel", b =>
-                {
-                    b.Property<int>("SubmissionModelId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    MySqlPropertyBuilderExtensions.UseMySqlIdentityColumn(b.Property<int>("SubmissionModelId"));
-
-                    b.Property<int>("CompetitionId")
-                        .HasColumnType("int");
-
-                    b.Property<string>("Description")
-                        .IsRequired()
-                        .HasColumnType("longtext");
-
-                    b.Property<string>("Title")
-                        .IsRequired()
-                        .HasColumnType("longtext");
-
-                    b.HasKey("SubmissionModelId");
-
-                    b.HasIndex("CompetitionId")
-                        .IsUnique();
-
-                    b.ToTable("SubmissionModels");
-                });
-
-            modelBuilder.Entity("innomiate_api.Models.Submission.TeamSubmission", b =>
-                {
-                    b.Property<int>("TeamSubmissionId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    MySqlPropertyBuilderExtensions.UseMySqlIdentityColumn(b.Property<int>("TeamSubmissionId"));
-
-                    b.Property<int>("SubmissionModelId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("TeamId")
-                        .HasColumnType("int");
-
-                    b.HasKey("TeamSubmissionId");
-
-                    b.HasIndex("SubmissionModelId");
-
-                    b.HasIndex("TeamId");
-
-                    b.ToTable("TeamSubmission");
-                });
-
-            modelBuilder.Entity("innomiate_api.Models.Submission.TeamSubmissionFile", b =>
-                {
-                    b.Property<int>("TeamSubmissionFileId")
-                        .HasColumnType("int");
-
-                    b.Property<string>("ContentType")
-                        .IsRequired()
-                        .HasColumnType("longtext");
-
-                    b.Property<byte[]>("File")
-                        .IsRequired()
-                        .HasColumnType("longblob");
-
-                    b.Property<int>("FileModelId")
-                        .HasColumnType("int");
-
-                    b.Property<string>("FileName")
-                        .IsRequired()
-                        .HasColumnType("longtext");
-
-                    b.Property<int>("TeamSubmissionId")
-                        .HasColumnType("int");
-
-                    b.HasKey("TeamSubmissionFileId");
-
-                    b.HasIndex("FileModelId");
-
-                    b.ToTable("TeamSubmissionFile");
-                });
-
-            modelBuilder.Entity("innomiate_api.Models.SubmittedInput", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    MySqlPropertyBuilderExtensions.UseMySqlIdentityColumn(b.Property<int>("Id"));
-
-                    b.Property<int>("StepInputId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("TeamId")
-                        .HasColumnType("int");
-
-                    b.Property<string>("Value")
-                        .HasColumnType("longtext");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("StepInputId");
-
-                    b.HasIndex("TeamId");
-
-                    b.ToTable("submittedInputs");
-                });
-
-            modelBuilder.Entity("innomiate_api.Models.Team", b =>
-                {
-                    b.Property<int>("TeamId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    MySqlPropertyBuilderExtensions.UseMySqlIdentityColumn(b.Property<int>("TeamId"));
-
-                    b.Property<int>("CompetitionId")
-                        .HasColumnType("int");
-
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasColumnType("longtext");
-
-                    b.Property<string>("ProjectDescription")
-                        .IsRequired()
-                        .HasColumnType("longtext");
-
-                    b.Property<string>("ProjectImage")
-                        .HasColumnType("longtext");
-
-                    b.Property<string>("ProjectName")
-                        .IsRequired()
-                        .HasColumnType("longtext");
-
-                    b.Property<string>("Slogan")
-                        .HasColumnType("longtext");
-
-                    b.Property<int?>("UserId")
-                        .HasColumnType("int");
-
-                    b.HasKey("TeamId");
-
-                    b.HasIndex("CompetitionId");
-
-                    b.HasIndex("UserId");
-
-                    b.ToTable("Teams");
-                });
-
-            modelBuilder.Entity("innomiate_api.Models.ValidationSteps.StepModel", b =>
-                {
-                    b.Property<int>("StepModelId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    MySqlPropertyBuilderExtensions.UseMySqlIdentityColumn(b.Property<int>("StepModelId"));
-
-                    b.Property<int>("CompetitionId")
-                        .HasColumnType("int");
-
-                    b.Property<string>("Description")
-                        .IsRequired()
-                        .HasColumnType("longtext");
-
-                    b.Property<int>("SubmissionType")
-                        .HasColumnType("int");
-
-                    b.Property<string>("Title")
-                        .IsRequired()
-                        .HasColumnType("longtext");
-
-                    b.HasKey("StepModelId");
-
-                    b.HasIndex("CompetitionId");
-
-                    b.ToTable("StepModel");
-                });
-
-            modelBuilder.Entity("innomiate_api.Models.ValidationSteps.StepTemplateModel", b =>
-                {
-                    b.Property<int>("StepTemplateModelId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    MySqlPropertyBuilderExtensions.UseMySqlIdentityColumn(b.Property<int>("StepTemplateModelId"));
-
-                    b.Property<string>("FileName")
-                        .IsRequired()
-                        .HasColumnType("longtext");
-
-                    b.Property<string>("FilePath")
-                        .IsRequired()
-                        .HasColumnType("longtext");
-
-                    b.Property<int?>("StepModelId")
-                        .HasColumnType("int");
-
-                    b.HasKey("StepTemplateModelId");
-
-                    b.HasIndex("StepModelId");
-
-                    b.ToTable("StepTemplateModel");
-                });
-
-            modelBuilder.Entity("innomiate_api.Models.ValidationSteps.TeamStepSubmission", b =>
-                {
-                    b.Property<int>("TeamStepSubmissionId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    MySqlPropertyBuilderExtensions.UseMySqlIdentityColumn(b.Property<int>("TeamStepSubmissionId"));
-
-                    b.Property<int>("StepId")
-                        .HasColumnType("int");
-
-                    b.Property<DateTime>("SubmissionDate")
-                        .HasColumnType("datetime(6)");
-
-                    b.Property<string>("SubmissionFilePath")
-                        .IsRequired()
-                        .HasColumnType("longtext");
-
-                    b.Property<int>("TeamId")
-                        .HasColumnType("int");
-
-                    b.HasKey("TeamStepSubmissionId");
-
-                    b.HasIndex("StepId");
-
-                    b.HasIndex("TeamId");
-
-                    b.ToTable("TeamStepSubmission");
-                });
-
             modelBuilder.Entity("INNOMIATE_API.Models.Competition", b =>
                 {
                     b.OwnsMany("innomiate_api.Models.NameImageMapping", "Organizers", b1 =>
@@ -1057,9 +756,9 @@ namespace innomiate_api.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("innomiate_api.Models.Team", "Team")
+                    b.HasOne("INNOMIATE_API.Models.Group", "Group")
                         .WithMany("Participants")
-                        .HasForeignKey("TeamId");
+                        .HasForeignKey("GroupId");
 
                     b.HasOne("INNOMIATE_API.Models.User", "User")
                         .WithMany("ParticipatedCompetitions")
@@ -1069,9 +768,20 @@ namespace innomiate_api.Migrations
 
                     b.Navigation("Competition");
 
-                    b.Navigation("Team");
+                    b.Navigation("Group");
 
                     b.Navigation("User");
+                });
+
+            modelBuilder.Entity("INNOMIATE_API.Models.Group", b =>
+                {
+                    b.HasOne("INNOMIATE_API.Models.Competition", "Competition")
+                        .WithMany()
+                        .HasForeignKey("CompetitionId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Competition");
                 });
 
             modelBuilder.Entity("INNOMIATE_API.Models.Requirement", b =>
@@ -1083,21 +793,6 @@ namespace innomiate_api.Migrations
                         .IsRequired();
 
                     b.Navigation("competition");
-                });
-
-            modelBuilder.Entity("INNOMIATE_API.Models.StepCompetition", b =>
-                {
-                    b.HasOne("INNOMIATE_API.Models.Competition", null)
-                        .WithMany("StepCompetitions")
-                        .HasForeignKey("CompetitionId");
-
-                    b.HasOne("INNOMIATE_API.Models.Competition", "Competition")
-                        .WithMany("Steps")
-                        .HasForeignKey("IdCompetition")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Competition");
                 });
 
             modelBuilder.Entity("innomiate_api.Models.Badging.Badge", b =>
@@ -1166,148 +861,6 @@ namespace innomiate_api.Migrations
                     b.Navigation("User");
                 });
 
-            modelBuilder.Entity("innomiate_api.Models.StepInput", b =>
-                {
-                    b.HasOne("INNOMIATE_API.Models.StepCompetition", "StepCompetition")
-                        .WithMany("ToComplete")
-                        .HasForeignKey("StepCompetitionId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("StepCompetition");
-                });
-
-            modelBuilder.Entity("innomiate_api.Models.Submission.FileModel", b =>
-                {
-                    b.HasOne("innomiate_api.Models.Submission.SubmissionModel", "SubmissionModel")
-                        .WithMany("FileModels")
-                        .HasForeignKey("SubmissionModelId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("SubmissionModel");
-                });
-
-            modelBuilder.Entity("innomiate_api.Models.Submission.SubmissionModel", b =>
-                {
-                    b.HasOne("INNOMIATE_API.Models.Competition", "Competition")
-                        .WithOne("SubmissionModel")
-                        .HasForeignKey("innomiate_api.Models.Submission.SubmissionModel", "CompetitionId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Competition");
-                });
-
-            modelBuilder.Entity("innomiate_api.Models.Submission.TeamSubmission", b =>
-                {
-                    b.HasOne("innomiate_api.Models.Submission.SubmissionModel", "SubmissionModel")
-                        .WithMany()
-                        .HasForeignKey("SubmissionModelId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("innomiate_api.Models.Team", "Team")
-                        .WithMany()
-                        .HasForeignKey("TeamId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("SubmissionModel");
-
-                    b.Navigation("Team");
-                });
-
-            modelBuilder.Entity("innomiate_api.Models.Submission.TeamSubmissionFile", b =>
-                {
-                    b.HasOne("innomiate_api.Models.Submission.FileModel", "FileModel")
-                        .WithMany()
-                        .HasForeignKey("FileModelId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("innomiate_api.Models.Submission.TeamSubmission", "TeamSubmission")
-                        .WithMany("TeamSubmissionFiles")
-                        .HasForeignKey("TeamSubmissionFileId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("FileModel");
-
-                    b.Navigation("TeamSubmission");
-                });
-
-            modelBuilder.Entity("innomiate_api.Models.SubmittedInput", b =>
-                {
-                    b.HasOne("innomiate_api.Models.StepInput", "StepInput")
-                        .WithMany("InputValues")
-                        .HasForeignKey("StepInputId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("innomiate_api.Models.Team", "Team")
-                        .WithMany("SubmittedInputs")
-                        .HasForeignKey("TeamId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("StepInput");
-
-                    b.Navigation("Team");
-                });
-
-            modelBuilder.Entity("innomiate_api.Models.Team", b =>
-                {
-                    b.HasOne("INNOMIATE_API.Models.Competition", "Competition")
-                        .WithMany("Teams")
-                        .HasForeignKey("CompetitionId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("INNOMIATE_API.Models.User", null)
-                        .WithMany("Teams")
-                        .HasForeignKey("UserId");
-
-                    b.Navigation("Competition");
-                });
-
-            modelBuilder.Entity("innomiate_api.Models.ValidationSteps.StepModel", b =>
-                {
-                    b.HasOne("INNOMIATE_API.Models.Competition", "Competition")
-                        .WithMany("StepModels")
-                        .HasForeignKey("CompetitionId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Competition");
-                });
-
-            modelBuilder.Entity("innomiate_api.Models.ValidationSteps.StepTemplateModel", b =>
-                {
-                    b.HasOne("innomiate_api.Models.ValidationSteps.StepModel", null)
-                        .WithMany("StepTemplates")
-                        .HasForeignKey("StepModelId");
-                });
-
-            modelBuilder.Entity("innomiate_api.Models.ValidationSteps.TeamStepSubmission", b =>
-                {
-                    b.HasOne("innomiate_api.Models.ValidationSteps.StepModel", "Step")
-                        .WithMany("TeamStepSubmissions")
-                        .HasForeignKey("StepId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("innomiate_api.Models.Team", "Team")
-                        .WithMany()
-                        .HasForeignKey("TeamId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Step");
-
-                    b.Navigation("Team");
-                });
-
             modelBuilder.Entity("INNOMIATE_API.Models.Competition", b =>
                 {
                     b.Navigation("Badging")
@@ -1323,22 +876,11 @@ namespace innomiate_api.Migrations
                     b.Navigation("Judges");
 
                     b.Navigation("Participants");
-
-                    b.Navigation("StepCompetitions");
-
-                    b.Navigation("StepModels");
-
-                    b.Navigation("Steps");
-
-                    b.Navigation("SubmissionModel")
-                        .IsRequired();
-
-                    b.Navigation("Teams");
                 });
 
-            modelBuilder.Entity("INNOMIATE_API.Models.StepCompetition", b =>
+            modelBuilder.Entity("INNOMIATE_API.Models.Group", b =>
                 {
-                    b.Navigation("ToComplete");
+                    b.Navigation("Participants");
                 });
 
             modelBuilder.Entity("INNOMIATE_API.Models.User", b =>
@@ -1352,42 +894,11 @@ namespace innomiate_api.Migrations
                     b.Navigation("JudgedCompetitions");
 
                     b.Navigation("ParticipatedCompetitions");
-
-                    b.Navigation("Teams");
                 });
 
             modelBuilder.Entity("innomiate_api.Models.Badging.Badging", b =>
                 {
                     b.Navigation("Badges");
-                });
-
-            modelBuilder.Entity("innomiate_api.Models.StepInput", b =>
-                {
-                    b.Navigation("InputValues");
-                });
-
-            modelBuilder.Entity("innomiate_api.Models.Submission.SubmissionModel", b =>
-                {
-                    b.Navigation("FileModels");
-                });
-
-            modelBuilder.Entity("innomiate_api.Models.Submission.TeamSubmission", b =>
-                {
-                    b.Navigation("TeamSubmissionFiles");
-                });
-
-            modelBuilder.Entity("innomiate_api.Models.Team", b =>
-                {
-                    b.Navigation("Participants");
-
-                    b.Navigation("SubmittedInputs");
-                });
-
-            modelBuilder.Entity("innomiate_api.Models.ValidationSteps.StepModel", b =>
-                {
-                    b.Navigation("StepTemplates");
-
-                    b.Navigation("TeamStepSubmissions");
                 });
 #pragma warning restore 612, 618
         }

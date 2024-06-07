@@ -28,7 +28,7 @@ namespace INNOMIATE_API.Models
         public virtual ICollection<CompetitionCoach> CoachedCompetitions { get; set; }
         public virtual ICollection<CompetitionJudge> JudgedCompetitions { get; set; }
         public virtual ICollection<CompetitionCreator> CreatedCompetitions { get; set; }
-        public virtual ICollection<Team> Teams { get; set; }
+       // public virtual ICollection<Team> Teams { get; set; }
         public virtual ICollection<HostingRequest> HostingRequests { get; set; }
 
 

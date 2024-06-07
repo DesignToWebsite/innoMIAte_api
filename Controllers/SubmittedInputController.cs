@@ -5,7 +5,7 @@ using innomiate_api.Services.innomiate_api.Services;
 using Microsoft.AspNetCore.Mvc;
 
 namespace innomiate_api.Controllers
-{
+{/*
     [Route("api/[controller]")]
     [ApiController]
     public class SubmittedInputsController : ControllerBase
@@ -24,4 +24,5 @@ namespace innomiate_api.Controllers
             return Ok(result);
         }
     }
+    */
 }

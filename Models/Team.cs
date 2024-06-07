@@ -19,7 +19,7 @@ namespace innomiate_api.Models
         public Competition Competition { get; set; }
 
         public ICollection<CompetitionParticipant> Participants { get; set; } = new List<CompetitionParticipant>();
-        public ICollection<SubmittedInput>? SubmittedInputs { get; set; }
+      //  public ICollection<SubmittedInput>? SubmittedInputs { get; set; }
 
     }
 }

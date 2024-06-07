@@ -7,7 +7,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace innomiate_api.Migrations
 {
     /// <inheritdoc />
-    public partial class stepsinputrelation : Migration
+    public partial class initial : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -337,6 +337,36 @@ namespace innomiate_api.Migrations
                 .Annotation("MySql:CharSet", "utf8mb4");
 
             migrationBuilder.CreateTable(
+                name: "Groups",
+                columns: table => new
+                {
+                    GroupId = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
+                    Name = table.Column<string>(type: "longtext", nullable: false)
+                        .Annotation("MySql:CharSet", "utf8mb4"),
+                    Slogan = table.Column<string>(type: "longtext", nullable: true)
+                        .Annotation("MySql:CharSet", "utf8mb4"),
+                    ProjectName = table.Column<string>(type: "longtext", nullable: false)
+                        .Annotation("MySql:CharSet", "utf8mb4"),
+                    ProjectDescription = table.Column<string>(type: "longtext", nullable: false)
+                        .Annotation("MySql:CharSet", "utf8mb4"),
+                    ProjectImage = table.Column<string>(type: "longtext", nullable: true)
+                        .Annotation("MySql:CharSet", "utf8mb4"),
+                    CompetitionId = table.Column<int>(type: "int", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Groups", x => x.GroupId);
+                    table.ForeignKey(
+                        name: "FK_Groups_Competitions_CompetitionId",
+                        column: x => x.CompetitionId,
+                        principalTable: "Competitions",
+                        principalColumn: "CompetitionId",
+                        onDelete: ReferentialAction.Cascade);
+                })
+                .Annotation("MySql:CharSet", "utf8mb4");
+
+            migrationBuilder.CreateTable(
                 name: "Requirements",
                 columns: table => new
                 {
@@ -365,89 +395,6 @@ namespace innomiate_api.Migrations
                     table.PrimaryKey("PK_Requirements", x => x.RequirementId);
                     table.ForeignKey(
                         name: "FK_Requirements_Competitions_CompetitionId",
-                        column: x => x.CompetitionId,
-                        principalTable: "Competitions",
-                        principalColumn: "CompetitionId",
-                        onDelete: ReferentialAction.Cascade);
-                })
-                .Annotation("MySql:CharSet", "utf8mb4");
-
-            migrationBuilder.CreateTable(
-                name: "stepCompetitions",
-                columns: table => new
-                {
-                    IdSteps = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
-                    IdCompetition = table.Column<int>(type: "int", nullable: false),
-                    Title = table.Column<string>(type: "longtext", nullable: false)
-                        .Annotation("MySql:CharSet", "utf8mb4"),
-                    Description = table.Column<string>(type: "longtext", nullable: false)
-                        .Annotation("MySql:CharSet", "utf8mb4"),
-                    SecondTitle = table.Column<string>(type: "longtext", nullable: true)
-                        .Annotation("MySql:CharSet", "utf8mb4"),
-                    StepOpen = table.Column<bool>(type: "tinyint(1)", nullable: false),
-                    DeadLineEnd = table.Column<bool>(type: "tinyint(1)", nullable: false),
-                    CompetitionId = table.Column<int>(type: "int", nullable: true)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_stepCompetitions", x => x.IdSteps);
-                    table.ForeignKey(
-                        name: "FK_stepCompetitions_Competitions_CompetitionId",
-                        column: x => x.CompetitionId,
-                        principalTable: "Competitions",
-                        principalColumn: "CompetitionId");
-                    table.ForeignKey(
-                        name: "FK_stepCompetitions_Competitions_IdCompetition",
-                        column: x => x.IdCompetition,
-                        principalTable: "Competitions",
-                        principalColumn: "CompetitionId",
-                        onDelete: ReferentialAction.Cascade);
-                })
-                .Annotation("MySql:CharSet", "utf8mb4");
-
-            migrationBuilder.CreateTable(
-                name: "StepModel",
-                columns: table => new
-                {
-                    StepModelId = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
-                    Title = table.Column<string>(type: "longtext", nullable: false)
-                        .Annotation("MySql:CharSet", "utf8mb4"),
-                    Description = table.Column<string>(type: "longtext", nullable: false)
-                        .Annotation("MySql:CharSet", "utf8mb4"),
-                    SubmissionType = table.Column<int>(type: "int", nullable: false),
-                    CompetitionId = table.Column<int>(type: "int", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_StepModel", x => x.StepModelId);
-                    table.ForeignKey(
-                        name: "FK_StepModel_Competitions_CompetitionId",
-                        column: x => x.CompetitionId,
-                        principalTable: "Competitions",
-                        principalColumn: "CompetitionId",
-                        onDelete: ReferentialAction.Cascade);
-                })
-                .Annotation("MySql:CharSet", "utf8mb4");
-
-            migrationBuilder.CreateTable(
-                name: "SubmissionModels",
-                columns: table => new
-                {
-                    SubmissionModelId = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
-                    Title = table.Column<string>(type: "longtext", nullable: false)
-                        .Annotation("MySql:CharSet", "utf8mb4"),
-                    Description = table.Column<string>(type: "longtext", nullable: false)
-                        .Annotation("MySql:CharSet", "utf8mb4"),
-                    CompetitionId = table.Column<int>(type: "int", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_SubmissionModels", x => x.SubmissionModelId);
-                    table.ForeignKey(
-                        name: "FK_SubmissionModels_Competitions_CompetitionId",
                         column: x => x.CompetitionId,
                         principalTable: "Competitions",
                         principalColumn: "CompetitionId",
@@ -559,42 +506,6 @@ namespace innomiate_api.Migrations
                 .Annotation("MySql:CharSet", "utf8mb4");
 
             migrationBuilder.CreateTable(
-                name: "Teams",
-                columns: table => new
-                {
-                    TeamId = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
-                    Name = table.Column<string>(type: "longtext", nullable: false)
-                        .Annotation("MySql:CharSet", "utf8mb4"),
-                    Slogan = table.Column<string>(type: "longtext", nullable: true)
-                        .Annotation("MySql:CharSet", "utf8mb4"),
-                    ProjectName = table.Column<string>(type: "longtext", nullable: false)
-                        .Annotation("MySql:CharSet", "utf8mb4"),
-                    ProjectDescription = table.Column<string>(type: "longtext", nullable: false)
-                        .Annotation("MySql:CharSet", "utf8mb4"),
-                    ProjectImage = table.Column<string>(type: "longtext", nullable: true)
-                        .Annotation("MySql:CharSet", "utf8mb4"),
-                    CompetitionId = table.Column<int>(type: "int", nullable: false),
-                    UserId = table.Column<int>(type: "int", nullable: true)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Teams", x => x.TeamId);
-                    table.ForeignKey(
-                        name: "FK_Teams_Competitions_CompetitionId",
-                        column: x => x.CompetitionId,
-                        principalTable: "Competitions",
-                        principalColumn: "CompetitionId",
-                        onDelete: ReferentialAction.Cascade);
-                    table.ForeignKey(
-                        name: "FK_Teams_Users_UserId",
-                        column: x => x.UserId,
-                        principalTable: "Users",
-                        principalColumn: "Id");
-                })
-                .Annotation("MySql:CharSet", "utf8mb4");
-
-            migrationBuilder.CreateTable(
                 name: "Badges",
                 columns: table => new
                 {
@@ -624,100 +535,20 @@ namespace innomiate_api.Migrations
                 .Annotation("MySql:CharSet", "utf8mb4");
 
             migrationBuilder.CreateTable(
-                name: "stepInputs",
+                name: "Participants",
                 columns: table => new
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
-                    StepCompetitionId = table.Column<int>(type: "int", nullable: false),
-                    Type = table.Column<string>(type: "longtext", nullable: false)
-                        .Annotation("MySql:CharSet", "utf8mb4"),
-                    Tag = table.Column<string>(type: "longtext", nullable: false)
-                        .Annotation("MySql:CharSet", "utf8mb4"),
-                    Label = table.Column<string>(type: "longtext", nullable: false)
-                        .Annotation("MySql:CharSet", "utf8mb4"),
-                    Placeholder = table.Column<string>(type: "longtext", nullable: true)
-                        .Annotation("MySql:CharSet", "utf8mb4"),
-                    IdName = table.Column<string>(type: "longtext", nullable: false)
-                        .Annotation("MySql:CharSet", "utf8mb4"),
-                    MaxCaracter = table.Column<int>(type: "int", nullable: true),
-                    Description = table.Column<string>(type: "longtext", nullable: true)
-                        .Annotation("MySql:CharSet", "utf8mb4")
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_stepInputs", x => x.Id);
-                    table.ForeignKey(
-                        name: "FK_stepInputs_stepCompetitions_StepCompetitionId",
-                        column: x => x.StepCompetitionId,
-                        principalTable: "stepCompetitions",
-                        principalColumn: "IdSteps",
-                        onDelete: ReferentialAction.Cascade);
-                })
-                .Annotation("MySql:CharSet", "utf8mb4");
-
-            migrationBuilder.CreateTable(
-                name: "StepTemplateModel",
-                columns: table => new
-                {
-                    StepTemplateModelId = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
-                    FileName = table.Column<string>(type: "longtext", nullable: false)
-                        .Annotation("MySql:CharSet", "utf8mb4"),
-                    FilePath = table.Column<string>(type: "longtext", nullable: false)
-                        .Annotation("MySql:CharSet", "utf8mb4"),
-                    StepModelId = table.Column<int>(type: "int", nullable: true)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_StepTemplateModel", x => x.StepTemplateModelId);
-                    table.ForeignKey(
-                        name: "FK_StepTemplateModel_StepModel_StepModelId",
-                        column: x => x.StepModelId,
-                        principalTable: "StepModel",
-                        principalColumn: "StepModelId");
-                })
-                .Annotation("MySql:CharSet", "utf8mb4");
-
-            migrationBuilder.CreateTable(
-                name: "FileModels",
-                columns: table => new
-                {
-                    FileModelId = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
-                    Type = table.Column<string>(type: "longtext", nullable: false)
-                        .Annotation("MySql:CharSet", "utf8mb4"),
-                    Title = table.Column<string>(type: "longtext", nullable: false)
-                        .Annotation("MySql:CharSet", "utf8mb4"),
-                    Description = table.Column<string>(type: "longtext", nullable: false)
-                        .Annotation("MySql:CharSet", "utf8mb4"),
-                    SubmissionModelId = table.Column<int>(type: "int", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_FileModels", x => x.FileModelId);
-                    table.ForeignKey(
-                        name: "FK_FileModels_SubmissionModels_SubmissionModelId",
-                        column: x => x.SubmissionModelId,
-                        principalTable: "SubmissionModels",
-                        principalColumn: "SubmissionModelId",
-                        onDelete: ReferentialAction.Cascade);
-                })
-                .Annotation("MySql:CharSet", "utf8mb4");
-
-            migrationBuilder.CreateTable(
-                name: "Participants",
-                columns: table => new
-                {
                     UserId = table.Column<int>(type: "int", nullable: false),
                     CompetitionId = table.Column<int>(type: "int", nullable: false),
-                    Id = table.Column<int>(type: "int", nullable: false),
-                    TeamId = table.Column<int>(type: "int", nullable: true),
+                    GroupId = table.Column<int>(type: "int", nullable: true),
+                    IsConfirmed = table.Column<bool>(type: "tinyint(1)", nullable: false),
                     IsLeader = table.Column<bool>(type: "tinyint(1)", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Participants", x => new { x.UserId, x.CompetitionId });
+                    table.PrimaryKey("PK_Participants", x => x.Id);
                     table.ForeignKey(
                         name: "FK_Participants_Competitions_CompetitionId",
                         column: x => x.CompetitionId,
@@ -725,132 +556,15 @@ namespace innomiate_api.Migrations
                         principalColumn: "CompetitionId",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_Participants_Teams_TeamId",
-                        column: x => x.TeamId,
-                        principalTable: "Teams",
-                        principalColumn: "TeamId");
+                        name: "FK_Participants_Groups_GroupId",
+                        column: x => x.GroupId,
+                        principalTable: "Groups",
+                        principalColumn: "GroupId");
                     table.ForeignKey(
                         name: "FK_Participants_Users_UserId",
                         column: x => x.UserId,
                         principalTable: "Users",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
-                })
-                .Annotation("MySql:CharSet", "utf8mb4");
-
-            migrationBuilder.CreateTable(
-                name: "TeamStepSubmission",
-                columns: table => new
-                {
-                    TeamStepSubmissionId = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
-                    TeamId = table.Column<int>(type: "int", nullable: false),
-                    StepId = table.Column<int>(type: "int", nullable: false),
-                    SubmissionFilePath = table.Column<string>(type: "longtext", nullable: false)
-                        .Annotation("MySql:CharSet", "utf8mb4"),
-                    SubmissionDate = table.Column<DateTime>(type: "datetime(6)", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_TeamStepSubmission", x => x.TeamStepSubmissionId);
-                    table.ForeignKey(
-                        name: "FK_TeamStepSubmission_StepModel_StepId",
-                        column: x => x.StepId,
-                        principalTable: "StepModel",
-                        principalColumn: "StepModelId",
-                        onDelete: ReferentialAction.Cascade);
-                    table.ForeignKey(
-                        name: "FK_TeamStepSubmission_Teams_TeamId",
-                        column: x => x.TeamId,
-                        principalTable: "Teams",
-                        principalColumn: "TeamId",
-                        onDelete: ReferentialAction.Cascade);
-                })
-                .Annotation("MySql:CharSet", "utf8mb4");
-
-            migrationBuilder.CreateTable(
-                name: "TeamSubmission",
-                columns: table => new
-                {
-                    TeamSubmissionId = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
-                    TeamId = table.Column<int>(type: "int", nullable: false),
-                    SubmissionModelId = table.Column<int>(type: "int", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_TeamSubmission", x => x.TeamSubmissionId);
-                    table.ForeignKey(
-                        name: "FK_TeamSubmission_SubmissionModels_SubmissionModelId",
-                        column: x => x.SubmissionModelId,
-                        principalTable: "SubmissionModels",
-                        principalColumn: "SubmissionModelId",
-                        onDelete: ReferentialAction.Cascade);
-                    table.ForeignKey(
-                        name: "FK_TeamSubmission_Teams_TeamId",
-                        column: x => x.TeamId,
-                        principalTable: "Teams",
-                        principalColumn: "TeamId",
-                        onDelete: ReferentialAction.Cascade);
-                })
-                .Annotation("MySql:CharSet", "utf8mb4");
-
-            migrationBuilder.CreateTable(
-                name: "submittedInputs",
-                columns: table => new
-                {
-                    Id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
-                    StepInputId = table.Column<int>(type: "int", nullable: false),
-                    TeamId = table.Column<int>(type: "int", nullable: false),
-                    Value = table.Column<string>(type: "longtext", nullable: true)
-                        .Annotation("MySql:CharSet", "utf8mb4")
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_submittedInputs", x => x.Id);
-                    table.ForeignKey(
-                        name: "FK_submittedInputs_Teams_TeamId",
-                        column: x => x.TeamId,
-                        principalTable: "Teams",
-                        principalColumn: "TeamId",
-                        onDelete: ReferentialAction.Cascade);
-                    table.ForeignKey(
-                        name: "FK_submittedInputs_stepInputs_StepInputId",
-                        column: x => x.StepInputId,
-                        principalTable: "stepInputs",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
-                })
-                .Annotation("MySql:CharSet", "utf8mb4");
-
-            migrationBuilder.CreateTable(
-                name: "TeamSubmissionFile",
-                columns: table => new
-                {
-                    TeamSubmissionFileId = table.Column<int>(type: "int", nullable: false),
-                    File = table.Column<byte[]>(type: "longblob", nullable: false),
-                    FileName = table.Column<string>(type: "longtext", nullable: false)
-                        .Annotation("MySql:CharSet", "utf8mb4"),
-                    ContentType = table.Column<string>(type: "longtext", nullable: false)
-                        .Annotation("MySql:CharSet", "utf8mb4"),
-                    TeamSubmissionId = table.Column<int>(type: "int", nullable: false),
-                    FileModelId = table.Column<int>(type: "int", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_TeamSubmissionFile", x => x.TeamSubmissionFileId);
-                    table.ForeignKey(
-                        name: "FK_TeamSubmissionFile_FileModels_FileModelId",
-                        column: x => x.FileModelId,
-                        principalTable: "FileModels",
-                        principalColumn: "FileModelId",
-                        onDelete: ReferentialAction.Cascade);
-                    table.ForeignKey(
-                        name: "FK_TeamSubmissionFile_TeamSubmission_TeamSubmissionFileId",
-                        column: x => x.TeamSubmissionFileId,
-                        principalTable: "TeamSubmission",
-                        principalColumn: "TeamSubmissionId",
                         onDelete: ReferentialAction.Cascade);
                 })
                 .Annotation("MySql:CharSet", "utf8mb4");
@@ -903,9 +617,9 @@ namespace innomiate_api.Migrations
                 column: "UserId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_FileModels_SubmissionModelId",
-                table: "FileModels",
-                column: "SubmissionModelId");
+                name: "IX_Groups_CompetitionId",
+                table: "Groups",
+                column: "CompetitionId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_HostingRequests_UserId",
@@ -923,90 +637,19 @@ namespace innomiate_api.Migrations
                 column: "CompetitionId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Participants_TeamId",
+                name: "IX_Participants_GroupId",
                 table: "Participants",
-                column: "TeamId");
+                column: "GroupId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Participants_UserId",
+                table: "Participants",
+                column: "UserId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Requirements_CompetitionId",
                 table: "Requirements",
                 column: "CompetitionId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_stepCompetitions_CompetitionId",
-                table: "stepCompetitions",
-                column: "CompetitionId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_stepCompetitions_IdCompetition",
-                table: "stepCompetitions",
-                column: "IdCompetition");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_stepInputs_StepCompetitionId",
-                table: "stepInputs",
-                column: "StepCompetitionId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_StepModel_CompetitionId",
-                table: "StepModel",
-                column: "CompetitionId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_StepTemplateModel_StepModelId",
-                table: "StepTemplateModel",
-                column: "StepModelId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_SubmissionModels_CompetitionId",
-                table: "SubmissionModels",
-                column: "CompetitionId",
-                unique: true);
-
-            migrationBuilder.CreateIndex(
-                name: "IX_submittedInputs_StepInputId",
-                table: "submittedInputs",
-                column: "StepInputId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_submittedInputs_TeamId",
-                table: "submittedInputs",
-                column: "TeamId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_Teams_CompetitionId",
-                table: "Teams",
-                column: "CompetitionId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_Teams_UserId",
-                table: "Teams",
-                column: "UserId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_TeamStepSubmission_StepId",
-                table: "TeamStepSubmission",
-                column: "StepId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_TeamStepSubmission_TeamId",
-                table: "TeamStepSubmission",
-                column: "TeamId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_TeamSubmission_SubmissionModelId",
-                table: "TeamSubmission",
-                column: "SubmissionModelId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_TeamSubmission_TeamId",
-                table: "TeamSubmission",
-                column: "TeamId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_TeamSubmissionFile_FileModelId",
-                table: "TeamSubmissionFile",
-                column: "FileModelId");
         }
 
         /// <inheritdoc />
@@ -1061,46 +704,16 @@ namespace innomiate_api.Migrations
                 name: "Requirements");
 
             migrationBuilder.DropTable(
-                name: "StepTemplateModel");
-
-            migrationBuilder.DropTable(
-                name: "submittedInputs");
-
-            migrationBuilder.DropTable(
-                name: "TeamStepSubmission");
-
-            migrationBuilder.DropTable(
-                name: "TeamSubmissionFile");
-
-            migrationBuilder.DropTable(
                 name: "Badgings");
 
             migrationBuilder.DropTable(
-                name: "stepInputs");
-
-            migrationBuilder.DropTable(
-                name: "StepModel");
-
-            migrationBuilder.DropTable(
-                name: "FileModels");
-
-            migrationBuilder.DropTable(
-                name: "TeamSubmission");
-
-            migrationBuilder.DropTable(
-                name: "stepCompetitions");
-
-            migrationBuilder.DropTable(
-                name: "SubmissionModels");
-
-            migrationBuilder.DropTable(
-                name: "Teams");
-
-            migrationBuilder.DropTable(
-                name: "Competitions");
+                name: "Groups");
 
             migrationBuilder.DropTable(
                 name: "Users");
+
+            migrationBuilder.DropTable(
+                name: "Competitions");
         }
     }
 }

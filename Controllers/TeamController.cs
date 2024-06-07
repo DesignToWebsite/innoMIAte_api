@@ -5,7 +5,7 @@ using innomiate_api.DTOs;
 
 namespace INNOMIATE_API.Controllers
 {
-    [Route("api/[controller]")]
+  /*  [Route("api/[controller]")]
     [ApiController]
     public class TeamController : ControllerBase
     {
@@ -56,4 +56,5 @@ namespace INNOMIATE_API.Controllers
             return Ok(team);
         }
     }
+  */
 }

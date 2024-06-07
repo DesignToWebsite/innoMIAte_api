@@ -33,7 +33,7 @@ namespace INNOMIATE_API.Controllers
             }
             return Ok();
         }
-
+        /*
         [HttpPut("update/team")]
         public async Task<IActionResult> UpdateParticipantTeam([FromBody] UpdateParticipantTeamDto updateParticipantTeamDto)
         {
@@ -43,7 +43,7 @@ namespace INNOMIATE_API.Controllers
                 return NotFound();
             }
             return Ok(updatedParticipant);
-        }
+        } */
 
         [HttpPut("update")]
         public async Task<IActionResult> UpdateParticipant([FromBody] UpdateParticipantDto updateParticipantDto)

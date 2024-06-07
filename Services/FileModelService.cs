@@ -7,7 +7,7 @@ using System.Collections.Generic;
 using System.Linq;
 
 namespace innomiate_api.Services
-{
+{/*
     public class FileModelService
     {
         private readonly ApplicationDbContext _context;
@@ -84,4 +84,5 @@ namespace innomiate_api.Services
             }
         }
     }
+    */
 }

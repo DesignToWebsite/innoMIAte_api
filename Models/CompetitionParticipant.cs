@@ -1,11 +1,12 @@
-﻿using System.ComponentModel.DataAnnotations.Schema;
+﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using innomiate_api.Models;
-using innoMIAte_api.Models;
 
 namespace INNOMIATE_API.Models
 {
     public class CompetitionParticipant
     {
+        [Key]
         public int Id { get; set; }
         public int UserId { get; set; }
         public int CompetitionId { get; set; }
@@ -18,9 +19,9 @@ namespace INNOMIATE_API.Models
 
 
 
-        public int? TeamId { get; set; }
+       /* public int? TeamId { get; set; }
         [ForeignKey("TeamId")]
-        public Team? Team { get; set; }
+        public Team? Team { get; set; } */
         public bool IsConfirmed { get; set; } = false;
         public bool IsLeader { get; set; }
         

@@ -9,7 +9,7 @@
     using Microsoft.AspNetCore.Hosting;
 
     namespace innomiate_api.Services
-    {
+    {/*
         public class SubmittedInputService
         {
             private readonly ApplicationDbContext _context;
@@ -50,5 +50,6 @@
             }
         }
     }
-
+*/
+    }
 }

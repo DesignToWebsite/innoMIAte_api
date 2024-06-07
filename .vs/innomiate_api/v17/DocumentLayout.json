@@ -1,0 +1,735 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "C:\\Users\\HP\\Downloads\\innomiate v52\\innoMIAte_api\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\HP\\Downloads\\innomiate v52\\innoMIAte_api\\Migrations\\20240607131528_initial.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:Migrations\\20240607131528_initial.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\HP\\Downloads\\innomiate v52\\innoMIAte_api\\Migrations\\20240607131332_third.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:Migrations\\20240607131332_third.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{3817591A-1913-413F-B722-46D30C1C345D}|innomiate_api.csproj|c:\\users\\hp\\downloads\\innomiate v52\\innomiate_api\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{3817591A-1913-413F-B722-46D30C1C345D}|innomiate_api.csproj|solutionrelative:program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{3817591A-1913-413F-B722-46D30C1C345D}|innomiate_api.csproj|c:\\users\\hp\\downloads\\innomiate v52\\innomiate_api\\data\\applicationdbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{3817591A-1913-413F-B722-46D30C1C345D}|innomiate_api.csproj|solutionrelative:data\\applicationdbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{3817591A-1913-413F-B722-46D30C1C345D}|innomiate_api.csproj|c:\\users\\hp\\downloads\\innomiate v52\\innomiate_api\\models\\competitionparticipant.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{3817591A-1913-413F-B722-46D30C1C345D}|innomiate_api.csproj|solutionrelative:models\\competitionparticipant.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{3817591A-1913-413F-B722-46D30C1C345D}|innomiate_api.csproj|c:\\users\\hp\\downloads\\innomiate v52\\innomiate_api\\services\\groupservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{3817591A-1913-413F-B722-46D30C1C345D}|innomiate_api.csproj|solutionrelative:services\\groupservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{3817591A-1913-413F-B722-46D30C1C345D}|innomiate_api.csproj|c:\\users\\hp\\downloads\\innomiate v52\\innomiate_api\\dtos\\cparticipantdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{3817591A-1913-413F-B722-46D30C1C345D}|innomiate_api.csproj|solutionrelative:dtos\\cparticipantdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{3817591A-1913-413F-B722-46D30C1C345D}|innomiate_api.csproj|c:\\users\\hp\\downloads\\innomiate v52\\innomiate_api\\controllers\\competitionparticipantcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{3817591A-1913-413F-B722-46D30C1C345D}|innomiate_api.csproj|solutionrelative:controllers\\competitionparticipantcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{3817591A-1913-413F-B722-46D30C1C345D}|innomiate_api.csproj|c:\\users\\hp\\downloads\\innomiate v52\\innomiate_api\\controllers\\competitioncoachcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{3817591A-1913-413F-B722-46D30C1C345D}|innomiate_api.csproj|solutionrelative:controllers\\competitioncoachcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{3817591A-1913-413F-B722-46D30C1C345D}|innomiate_api.csproj|c:\\users\\hp\\downloads\\innomiate v52\\innomiate_api\\controllers\\participantcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{3817591A-1913-413F-B722-46D30C1C345D}|innomiate_api.csproj|solutionrelative:controllers\\participantcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\HP\\Downloads\\innomiate v52\\innoMIAte_api\\Migrations\\20240607130104_second.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:Migrations\\20240607130104_second.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{3817591A-1913-413F-B722-46D30C1C345D}|innomiate_api.csproj|c:\\users\\hp\\downloads\\innomiate v52\\innomiate_api\\models\\group.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{3817591A-1913-413F-B722-46D30C1C345D}|innomiate_api.csproj|solutionrelative:models\\group.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\HP\\Downloads\\innomiate v52\\innoMIAte_api\\Migrations\\20240607125634_initial.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:Migrations\\20240607125634_initial.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{3817591A-1913-413F-B722-46D30C1C345D}|innomiate_api.csproj|c:\\users\\hp\\downloads\\innomiate v52\\innomiate_api\\models\\competition.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{3817591A-1913-413F-B722-46D30C1C345D}|innomiate_api.csproj|solutionrelative:models\\competition.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{3817591A-1913-413F-B722-46D30C1C345D}|innomiate_api.csproj|c:\\users\\hp\\downloads\\innomiate v52\\innomiate_api\\models\\fileuploadedresponse.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{3817591A-1913-413F-B722-46D30C1C345D}|innomiate_api.csproj|solutionrelative:models\\fileuploadedresponse.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{3817591A-1913-413F-B722-46D30C1C345D}|innomiate_api.csproj|c:\\users\\hp\\downloads\\innomiate v52\\innomiate_api\\models\\hostingrequest.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{3817591A-1913-413F-B722-46D30C1C345D}|innomiate_api.csproj|solutionrelative:models\\hostingrequest.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{3817591A-1913-413F-B722-46D30C1C345D}|innomiate_api.csproj|c:\\users\\hp\\downloads\\innomiate v52\\innomiate_api\\models\\nameimagemapping.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{3817591A-1913-413F-B722-46D30C1C345D}|innomiate_api.csproj|solutionrelative:models\\nameimagemapping.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{3817591A-1913-413F-B722-46D30C1C345D}|innomiate_api.csproj|c:\\users\\hp\\downloads\\innomiate v52\\innomiate_api\\models\\plateformadmin.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{3817591A-1913-413F-B722-46D30C1C345D}|innomiate_api.csproj|solutionrelative:models\\plateformadmin.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{3817591A-1913-413F-B722-46D30C1C345D}|innomiate_api.csproj|c:\\users\\hp\\downloads\\innomiate v52\\innomiate_api\\models\\requirement.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{3817591A-1913-413F-B722-46D30C1C345D}|innomiate_api.csproj|solutionrelative:models\\requirement.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{3817591A-1913-413F-B722-46D30C1C345D}|innomiate_api.csproj|c:\\users\\hp\\downloads\\innomiate v52\\innomiate_api\\models\\stepcompetition.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{3817591A-1913-413F-B722-46D30C1C345D}|innomiate_api.csproj|solutionrelative:models\\stepcompetition.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{3817591A-1913-413F-B722-46D30C1C345D}|innomiate_api.csproj|c:\\users\\hp\\downloads\\innomiate v52\\innomiate_api\\models\\submittedinput.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{3817591A-1913-413F-B722-46D30C1C345D}|innomiate_api.csproj|solutionrelative:models\\submittedinput.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{3817591A-1913-413F-B722-46D30C1C345D}|innomiate_api.csproj|c:\\users\\hp\\downloads\\innomiate v52\\innomiate_api\\models\\team.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{3817591A-1913-413F-B722-46D30C1C345D}|innomiate_api.csproj|solutionrelative:models\\team.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{3817591A-1913-413F-B722-46D30C1C345D}|innomiate_api.csproj|c:\\users\\hp\\downloads\\innomiate v52\\innomiate_api\\models\\user.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{3817591A-1913-413F-B722-46D30C1C345D}|innomiate_api.csproj|solutionrelative:models\\user.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{3817591A-1913-413F-B722-46D30C1C345D}|innomiate_api.csproj|c:\\users\\hp\\downloads\\innomiate v52\\innomiate_api\\models\\stepinput.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{3817591A-1913-413F-B722-46D30C1C345D}|innomiate_api.csproj|solutionrelative:models\\stepinput.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{3817591A-1913-413F-B722-46D30C1C345D}|innomiate_api.csproj|c:\\users\\hp\\downloads\\innomiate v52\\innomiate_api\\controllers\\teamcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{3817591A-1913-413F-B722-46D30C1C345D}|innomiate_api.csproj|solutionrelative:controllers\\teamcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{3817591A-1913-413F-B722-46D30C1C345D}|innomiate_api.csproj|c:\\users\\hp\\downloads\\innomiate v52\\innomiate_api\\controllers\\usercontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{3817591A-1913-413F-B722-46D30C1C345D}|innomiate_api.csproj|solutionrelative:controllers\\usercontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{3817591A-1913-413F-B722-46D30C1C345D}|innomiate_api.csproj|c:\\users\\hp\\downloads\\innomiate v52\\innomiate_api\\services\\competitionservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{3817591A-1913-413F-B722-46D30C1C345D}|innomiate_api.csproj|solutionrelative:services\\competitionservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{3817591A-1913-413F-B722-46D30C1C345D}|innomiate_api.csproj|c:\\users\\hp\\downloads\\innomiate v52\\innomiate_api\\controllers\\groupcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{3817591A-1913-413F-B722-46D30C1C345D}|innomiate_api.csproj|solutionrelative:controllers\\groupcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{3817591A-1913-413F-B722-46D30C1C345D}|innomiate_api.csproj|c:\\users\\hp\\downloads\\innomiate v52\\innomiate_api\\dtos\\groupdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{3817591A-1913-413F-B722-46D30C1C345D}|innomiate_api.csproj|solutionrelative:dtos\\groupdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{3817591A-1913-413F-B722-46D30C1C345D}|innomiate_api.csproj|c:\\users\\hp\\downloads\\innomiate v52\\innomiate_api\\services\\competitionparticipantservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{3817591A-1913-413F-B722-46D30C1C345D}|innomiate_api.csproj|solutionrelative:services\\competitionparticipantservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{3817591A-1913-413F-B722-46D30C1C345D}|innomiate_api.csproj|c:\\users\\hp\\downloads\\innomiate v52\\innomiate_api\\services\\participantservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{3817591A-1913-413F-B722-46D30C1C345D}|innomiate_api.csproj|solutionrelative:services\\participantservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{3817591A-1913-413F-B722-46D30C1C345D}|innomiate_api.csproj|c:\\users\\hp\\downloads\\innomiate v52\\innomiate_api\\services\\stepsservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{3817591A-1913-413F-B722-46D30C1C345D}|innomiate_api.csproj|solutionrelative:services\\stepsservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{3817591A-1913-413F-B722-46D30C1C345D}|innomiate_api.csproj|c:\\users\\hp\\downloads\\innomiate v52\\innomiate_api\\services\\submittedinputservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{3817591A-1913-413F-B722-46D30C1C345D}|innomiate_api.csproj|solutionrelative:services\\submittedinputservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{3817591A-1913-413F-B722-46D30C1C345D}|innomiate_api.csproj|c:\\users\\hp\\downloads\\innomiate v52\\innomiate_api\\services\\teamservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{3817591A-1913-413F-B722-46D30C1C345D}|innomiate_api.csproj|solutionrelative:services\\teamservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{3817591A-1913-413F-B722-46D30C1C345D}|innomiate_api.csproj|c:\\users\\hp\\downloads\\innomiate v52\\innomiate_api\\services\\hostingrequestservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{3817591A-1913-413F-B722-46D30C1C345D}|innomiate_api.csproj|solutionrelative:services\\hostingrequestservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{3817591A-1913-413F-B722-46D30C1C345D}|innomiate_api.csproj|c:\\users\\hp\\downloads\\innomiate v52\\innomiate_api\\services\\filemodelservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{3817591A-1913-413F-B722-46D30C1C345D}|innomiate_api.csproj|solutionrelative:services\\filemodelservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{3817591A-1913-413F-B722-46D30C1C345D}|innomiate_api.csproj|c:\\users\\hp\\downloads\\innomiate v52\\innomiate_api\\controllers\\competitioncontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{3817591A-1913-413F-B722-46D30C1C345D}|innomiate_api.csproj|solutionrelative:controllers\\competitioncontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{3817591A-1913-413F-B722-46D30C1C345D}|innomiate_api.csproj|c:\\users\\hp\\downloads\\innomiate v52\\innomiate_api\\controllers\\filescontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{3817591A-1913-413F-B722-46D30C1C345D}|innomiate_api.csproj|solutionrelative:controllers\\filescontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{3817591A-1913-413F-B722-46D30C1C345D}|innomiate_api.csproj|c:\\users\\hp\\downloads\\innomiate v52\\innomiate_api\\controllers\\managingcoachingcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{3817591A-1913-413F-B722-46D30C1C345D}|innomiate_api.csproj|solutionrelative:controllers\\managingcoachingcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{3817591A-1913-413F-B722-46D30C1C345D}|innomiate_api.csproj|c:\\users\\hp\\downloads\\innomiate v52\\innomiate_api\\controllers\\stepscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{3817591A-1913-413F-B722-46D30C1C345D}|innomiate_api.csproj|solutionrelative:controllers\\stepscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{3817591A-1913-413F-B722-46D30C1C345D}|innomiate_api.csproj|c:\\users\\hp\\downloads\\innomiate v52\\innomiate_api\\controllers\\submittedinputcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{3817591A-1913-413F-B722-46D30C1C345D}|innomiate_api.csproj|solutionrelative:controllers\\submittedinputcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 2,
+          "Children": [
+            {
+              "$type": "Bookmark",
+              "Name": "ST:128:0:{116d2292-e37d-41cd-a077-ebacac4c8cc4}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{0ad07096-bba9-4900-a651-0598d26f6d24}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "20240607131528_initial.cs",
+              "DocumentMoniker": "C:\\Users\\HP\\Downloads\\innomiate v52\\innoMIAte_api\\Migrations\\20240607131528_initial.cs",
+              "RelativeDocumentMoniker": "Migrations\\20240607131528_initial.cs",
+              "ToolTip": "C:\\Users\\HP\\Downloads\\innomiate v52\\innoMIAte_api\\Migrations\\20240607131528_initial.cs",
+              "RelativeToolTip": "Migrations\\20240607131528_initial.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-06-07T13:15:28.465Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "20240607131332_third.cs",
+              "DocumentMoniker": "C:\\Users\\HP\\Downloads\\innomiate v52\\innoMIAte_api\\Migrations\\20240607131332_third.cs",
+              "RelativeDocumentMoniker": "Migrations\\20240607131332_third.cs",
+              "ToolTip": "C:\\Users\\HP\\Downloads\\innomiate v52\\innoMIAte_api\\Migrations\\20240607131332_third.cs",
+              "RelativeToolTip": "Migrations\\20240607131332_third.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-06-07T13:13:33.049Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "GroupService.cs",
+              "DocumentMoniker": "C:\\Users\\HP\\Downloads\\innomiate v52\\innoMIAte_api\\Services\\GroupService.cs",
+              "RelativeDocumentMoniker": "Services\\GroupService.cs",
+              "ToolTip": "C:\\Users\\HP\\Downloads\\innomiate v52\\innoMIAte_api\\Services\\GroupService.cs",
+              "RelativeToolTip": "Services\\GroupService.cs",
+              "ViewState": "AQIAACoAAABAmpmZmRkZwC8AAAArAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-06-07T12:17:07.517Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "Program.cs",
+              "DocumentMoniker": "C:\\Users\\HP\\Downloads\\innomiate v52\\innoMIAte_api\\Program.cs",
+              "RelativeDocumentMoniker": "Program.cs",
+              "ToolTip": "C:\\Users\\HP\\Downloads\\innomiate v52\\innoMIAte_api\\Program.cs",
+              "RelativeToolTip": "Program.cs",
+              "ViewState": "AQIAAFEAAAAAAAAAAAArwGAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-06-07T12:51:23.29Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "CompetitionParticipant.cs",
+              "DocumentMoniker": "C:\\Users\\HP\\Downloads\\innomiate v52\\innoMIAte_api\\Models\\CompetitionParticipant.cs",
+              "RelativeDocumentMoniker": "Models\\CompetitionParticipant.cs",
+              "ToolTip": "C:\\Users\\HP\\Downloads\\innomiate v52\\innoMIAte_api\\Models\\CompetitionParticipant.cs",
+              "RelativeToolTip": "Models\\CompetitionParticipant.cs",
+              "ViewState": "AQIAAAQAAAAAAAAAAAAAAAwAAAAmAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-06-07T12:51:10.83Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "CompetitionParticipantController.cs",
+              "DocumentMoniker": "C:\\Users\\HP\\Downloads\\innomiate v52\\innoMIAte_api\\Controllers\\CompetitionParticipantController.cs",
+              "RelativeDocumentMoniker": "Controllers\\CompetitionParticipantController.cs",
+              "ToolTip": "C:\\Users\\HP\\Downloads\\innomiate v52\\innoMIAte_api\\Controllers\\CompetitionParticipantController.cs",
+              "RelativeToolTip": "Controllers\\CompetitionParticipantController.cs",
+              "ViewState": "AQIAAEkAAAAAAAAAAAAowFkAAAALAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-06-07T12:30:04.768Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
+              "Title": "CompetitionCoachController.cs",
+              "DocumentMoniker": "C:\\Users\\HP\\Downloads\\innomiate v52\\innoMIAte_api\\Controllers\\CompetitionCoachController.cs",
+              "RelativeDocumentMoniker": "Controllers\\CompetitionCoachController.cs",
+              "ToolTip": "C:\\Users\\HP\\Downloads\\innomiate v52\\innoMIAte_api\\Controllers\\CompetitionCoachController.cs",
+              "RelativeToolTip": "Controllers\\CompetitionCoachController.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-06-07T12:30:25.929Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "CParticipantDto.cs",
+              "DocumentMoniker": "C:\\Users\\HP\\Downloads\\innomiate v52\\innoMIAte_api\\DTOs\\CParticipantDto.cs",
+              "RelativeDocumentMoniker": "DTOs\\CParticipantDto.cs",
+              "ToolTip": "C:\\Users\\HP\\Downloads\\innomiate v52\\innoMIAte_api\\DTOs\\CParticipantDto.cs",
+              "RelativeToolTip": "DTOs\\CParticipantDto.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAcAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-06-07T12:21:54.263Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "ApplicationDbContext.cs",
+              "DocumentMoniker": "C:\\Users\\HP\\Downloads\\innomiate v52\\innoMIAte_api\\Data\\ApplicationDbContext.cs",
+              "RelativeDocumentMoniker": "Data\\ApplicationDbContext.cs",
+              "ToolTip": "C:\\Users\\HP\\Downloads\\innomiate v52\\innoMIAte_api\\Data\\ApplicationDbContext.cs",
+              "RelativeToolTip": "Data\\ApplicationDbContext.cs",
+              "ViewState": "AQIAAD8AAAAAAAAAAAArwEoAAAAzAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-06-07T12:26:00.691Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 9,
+              "Title": "ParticipantController.cs",
+              "DocumentMoniker": "C:\\Users\\HP\\Downloads\\innomiate v52\\innoMIAte_api\\Controllers\\ParticipantController.cs",
+              "RelativeDocumentMoniker": "Controllers\\ParticipantController.cs",
+              "ToolTip": "C:\\Users\\HP\\Downloads\\innomiate v52\\innoMIAte_api\\Controllers\\ParticipantController.cs",
+              "RelativeToolTip": "Controllers\\ParticipantController.cs",
+              "ViewState": "AQIAAC4AAACAMzMzMzMDwDAAAAAlAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-06-07T12:29:09.926Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 13,
+              "Title": "Competition.cs",
+              "DocumentMoniker": "C:\\Users\\HP\\Downloads\\innomiate v52\\innoMIAte_api\\Models\\Competition.cs",
+              "RelativeDocumentMoniker": "Models\\Competition.cs",
+              "ToolTip": "C:\\Users\\HP\\Downloads\\innomiate v52\\innoMIAte_api\\Models\\Competition.cs",
+              "RelativeToolTip": "Models\\Competition.cs",
+              "ViewState": "AQIAABsAAACUmZmZmZk7wCYAAAAGAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-06-07T12:34:47.816Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 16,
+              "Title": "NameImageMapping.cs",
+              "DocumentMoniker": "C:\\Users\\HP\\Downloads\\innomiate v52\\innoMIAte_api\\Models\\NameImageMapping.cs",
+              "RelativeDocumentMoniker": "Models\\NameImageMapping.cs",
+              "ToolTip": "C:\\Users\\HP\\Downloads\\innomiate v52\\innoMIAte_api\\Models\\NameImageMapping.cs",
+              "RelativeToolTip": "Models\\NameImageMapping.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-06-07T12:56:10.721Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 17,
+              "Title": "PlateformAdmin.cs",
+              "DocumentMoniker": "C:\\Users\\HP\\Downloads\\innomiate v52\\innoMIAte_api\\Models\\PlateformAdmin.cs",
+              "RelativeDocumentMoniker": "Models\\PlateformAdmin.cs",
+              "ToolTip": "C:\\Users\\HP\\Downloads\\innomiate v52\\innoMIAte_api\\Models\\PlateformAdmin.cs",
+              "RelativeToolTip": "Models\\PlateformAdmin.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-06-07T12:56:09.948Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 19,
+              "Title": "StepCompetition.cs",
+              "DocumentMoniker": "C:\\Users\\HP\\Downloads\\innomiate v52\\innoMIAte_api\\Models\\StepCompetition.cs",
+              "RelativeDocumentMoniker": "Models\\StepCompetition.cs",
+              "ToolTip": "C:\\Users\\HP\\Downloads\\innomiate v52\\innoMIAte_api\\Models\\StepCompetition.cs",
+              "RelativeToolTip": "Models\\StepCompetition.cs",
+              "ViewState": "AQIAAAUAAAAAAAAAAAAxwBIAAAAKAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-06-07T12:55:36.735Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 18,
+              "Title": "Requirement.cs",
+              "DocumentMoniker": "C:\\Users\\HP\\Downloads\\innomiate v52\\innoMIAte_api\\Models\\Requirement.cs",
+              "RelativeDocumentMoniker": "Models\\Requirement.cs",
+              "ToolTip": "C:\\Users\\HP\\Downloads\\innomiate v52\\innoMIAte_api\\Models\\Requirement.cs",
+              "RelativeToolTip": "Models\\Requirement.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-06-07T12:55:46.541Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 10,
+              "Title": "20240607130104_second.cs",
+              "DocumentMoniker": "C:\\Users\\HP\\Downloads\\innomiate v52\\innoMIAte_api\\Migrations\\20240607130104_second.cs",
+              "RelativeDocumentMoniker": "Migrations\\20240607130104_second.cs",
+              "ToolTip": "C:\\Users\\HP\\Downloads\\innomiate v52\\innoMIAte_api\\Migrations\\20240607130104_second.cs",
+              "RelativeToolTip": "Migrations\\20240607130104_second.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-06-07T13:01:04.237Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 12,
+              "Title": "20240607125634_initial.cs",
+              "DocumentMoniker": "C:\\Users\\HP\\Downloads\\innomiate v52\\innoMIAte_api\\Migrations\\20240607125634_initial.cs",
+              "RelativeDocumentMoniker": "Migrations\\20240607125634_initial.cs",
+              "ToolTip": "C:\\Users\\HP\\Downloads\\innomiate v52\\innoMIAte_api\\Migrations\\20240607125634_initial.cs",
+              "RelativeToolTip": "Migrations\\20240607125634_initial.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-06-07T12:56:34.523Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 11,
+              "Title": "Group.cs",
+              "DocumentMoniker": "C:\\Users\\HP\\Downloads\\innomiate v52\\innoMIAte_api\\Models\\Group.cs",
+              "RelativeDocumentMoniker": "Models\\Group.cs",
+              "ToolTip": "C:\\Users\\HP\\Downloads\\innomiate v52\\innoMIAte_api\\Models\\Group.cs",
+              "RelativeToolTip": "Models\\Group.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAoAAAArAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-06-07T12:39:20.182Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 14,
+              "Title": "FileUploadedResponse.cs",
+              "DocumentMoniker": "C:\\Users\\HP\\Downloads\\innomiate v52\\innoMIAte_api\\Models\\FileUploadedResponse.cs",
+              "RelativeDocumentMoniker": "Models\\FileUploadedResponse.cs",
+              "ToolTip": "C:\\Users\\HP\\Downloads\\innomiate v52\\innoMIAte_api\\Models\\FileUploadedResponse.cs",
+              "RelativeToolTip": "Models\\FileUploadedResponse.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAEAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-06-07T12:35:27.215Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 15,
+              "Title": "HostingRequest.cs",
+              "DocumentMoniker": "C:\\Users\\HP\\Downloads\\innomiate v52\\innoMIAte_api\\Models\\HostingRequest.cs",
+              "RelativeDocumentMoniker": "Models\\HostingRequest.cs",
+              "ToolTip": "C:\\Users\\HP\\Downloads\\innomiate v52\\innoMIAte_api\\Models\\HostingRequest.cs",
+              "RelativeToolTip": "Models\\HostingRequest.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-06-07T12:56:11.71Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 23,
+              "Title": "StepInput.cs",
+              "DocumentMoniker": "C:\\Users\\HP\\Downloads\\innomiate v52\\innoMIAte_api\\Models\\StepInput.cs",
+              "RelativeDocumentMoniker": "Models\\StepInput.cs",
+              "ToolTip": "C:\\Users\\HP\\Downloads\\innomiate v52\\innoMIAte_api\\Models\\StepInput.cs",
+              "RelativeToolTip": "Models\\StepInput.cs",
+              "ViewState": "AQIAAAUAAAAAAAAAAAAxwBQAAAAKAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-06-07T12:55:22.212Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 20,
+              "Title": "SubmittedInput.cs",
+              "DocumentMoniker": "C:\\Users\\HP\\Downloads\\innomiate v52\\innoMIAte_api\\Models\\SubmittedInput.cs",
+              "RelativeDocumentMoniker": "Models\\SubmittedInput.cs",
+              "ToolTip": "C:\\Users\\HP\\Downloads\\innomiate v52\\innoMIAte_api\\Models\\SubmittedInput.cs",
+              "RelativeToolTip": "Models\\SubmittedInput.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAsAAAAKAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-06-07T12:55:09.238Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 21,
+              "Title": "Team.cs",
+              "DocumentMoniker": "C:\\Users\\HP\\Downloads\\innomiate v52\\innoMIAte_api\\Models\\Team.cs",
+              "RelativeDocumentMoniker": "Models\\Team.cs",
+              "ToolTip": "C:\\Users\\HP\\Downloads\\innomiate v52\\innoMIAte_api\\Models\\Team.cs",
+              "RelativeToolTip": "Models\\Team.cs",
+              "ViewState": "AQIAAAwAAAAAzMzMzMz8vxUAAAAIAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-06-07T12:54:39.416Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 22,
+              "Title": "User.cs",
+              "DocumentMoniker": "C:\\Users\\HP\\Downloads\\innomiate v52\\innoMIAte_api\\Models\\User.cs",
+              "RelativeDocumentMoniker": "Models\\User.cs",
+              "ToolTip": "C:\\Users\\HP\\Downloads\\innomiate v52\\innoMIAte_api\\Models\\User.cs",
+              "RelativeToolTip": "Models\\User.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAB4AAAAJAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-06-07T12:54:39.953Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 26,
+              "Title": "CompetitionService.cs",
+              "DocumentMoniker": "C:\\Users\\HP\\Downloads\\innomiate v52\\innoMIAte_api\\Services\\CompetitionService.cs",
+              "RelativeDocumentMoniker": "Services\\CompetitionService.cs",
+              "ToolTip": "C:\\Users\\HP\\Downloads\\innomiate v52\\innoMIAte_api\\Services\\CompetitionService.cs",
+              "RelativeToolTip": "Services\\CompetitionService.cs",
+              "ViewState": "AQIAAD0AAAAAAAAAAAAwwEcAAAAPAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-06-07T12:51:48.367Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 25,
+              "Title": "UserController.cs",
+              "DocumentMoniker": "C:\\Users\\HP\\Downloads\\innomiate v52\\innoMIAte_api\\Controllers\\UserController.cs",
+              "RelativeDocumentMoniker": "Controllers\\UserController.cs",
+              "ToolTip": "C:\\Users\\HP\\Downloads\\innomiate v52\\innoMIAte_api\\Controllers\\UserController.cs",
+              "RelativeToolTip": "Controllers\\UserController.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAABAAAAAPAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-06-07T12:30:29.406Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 24,
+              "Title": "TeamController.cs",
+              "DocumentMoniker": "C:\\Users\\HP\\Downloads\\innomiate v52\\innoMIAte_api\\Controllers\\TeamController.cs",
+              "RelativeDocumentMoniker": "Controllers\\TeamController.cs",
+              "ToolTip": "C:\\Users\\HP\\Downloads\\innomiate v52\\innoMIAte_api\\Controllers\\TeamController.cs",
+              "RelativeToolTip": "Controllers\\TeamController.cs",
+              "ViewState": "AQIAACcAAABAMzMzMzMrwDoAAAAEAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-06-07T12:28:28.932Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 27,
+              "Title": "GroupController.cs",
+              "DocumentMoniker": "C:\\Users\\HP\\Downloads\\innomiate v52\\innoMIAte_api\\Controllers\\GroupController.cs",
+              "RelativeDocumentMoniker": "Controllers\\GroupController.cs",
+              "ToolTip": "C:\\Users\\HP\\Downloads\\innomiate v52\\innoMIAte_api\\Controllers\\GroupController.cs",
+              "RelativeToolTip": "Controllers\\GroupController.cs",
+              "ViewState": "AQIAABAAAAAANDMzMzPjvyYAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-06-07T12:16:37.234Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 28,
+              "Title": "GroupDto.cs",
+              "DocumentMoniker": "C:\\Users\\HP\\Downloads\\innomiate v52\\innoMIAte_api\\DTOs\\GroupDto.cs",
+              "RelativeDocumentMoniker": "DTOs\\GroupDto.cs",
+              "ToolTip": "C:\\Users\\HP\\Downloads\\innomiate v52\\innoMIAte_api\\DTOs\\GroupDto.cs",
+              "RelativeToolTip": "DTOs\\GroupDto.cs",
+              "ViewState": "AQIAAAcAAAAAAAAAAAAiwAwAAAAcAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-06-07T12:20:28.292Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 29,
+              "Title": "CompetitionParticipantService.cs",
+              "DocumentMoniker": "C:\\Users\\HP\\Downloads\\innomiate v52\\innoMIAte_api\\Services\\CompetitionParticipantService.cs",
+              "RelativeDocumentMoniker": "Services\\CompetitionParticipantService.cs",
+              "ToolTip": "C:\\Users\\HP\\Downloads\\innomiate v52\\innoMIAte_api\\Services\\CompetitionParticipantService.cs",
+              "RelativeToolTip": "Services\\CompetitionParticipantService.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAACAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-06-07T12:35:33.057Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 30,
+              "Title": "ParticipantService.cs",
+              "DocumentMoniker": "C:\\Users\\HP\\Downloads\\innomiate v52\\innoMIAte_api\\Services\\ParticipantService.cs",
+              "RelativeDocumentMoniker": "Services\\ParticipantService.cs",
+              "ToolTip": "C:\\Users\\HP\\Downloads\\innomiate v52\\innoMIAte_api\\Services\\ParticipantService.cs",
+              "RelativeToolTip": "Services\\ParticipantService.cs",
+              "ViewState": "AQIAADAAAAAAAAAAAAAwwDoAAAAgAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-06-07T12:31:35.375Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 31,
+              "Title": "StepsService.cs",
+              "DocumentMoniker": "C:\\Users\\HP\\Downloads\\innomiate v52\\innoMIAte_api\\Services\\StepsService.cs",
+              "RelativeDocumentMoniker": "Services\\StepsService.cs",
+              "ToolTip": "C:\\Users\\HP\\Downloads\\innomiate v52\\innoMIAte_api\\Services\\StepsService.cs",
+              "RelativeToolTip": "Services\\StepsService.cs",
+              "ViewState": "AQIAADkAAAAAAAAAAAAowEMAAAAGAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-06-07T12:32:19.984Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 32,
+              "Title": "SubmittedInputService.cs",
+              "DocumentMoniker": "C:\\Users\\HP\\Downloads\\innomiate v52\\innoMIAte_api\\Services\\SubmittedInputService.cs",
+              "RelativeDocumentMoniker": "Services\\SubmittedInputService.cs",
+              "ToolTip": "C:\\Users\\HP\\Downloads\\innomiate v52\\innoMIAte_api\\Services\\SubmittedInputService.cs",
+              "RelativeToolTip": "Services\\SubmittedInputService.cs",
+              "ViewState": "AQIAACoAAADA//////8nwDYAAAABAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-06-07T12:32:29.556Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 33,
+              "Title": "TeamService.cs",
+              "DocumentMoniker": "C:\\Users\\HP\\Downloads\\innomiate v52\\innoMIAte_api\\Services\\TeamService.cs",
+              "RelativeDocumentMoniker": "Services\\TeamService.cs",
+              "ToolTip": "C:\\Users\\HP\\Downloads\\innomiate v52\\innoMIAte_api\\Services\\TeamService.cs",
+              "RelativeToolTip": "Services\\TeamService.cs",
+              "ViewState": "AQIAAFwAAAAAMzMzMzMrwGYAAAAGAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-06-07T12:33:02.285Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 34,
+              "Title": "HostingRequestService.cs",
+              "DocumentMoniker": "C:\\Users\\HP\\Downloads\\innomiate v52\\innoMIAte_api\\Services\\HostingRequestService.cs",
+              "RelativeDocumentMoniker": "Services\\HostingRequestService.cs",
+              "ToolTip": "C:\\Users\\HP\\Downloads\\innomiate v52\\innoMIAte_api\\Services\\HostingRequestService.cs",
+              "RelativeToolTip": "Services\\HostingRequestService.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-06-07T12:31:34.502Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 35,
+              "Title": "FileModelService.cs",
+              "DocumentMoniker": "C:\\Users\\HP\\Downloads\\innomiate v52\\innoMIAte_api\\Services\\FileModelService.cs",
+              "RelativeDocumentMoniker": "Services\\FileModelService.cs",
+              "ToolTip": "C:\\Users\\HP\\Downloads\\innomiate v52\\innoMIAte_api\\Services\\FileModelService.cs",
+              "RelativeToolTip": "Services\\FileModelService.cs",
+              "ViewState": "AQIAAFEAAAAAAAAAAAAowFYAAAAGAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-06-07T12:31:21.127Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 36,
+              "Title": "CompetitionController.cs",
+              "DocumentMoniker": "C:\\Users\\HP\\Downloads\\innomiate v52\\innoMIAte_api\\Controllers\\CompetitionController.cs",
+              "RelativeDocumentMoniker": "Controllers\\CompetitionController.cs",
+              "ToolTip": "C:\\Users\\HP\\Downloads\\innomiate v52\\innoMIAte_api\\Controllers\\CompetitionController.cs",
+              "RelativeToolTip": "Controllers\\CompetitionController.cs",
+              "ViewState": "AQIAADoAAAAAAAAAAAAwwEQAAAA+AAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-06-07T12:30:05.831Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 37,
+              "Title": "FilesController.cs",
+              "DocumentMoniker": "C:\\Users\\HP\\Downloads\\innomiate v52\\innoMIAte_api\\Controllers\\FilesController.cs",
+              "RelativeDocumentMoniker": "Controllers\\FilesController.cs",
+              "ToolTip": "C:\\Users\\HP\\Downloads\\innomiate v52\\innoMIAte_api\\Controllers\\FilesController.cs",
+              "RelativeToolTip": "Controllers\\FilesController.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-06-07T12:30:02.363Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 38,
+              "Title": "ManagingCoachingController.cs",
+              "DocumentMoniker": "C:\\Users\\HP\\Downloads\\innomiate v52\\innoMIAte_api\\Controllers\\ManagingCoachingController.cs",
+              "RelativeDocumentMoniker": "Controllers\\ManagingCoachingController.cs",
+              "ToolTip": "C:\\Users\\HP\\Downloads\\innomiate v52\\innoMIAte_api\\Controllers\\ManagingCoachingController.cs",
+              "RelativeToolTip": "Controllers\\ManagingCoachingController.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAcAAAABAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-06-07T12:29:51.929Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 39,
+              "Title": "StepsController.cs",
+              "DocumentMoniker": "C:\\Users\\HP\\Downloads\\innomiate v52\\innoMIAte_api\\Controllers\\StepsController.cs",
+              "RelativeDocumentMoniker": "Controllers\\StepsController.cs",
+              "ToolTip": "C:\\Users\\HP\\Downloads\\innomiate v52\\innoMIAte_api\\Controllers\\StepsController.cs",
+              "RelativeToolTip": "Controllers\\StepsController.cs",
+              "ViewState": "AQIAAB4AAAAAAAAAAAAAACkAAAAGAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-06-07T12:28:59.305Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 40,
+              "Title": "SubmittedInputController.cs",
+              "DocumentMoniker": "C:\\Users\\HP\\Downloads\\innomiate v52\\innoMIAte_api\\Controllers\\SubmittedInputController.cs",
+              "RelativeDocumentMoniker": "Controllers\\SubmittedInputController.cs",
+              "ToolTip": "C:\\Users\\HP\\Downloads\\innomiate v52\\innoMIAte_api\\Controllers\\SubmittedInputController.cs",
+              "RelativeToolTip": "Controllers\\SubmittedInputController.cs",
+              "ViewState": "AQIAABIAAAAAAAAAAAAowBoAAAAGAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-06-07T12:28:48.98Z",
+              "EditorCaption": ""
+            }
+          ]
+        },
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": -1,
+          "Children": [
+            {
+              "$type": "Bookmark",
+              "Name": "ST:1:0:{d212f56b-c48a-434c-a121-1c5d80b59b9f}"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

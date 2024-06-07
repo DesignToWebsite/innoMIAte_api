@@ -6,7 +6,7 @@ using INNOMIATE_API.Services;
 using Microsoft.AspNetCore.Mvc;
 
 namespace innomiate_api.Controllers
-{
+{/*
     [Route("api/[controller]")]
     [ApiController]
     public class StepsController : ControllerBase
@@ -39,4 +39,5 @@ namespace innomiate_api.Controllers
         }
     
     }
+    */
 }

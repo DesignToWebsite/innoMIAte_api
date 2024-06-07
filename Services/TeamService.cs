@@ -4,7 +4,7 @@ using Microsoft.EntityFrameworkCore;
 using innomiate_api.DTOs;
 
 namespace INNOMIATE_API.Services
-{
+{/*
     public class TeamService
     {
         private readonly ApplicationDbContext _context;
@@ -100,4 +100,5 @@ namespace INNOMIATE_API.Services
             };
         }
     }
+    */
 }

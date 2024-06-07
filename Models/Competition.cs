@@ -36,14 +36,14 @@ namespace INNOMIATE_API.Models
         public virtual ICollection<CompetitionJudge> Judges { get; set; }
         public virtual ICollection<CompetitionContributor> Contributors { get; set; }
         // public ICollection<CompetitionSponsor> Sponsors { get; set; }
-        public virtual List<StepModel> StepModels { get; set; }
-        public virtual List<StepCompetition> StepCompetitions {get; set;}
-        public virtual List<Team> Teams { get; set; }
-        public virtual SubmissionModel SubmissionModel { get; set; }
+      //  public virtual List<StepModel> StepModels { get; set; }
+      //  public virtual List<StepCompetition> StepCompetitions {get; set;}
+       // public virtual List<Team> Teams { get; set; }
+      //  public virtual SubmissionModel SubmissionModel { get; set; }
         // public Prizing Prizing { get; set; }
         public virtual Badging Badging { get; set; }
 
-        public virtual ICollection<StepCompetition> Steps { get; set; }
+      //  public virtual ICollection<StepCompetition> Steps { get; set; }
 
         public CompetitionCreator Creator { get; set; }
 

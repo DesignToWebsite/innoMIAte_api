@@ -7,7 +7,7 @@ using innomiate_api.Models;
 using Microsoft.AspNetCore.Http.HttpResults;
 
 namespace INNOMIATE_API.Services
-{
+{/*
     public class StepsService
     {
         private readonly ApplicationDbContext _context;
@@ -65,4 +65,5 @@ namespace INNOMIATE_API.Services
     
     
     }
+    */
 }

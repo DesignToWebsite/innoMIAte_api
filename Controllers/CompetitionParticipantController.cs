@@ -75,7 +75,7 @@ namespace innomiate_api.Controllers
             }
         }
     
-        [HttpPost("createTeamAssignLeader")]
+    /*    [HttpPost("createTeamAssignLeader")]
         public async Task<IActionResult> CreateTeamAndAssignLeader(int participantId, [FromBody] TeamDto teamDto)
         {
             try
@@ -87,7 +87,7 @@ namespace innomiate_api.Controllers
             {
                 return BadRequest(new {ùessage = ex.Message});
             }
-        }
+        }*/
     
     }
 }

@@ -30,10 +30,11 @@ builder.Services.AddScoped<CompetitionCoachService>();
 
 builder.Services.AddScoped<CompetitionParticipantService>();
 builder.Services.AddScoped<BadgeService>();
-builder.Services.AddScoped<TeamService>();
-builder.Services.AddScoped<SubmittedInputService>();
-builder.Services.AddScoped<StepsService>();
+//builder.Services.AddScoped<TeamService>();
+//builder.Services.AddScoped<SubmittedInputService>();
+//builder.Services.AddScoped<StepsService>();
 builder.Services.AddScoped<ParticipantService>();
+builder.Services.AddScoped<GroupService>();
 
 
 
