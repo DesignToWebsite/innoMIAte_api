@@ -84,9 +84,6 @@ namespace innomiate_api.Services
                     IsLeader = participant.IsLeader,
                     IsConfirmed = participant.IsConfirmed,
                     GroupId = participant.GroupId,
-                    GroupName = participant.Group.Name, 
-
-
                     FirstName = participant.User.FirstName,
                     LastName = participant.User.LastName,
                     Email = participant.User.Email,
