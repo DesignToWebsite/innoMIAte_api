@@ -22,7 +22,7 @@ namespace INNOMIATE_API.Models
         public List<int>? Followers { get; set; }
         public List<int>? Following { get; set; }
         public List<int>? Likes { get; set; }
-
+public bool IsAcceuil { get; set; } = false;
         //Navigation References 
         public virtual ICollection<CompetitionParticipant> ParticipatedCompetitions { get; set; }
         public virtual ICollection<CompetitionCoach> CoachedCompetitions { get; set; }

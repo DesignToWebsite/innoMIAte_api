@@ -51,6 +51,7 @@ public class UserService(ApplicationDbContext context)
             Interests = userDto.Interests,
             Followers = userDto.Followers,
             Following = userDto.Following,
+            IsAcceuil = userDto.IsAcceuil,
             Likes = userDto.Likes
         };
 
@@ -77,6 +78,7 @@ public class UserService(ApplicationDbContext context)
         user.Linkedin = userDto.Linkedin;
         user.Image = userDto.Image;
         user.Skills = userDto.Skills;
+        user.IsAcceuil = userDto.IsAcceuil;
         user.Interests = userDto.Interests;
         user.Followers = userDto.Followers;
         user.Following = userDto.Following;

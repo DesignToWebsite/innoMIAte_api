@@ -1,3 +1,4 @@
+
 using INNOMIATE_API.Models;
 
 namespace INNOMIATE_API.DTOs;
@@ -12,6 +13,8 @@ public class UserDto
     public string? Bio { get; set; }
     public string? Location { get; set; }
     public string? Website { get; set; }
+
+public bool IsAcceuil { get; set; } = false;
     public string? Github { get; set; }
     public string? Linkedin { get; set; }
     public string? Image { get; set; }
