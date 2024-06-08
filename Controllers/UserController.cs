@@ -103,6 +103,20 @@ namespace INNOMIATE_API.Controllers
 
             return Ok(userSession);
         }
+
+        ////
+        [HttpGet("profile")]
+        public ActionResult<UserProfileDto> GetUserProfileByEmail([FromQuery] string email)
+        {
+            var userProfile = _userService.GetUserProfileByEmail(email);
+
+            if (userProfile == null)
+            {
+                return NotFound("User not found");
+            }
+
+            return Ok(userProfile);
+        }
     }
 
 

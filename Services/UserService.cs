@@ -1,3 +1,4 @@
+using innomiate_api.DTOs;
 using INNOMIATE_API.Data;
 using INNOMIATE_API.DTOs;
 using INNOMIATE_API.Models;
@@ -106,5 +107,29 @@ public class UserService(ApplicationDbContext context)
         var user = await _context.Users.FirstOrDefaultAsync(u => u.Email == email && u.Password == password);
 
         return user;
+    }
+
+    ////
+    ///
+    public UserProfileDto? GetUserProfileByEmail(string email)
+    {
+        var user = _context.Users.SingleOrDefault(u => u.Email == email);
+
+        if (user == null)
+        {
+            return null;
+        }
+
+        return new UserProfileDto
+        {
+            FirstName = user.FirstName,
+            LastName = user.LastName,
+            UserName = user.UserName,
+            Bio = user.Bio,
+            Location = user.Location,
+            Website = user.Website,
+            Github = user.Github,
+            Linkedin = user.Linkedin
+        };
     }
 }
