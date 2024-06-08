@@ -1,28 +1,52 @@
-namespace INNOMIATE_API.Models;
-using System.ComponentModel.DataAnnotations;
+﻿using innomiate_api.Models;
+using innomiate_api.Models.Badging;
+using innomiate_api.Models.Submission;
+using innomiate_api.Models.ValidationSteps;
 
-public class Competition{
-    [Key]
-    public int Id { get; set; } 
-    public required string Image { get; set;} 
-    public required string Title { get; set;} 
-    public required DateTime StartDate {get; set;}
-    public required DateTime DeadLine {get; set;}
-    public required DateTime LastModified {get; set;}
-    public required string Location {get; set;}
-    public required string DescriptionTop {get; set;} 
-    public required string OverviewDescription {get; set;} 
-    public required string Rules {get; set;} 
-    public required string Public {get; set;} 
+namespace INNOMIATE_API.Models
+{
+    public class Competition
+    {
+        public int CompetitionId { get; set; }
+        public string Name { get; set; }
+        public  string DescriptionTop {get; set;} 
+        public string Description { get; set; }
+        public string ResponsibleEmail { get; set; }
+        public DateTime Date { get; set; }
+        public List<String> Tags { get; set; }
+        public List<string> Theme { get; set; }
+        public string? Rules { get; set; }
+        public List<NameImageMapping>? Organizers {get; set;}
+        public List<NameImageMapping>? Partnerships {get; set;}
+        public List<NameImageMapping>? Sponsors {get; set;}
+        public List<CompetitionPrize>? Prizes {get; set;}
+        public string TargetAudience { get; set; }
+        public string URL { get; set; }
+        public string Location { get; set; }
+        public string Photo { get; set; }
+        public string CoverPhoto { get; set; }
+        public  DateTime StartDate {get; set;}
+        public  DateTime DeadLine {get; set;}
+        public string? PdfRules {get; set;}
+        public string? Resource {get; set;}
+        public List<string>? Gallery {get; set;}
+        // Navigation references 
+        public virtual ICollection<CompetitionParticipant> Participants { get; set; }
+        public virtual ICollection<CompetitionCoach> Coaches { get; set; }
+        public virtual ICollection<CompetitionJudge> Judges { get; set; }
+        public virtual ICollection<CompetitionContributor> Contributors { get; set; }
+        // public ICollection<CompetitionSponsor> Sponsors { get; set; }
+      //  public virtual List<StepModel> StepModels { get; set; }
+      //  public virtual List<StepCompetition> StepCompetitions {get; set;}
+       // public virtual List<Team> Teams { get; set; }
+      //  public virtual SubmissionModel SubmissionModel { get; set; }
+        // public Prizing Prizing { get; set; }
+        public virtual Badging Badging { get; set; }
 
-    public required List<string> Theme {get; set;}
-    public required List<string> Tags {get; set;}
+      //  public virtual ICollection<StepCompetition> Steps { get; set; }
 
-    public virtual ICollection<Prize> Prizes {get; set;} = new List<Prize>();
-    // public virtual ICollection<Organizer> Organizers {get; set;} = new List<Organizer>();
-    public virtual ICollection<UserCompetition> UserCompetitions {get; set;} = new List<UserCompetition>();
+        public CompetitionCreator Creator { get; set; }
 
-    
 
-    // Navigation property for the many-to-many relationship with Competitions
+    }
 }

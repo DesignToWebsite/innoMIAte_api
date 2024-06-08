@@ -14,10 +14,23 @@ public class UserService(ApplicationDbContext context)
         return await _context.Users.ToListAsync();
     }
 
-    public async Task<User?> GetUserById(int id)
+    public async Task<User?> GetUserById(int id, bool compInfo)
     {
-        return await _context.Users.FindAsync(id);
-    }
+        // var userInfo = _context.Users.FindAsync(id);
+        // var userInfo = _context.Users
+        //     .Include(u=>u.ParticipatedCompetitions)
+        //     .ThenInclude(pc => pc.Competition)
+        //     .FirstOrDefaultAsync(u=> u.Id == id);
+
+        // return await userInfo;
+        IQueryable<User> query = _context.Users.Where(u=>u.Id == id);
+        if(compInfo){
+            query = query
+                .Include(c=>c.ParticipatedCompetitions)
+                .ThenInclude(u=>u.Competition);
+        }
+        return await query.FirstOrDefaultAsync();
+        }
 
     public async Task<User> CreateUser(UserDto userDto)
     {
@@ -27,18 +40,18 @@ public class UserService(ApplicationDbContext context)
             LastName = userDto.LastName,
             UserName = userDto.UserName,
             Email = userDto.Email,
-            Password = userDto.Password,
             Bio = userDto.Bio,
+            Password = userDto.Password,
             Location = userDto.Location,
             Website = userDto.Website,
             Github = userDto.Github,
             Linkedin = userDto.Linkedin,
             Image = userDto.Image,
-            LastModified = DateTime.UtcNow,
             Skills = userDto.Skills,
             Interests = userDto.Interests,
             Followers = userDto.Followers,
-            Following = userDto.Following
+            Following = userDto.Following,
+            Likes = userDto.Likes
         };
 
         _context.Users.Add(user);
@@ -67,6 +80,7 @@ public class UserService(ApplicationDbContext context)
         user.Interests = userDto.Interests;
         user.Followers = userDto.Followers;
         user.Following = userDto.Following;
+        user.Likes = userDto.Likes;
 
         await _context.SaveChangesAsync();
         return user;
@@ -83,5 +97,12 @@ public class UserService(ApplicationDbContext context)
         _context.Users.Remove(user);
         await _context.SaveChangesAsync();
         return true;
+    }
+
+    public async Task<User> AuthenticateUser(string email, string password)
+    {
+        var user = await _context.Users.FirstOrDefaultAsync(u => u.Email == email && u.Password == password);
+
+        return user;
     }
 }

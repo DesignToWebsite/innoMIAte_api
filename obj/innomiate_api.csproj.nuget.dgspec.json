@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\ikram\\Desktop\\pfa\\api_steps_new\\innoMIAte_api\\innomiate_api.csproj": {}
+    "C:\\Users\\ikram\\Desktop\\pfa\\v-5\\innoMIAte_api\\innomiate_api.csproj": {}
   },
   "projects": {
-    "C:\\Users\\ikram\\Desktop\\pfa\\api_steps_new\\innoMIAte_api\\innomiate_api.csproj": {
+    "C:\\Users\\ikram\\Desktop\\pfa\\v-5\\innoMIAte_api\\innomiate_api.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\ikram\\Desktop\\pfa\\api_steps_new\\innoMIAte_api\\innomiate_api.csproj",
+        "projectUniqueName": "C:\\Users\\ikram\\Desktop\\pfa\\v-5\\innoMIAte_api\\innomiate_api.csproj",
         "projectName": "innomiate_api",
-        "projectPath": "C:\\Users\\ikram\\Desktop\\pfa\\api_steps_new\\innoMIAte_api\\innomiate_api.csproj",
+        "projectPath": "C:\\Users\\ikram\\Desktop\\pfa\\v-5\\innoMIAte_api\\innomiate_api.csproj",
         "packagesPath": "C:\\Users\\ikram\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\ikram\\Desktop\\pfa\\api_steps_new\\innoMIAte_api\\obj\\",
+        "outputPath": "C:\\Users\\ikram\\Desktop\\pfa\\v-5\\innoMIAte_api\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\ikram\\AppData\\Roaming\\NuGet\\NuGet.Config"
@@ -52,6 +52,16 @@
             "Microsoft.EntityFrameworkCore.InMemory": {
               "target": "Package",
               "version": "[8.0.0, )"
+            },
+            "Microsoft.EntityFrameworkCore.Tools": {
+              "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[8.0.0, )"
+            },
+            "Newtonsoft.Json": {
+              "target": "Package",
+              "version": "[13.0.3, )"
             },
             "Pomelo.EntityFrameworkCore.MySql": {
               "target": "Package",
