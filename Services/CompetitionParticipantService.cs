@@ -93,6 +93,22 @@ namespace innomiate_api.Services
 
             return participants;
         }
+
+
+        public bool ConfirmParticipation(int userId, int competitionId)
+        {
+            var participant = _context.Participants
+                                      .SingleOrDefault(cp => cp.UserId == userId && cp.CompetitionId == competitionId);
+
+            if (participant == null)
+            {
+                return false; 
+            }
+
+            participant.IsConfirmed = true;
+            _context.SaveChanges();
+            return true; 
+        }
         /*
                       public async Task CreateTeamAndAssignLeader(int participantId, TeamDto teamDto)
                       {

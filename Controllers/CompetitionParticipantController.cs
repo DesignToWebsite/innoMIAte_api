@@ -76,6 +76,20 @@ namespace innomiate_api.Controllers
         }
 
 
+                [HttpPost("confirm")]
+        public ActionResult ConfirmParticipant([FromQuery] int userId, [FromQuery] int competitionId)
+        {
+            var result = _participantService.ConfirmParticipation(userId, competitionId);
+
+            if (!result)
+            {
+                return NotFound("Participant not found");
+            }
+
+            return Ok("Participant confirmed");
+        }
+
+
     
     /*    [HttpPost("createTeamAssignLeader")]
         public async Task<IActionResult> CreateTeamAndAssignLeader(int participantId, [FromBody] TeamDto teamDto)
