@@ -75,8 +75,7 @@ namespace innomiate_api.Controllers
             }
         }
 
-
-                [HttpPost("confirm")]
+        [HttpPost("confirm")]
         public ActionResult ConfirmParticipant([FromQuery] int userId, [FromQuery] int competitionId)
         {
             var result = _participantService.ConfirmParticipation(userId, competitionId);

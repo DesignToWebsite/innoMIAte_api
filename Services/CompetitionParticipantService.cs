@@ -79,9 +79,12 @@ namespace innomiate_api.Services
                 .Where(participant => participant.CompetitionId == competitionId)
                 .Select(participant => new UserParticipantDto
                 {
+                    ParticipantId = participant.Id,
                     UserId = participant.UserId,
+                    GroupName=participant.Group.Name,
                     CompetitionId = participant.CompetitionId,
                     IsLeader = participant.IsLeader,
+
                     IsConfirmed = participant.IsConfirmed,
                     GroupId = participant.GroupId,
                     FirstName = participant.User.FirstName,
@@ -93,7 +96,6 @@ namespace innomiate_api.Services
 
             return participants;
         }
-
 
         public bool ConfirmParticipation(int userId, int competitionId)
         {
