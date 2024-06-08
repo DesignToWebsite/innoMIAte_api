@@ -52,6 +52,14 @@ namespace innomiate_api.Migrations
                         .IsRequired()
                         .HasColumnType("longtext");
 
+                    b.Property<string>("Public")
+                        .IsRequired()
+                        .HasColumnType("longtext");
+
+                    b.Property<string>("Rules")
+                        .IsRequired()
+                        .HasColumnType("longtext");
+
                     b.Property<DateTime>("StartDate")
                         .HasColumnType("datetime(6)");
 

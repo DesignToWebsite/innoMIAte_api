@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace innomiate_api.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20240502174848_LoginSignup")]
-    partial class LoginSignup
+    [Migration("20240608184358_initialMigration")]
+    partial class initialMigration
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -52,6 +52,14 @@ namespace innomiate_api.Migrations
                         .HasColumnType("longtext");
 
                     b.Property<string>("OverviewDescription")
+                        .IsRequired()
+                        .HasColumnType("longtext");
+
+                    b.Property<string>("Public")
+                        .IsRequired()
+                        .HasColumnType("longtext");
+
+                    b.Property<string>("Rules")
                         .IsRequired()
                         .HasColumnType("longtext");
 
