@@ -221,6 +221,8 @@ namespace innomiate_api.Services
             foreach (var participant in group.Participants)
             {
                 participant.GroupId = null;
+                participant.IsLeader = false;
+                
             }
 
             _context.Groups.Remove(group);
