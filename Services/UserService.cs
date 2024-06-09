@@ -138,16 +138,35 @@ public class UserService(ApplicationDbContext context)
     {
         var user = await _context.Users
             .Include(u => u.ParticipatedCompetitions)
+            .ThenInclude(pc => pc.Group)  // Include the group details
             .FirstOrDefaultAsync(u => u.Email == email);
 
         if (user == null)
             return null;
 
-        var participantId = user.ParticipatedCompetitions.FirstOrDefault()?.Id ?? 0;
+        var participant = user.ParticipatedCompetitions.FirstOrDefault();
+        if (participant == null)
+            return null;
+
+        if (participant.IsLeader)
+        {
+            return new UserDetailDto
+            {
+                Message = "Ce Participant est déja chef de projet"
+            };
+        }
+
+        if (participant.GroupId != null)
+        {
+            return new UserDetailDto
+            {
+                Message = "Ce Participant appartient déja à une équipe"
+            };
+        }
 
         return new UserDetailDto
         {
-            ParticipantId = participantId,
+            ParticipantId = participant.Id,
             FirstName = user.FirstName,
             LastName = user.LastName,
             UserName = user.UserName,
@@ -155,8 +174,10 @@ public class UserService(ApplicationDbContext context)
             Location = user.Location,
             Website = user.Website,
             Github = user.Github,
-            Linkedin = user.Linkedin
+            Linkedin = user.Linkedin,
+            Message = null
         };
     }
+
 
 }

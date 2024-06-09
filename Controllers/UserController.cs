@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Http;
 using System.Threading.Tasks;
 using innomiate_api.DTOs;
+using Microsoft.EntityFrameworkCore;
 
 namespace INNOMIATE_API.Controllers 
 
@@ -16,11 +17,13 @@ namespace INNOMIATE_API.Controllers
     {
         private readonly UserService _userService;
         private readonly IHttpContextAccessor _httpContextAccessor;
+        private ApplicationDbContext _context;
 
-        public UserController(UserService userService, IHttpContextAccessor httpContextAccessor)
+        public UserController(UserService userService, IHttpContextAccessor httpContextAccessor, ApplicationDbContext a)
         {
             _userService = userService;
             _httpContextAccessor = httpContextAccessor;
+            _context = a;
         }
 
         [HttpGet]
@@ -117,7 +120,6 @@ namespace INNOMIATE_API.Controllers
 
             return Ok(userProfile);
         }
-
         [HttpGet("details-by-email")]
         public async Task<ActionResult<UserDetailDto>> GetUserDetailsByEmail(string email)
         {
@@ -125,8 +127,12 @@ namespace INNOMIATE_API.Controllers
             if (userDetail == null)
                 return NotFound("User not found");
 
+            if (!string.IsNullOrEmpty(userDetail.Message))
+                return BadRequest(userDetail.Message);
+
             return Ok(userDetail);
         }
+
     }
 
 
