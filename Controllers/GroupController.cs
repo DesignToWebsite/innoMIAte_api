@@ -47,7 +47,17 @@ namespace innomiate_api.Controllers
 
             return groups;
         }
+        /*
+        [HttpPost("create")]
+        public async Task<ActionResult<GroupDTO>> CreateGroup([FromBody] CreateGroupRequest request)
+        {
+            var group = await _groupService.CreateGroupAsync(request.ParticipantId, request.GroupName);
+            if (group == null)
+                return BadRequest("Participant not found or group creation failed.");
 
+            return Ok(group);
+        }
+        */
         [HttpPost("create")]
         public async Task<ActionResult<GroupDTO>> CreateGroup([FromBody] CreateGroupRequest request)
         {
@@ -58,8 +68,29 @@ namespace innomiate_api.Controllers
             return Ok(group);
         }
 
+        [HttpDelete("delete/{groupId}")]
+        public async Task<IActionResult> DeleteGroup(int groupId)
+        {
+            var result = await _groupService.DeleteGroupAsync(groupId);
+            if (!result)
+            {
+                return NotFound("Group not found");
+            }
 
+            return Ok("Group deleted successfully");
+        }
 
+        [HttpPatch("remove-participant-from-group/{participantId}")]
+        public async Task<IActionResult> RemoveParticipantFromGroup(int participantId)
+        {
+            var result = await _groupService.RemoveParticipantFromGroupAsync(participantId);
+            if (!result)
+            {
+                return NotFound("Participant not found or already not in a group");
+            }
+
+            return Ok("Participant removed from group successfully");
+        }
 
     }
 }
