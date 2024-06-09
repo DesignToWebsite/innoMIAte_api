@@ -3,6 +3,7 @@ using innomiate_api.Services;
 using innomiate_api.DTOs;
 using System.Threading.Tasks;
 using System.Collections.Generic;
+using INNOMIATE_API.DTOs;
 
 namespace innomiate_api.Controllers
 {
@@ -90,6 +91,16 @@ namespace innomiate_api.Controllers
             }
 
             return Ok("Participant removed from group successfully");
+        }
+
+        [HttpGet("{groupId}/participants")]
+        public async Task<ActionResult<List<CompetitionParticipantsPerTeamDto>>> GetParticipantsByGroupId(int groupId)
+        {
+            var participants = await _groupService.GetParticipantsByGroupIdAsync(groupId);
+            if (participants == null || participants.Count == 0)
+                return NotFound();
+
+            return participants;
         }
 
     }
