@@ -26,10 +26,10 @@ namespace innomiate_api.Services
             {
                 UserId = participantDto.UserId,
                 CompetitionId = participantDto.CompetitionId,
-               //
-               //
-               //
-            //TeamId = participantDto.TeamId,
+                //
+                //
+                //
+                //TeamId = participantDto.TeamId,
                 IsConfirmed = participantDto.IsConfirmed,
                 GroupId = participantDto.GroupId,
             };
@@ -51,7 +51,7 @@ namespace innomiate_api.Services
             }
 
             participantToUpdate.UserId = participantDto.UserId;
-         //   participantToUpdate.TeamId = participantDto.TeamId;
+            //   participantToUpdate.TeamId = participantDto.TeamId;
             participantToUpdate.IsLeader = participantDto.IsLeader;
             participantToUpdate.IsConfirmed = participantDto.IsConfirmed;
             participantToUpdate.GroupId = participantDto.GroupId;
@@ -81,7 +81,7 @@ namespace innomiate_api.Services
                 {
                     ParticipantId = participant.Id,
                     UserId = participant.UserId,
-                    GroupName=participant.Group.Name,
+                    GroupName = participant.Group.Name,
                     CompetitionId = participant.CompetitionId,
                     IsLeader = participant.IsLeader,
 
@@ -104,12 +104,12 @@ namespace innomiate_api.Services
 
             if (participant == null)
             {
-                return false; 
+                return false;
             }
 
             participant.IsConfirmed = true;
             _context.SaveChanges();
-            return true; 
+            return true;
         }
         /*
                       public async Task CreateTeamAndAssignLeader(int participantId, TeamDto teamDto)

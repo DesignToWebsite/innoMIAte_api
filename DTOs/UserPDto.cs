@@ -1,6 +1,6 @@
 ﻿namespace innomiate_api.DTOs
 {
-    public class UserDetailDto
+    public class UserPDto
     {
         public int ParticipantId { get; set; }
         public string FirstName { get; set; } = null!;
@@ -11,6 +11,5 @@
         public string? Website { get; set; }
         public string? Github { get; set; }
         public string? Linkedin { get; set; }
-        public string? Message { get; set; }
     }
 }

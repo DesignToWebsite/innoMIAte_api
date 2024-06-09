@@ -7,6 +7,7 @@ using innomiate_api.Models;
 using INNOMIATE_API.DTOs;
 using INNOMIATE_API.Data;
 using INNOMIATE_API.Models;
+using System.Globalization;
 
 namespace innomiate_api.Services
 {
@@ -91,6 +92,7 @@ namespace innomiate_api.Services
             }).ToList();
         }
 
+        //Création de Groupe et leader 
         public async Task<GroupDTO> CreateGroupAsync(int participantId, string groupName)
         {
             // Find the participant and include the User and Competition information
@@ -131,6 +133,7 @@ namespace innomiate_api.Services
                 }).ToList()
             };
         }
+        /////
 
     }
 }

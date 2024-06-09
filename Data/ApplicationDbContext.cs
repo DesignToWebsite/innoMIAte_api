@@ -27,6 +27,7 @@ namespace INNOMIATE_API.Data
         public DbSet<User> Users { get; set; }
        // public DbSet<Team> Teams { get; set; }
         public DbSet<Group> Groups { get; set;  }
+        public DbSet<History> History { get; set; }
  
 
      //   public DbSet<SubmissionModel> SubmissionModels { get; set; }
@@ -243,6 +244,12 @@ namespace INNOMIATE_API.Data
                 .HasOne(cp => cp.Group)
                     .WithMany(g => g.Participants)
                 .HasForeignKey(cp => cp.GroupId);
+
+
+            ///////
+            modelBuilder.Entity<History>()
+            .Property(c => c.Id)
+            .ValueGeneratedOnAdd();
 
         }
 
