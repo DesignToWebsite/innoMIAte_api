@@ -110,8 +110,9 @@ public class UserService(ApplicationDbContext context)
     }
 
     ////
-    ///
-    public UserProfileDto? GetUserProfileByEmail(string email)
+
+
+    public UserDto? GetUserProfileByEmail(string email)
     {
         var user = _context.Users.SingleOrDefault(u => u.Email == email);
 
@@ -120,7 +121,7 @@ public class UserService(ApplicationDbContext context)
             return null;
         }
 
-        return new UserProfileDto
+        return new UserDto
         {
             FirstName = user.FirstName,
             LastName = user.LastName,
@@ -132,4 +133,30 @@ public class UserService(ApplicationDbContext context)
             Linkedin = user.Linkedin
         };
     }
+
+    public async Task<UserDetailDto?> GetUserDetailsByEmailAsync(string email)
+    {
+        var user = await _context.Users
+            .Include(u => u.ParticipatedCompetitions)
+            .FirstOrDefaultAsync(u => u.Email == email);
+
+        if (user == null)
+            return null;
+
+        var participantId = user.ParticipatedCompetitions.FirstOrDefault()?.Id ?? 0;
+
+        return new UserDetailDto
+        {
+            ParticipantId = participantId,
+            FirstName = user.FirstName,
+            LastName = user.LastName,
+            UserName = user.UserName,
+            Bio = user.Bio,
+            Location = user.Location,
+            Website = user.Website,
+            Github = user.Github,
+            Linkedin = user.Linkedin
+        };
+    }
+
 }

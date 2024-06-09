@@ -106,7 +106,7 @@ namespace INNOMIATE_API.Controllers
 
         ////
         [HttpGet("profile")]
-        public ActionResult<UserProfileDto> GetUserProfileByEmail([FromQuery] string email)
+        public ActionResult<UserDto> GetUserProfileByEmail([FromQuery] string email)
         {
             var userProfile = _userService.GetUserProfileByEmail(email);
 
@@ -116,6 +116,16 @@ namespace INNOMIATE_API.Controllers
             }
 
             return Ok(userProfile);
+        }
+
+        [HttpGet("details-by-email")]
+        public async Task<ActionResult<UserDetailDto>> GetUserDetailsByEmail(string email)
+        {
+            var userDetail = await _userService.GetUserDetailsByEmailAsync(email);
+            if (userDetail == null)
+                return NotFound("User not found");
+
+            return Ok(userDetail);
         }
     }
 
