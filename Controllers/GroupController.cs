@@ -103,5 +103,15 @@ namespace innomiate_api.Controllers
             return participants;
         }
 
+        [HttpGet]
+        public async Task<ActionResult<List<GroupListDto>>> GetAllGroups()
+        {
+            var groups = await _groupService.GetAllGroupsAsync();
+            if (groups == null || groups.Count == 0)
+                return NotFound();
+
+            return groups;
+        }
+
     }
 }

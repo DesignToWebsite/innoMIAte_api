@@ -241,16 +241,26 @@ namespace innomiate_api.Services
             }
          
 
-            // Set the GroupId of the participant to null
             participant.GroupId = null;
 
 
-            // Save changes
             await _context.SaveChangesAsync();
 
             return true;
         }
+        public async Task<List<GroupListDto>> GetAllGroupsAsync()
+        {
+            return await _context.Groups
+                .Select(g => new GroupListDto
+                {
+                    GroupId = g.GroupId,
+                    Name = g.Name
+                })
+                .ToListAsync();
+        }
 
     }
+
+
 
 }
