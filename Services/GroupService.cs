@@ -94,7 +94,6 @@ namespace innomiate_api.Services
 
         public async Task<GroupDTO> CreateGroupAsync(int participantId, string groupName)
         {
-            // Find the participant and include the User and Competition information
             var participant = await _context.Participants
                 .Include(p => p.User)
                 .Include(p => p.Competition)
@@ -132,6 +131,31 @@ namespace innomiate_api.Services
                 }).ToList()
             };
         }
+
+
+        /// <summary>
+        public async Task<List<CompetitionParticipantsPerTeamDto>> GetParticipantsByGroupIdAsync(int groupId)
+        {
+            var group = await _context.Groups
+                .Include(g => g.Participants)
+                .ThenInclude(p => p.User)
+                .FirstOrDefaultAsync(g => g.GroupId == groupId);
+
+            if (group == null)
+                return null;
+
+            return group.Participants.Select(p => new CompetitionParticipantsPerTeamDto
+            {
+                Id = p.Id,
+                UserId = p.UserId,
+                IsLeader = p.IsLeader,
+                FirstName = p.User.FirstName,
+                LastName = p.User.LastName,
+                Email = p.User.Email,
+                Username = p.User.UserName
+            }).ToList();
+        }
+
 
         //Création de Groupe et leader 
         /*  public async Task<GroupDTO> CreateGroupAsync(int participantId, string groupName)
