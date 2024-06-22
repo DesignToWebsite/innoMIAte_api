@@ -1,6 +1,5 @@
 using innomiate_api.Models;
 using innomiate_api.Services;
-using innomiate_api.Services.innomiate_api.Services;
 using innomiate_api.Services.INNOMIATE_API.Services;
 using INNOMIATE_API.Data;
 using INNOMIATE_API.Services;
@@ -15,7 +14,6 @@ var connectionString = builder.Configuration.GetConnectionString("DefaultConnect
 
 
 var policyName = "_myAllowSpecificOrigins";
-
 builder.Services.AddHttpContextAccessor();
 
 builder.Services.AddDbContext<ApplicationDbContext>(options =>
@@ -30,6 +28,9 @@ builder.Services.AddScoped<CompetitionCoachService>();
 
 builder.Services.AddScoped<CompetitionParticipantService>();
 builder.Services.AddScoped<BadgeService>();
+builder.Services.AddScoped<StepService>();
+builder.Services.AddScoped<SubmittedInputService>();
+
 //builder.Services.AddScoped<TeamService>();
 //builder.Services.AddScoped<SubmittedInputService>();
 //builder.Services.AddScoped<StepsService>();
@@ -93,5 +94,7 @@ app.UseSwaggerUI(c =>
 });
 
 app.MapControllers();
+app.UseStaticFiles();
+
 
 app.Run();

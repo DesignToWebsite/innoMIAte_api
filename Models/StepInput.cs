@@ -4,7 +4,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 namespace innomiate_api.Models
 {
     public class StepInput
-    {/*
+    {
         public int Id { get; set; }
         [ForeignKey("StepCompetition")]
         public int StepCompetitionId {  get; set; }
@@ -18,6 +18,6 @@ namespace innomiate_api.Models
         public string? Description { get; set; }
 
         public List<SubmittedInput>? InputValues { get; set; }
-        */
+        
     }
 }

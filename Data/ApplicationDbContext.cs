@@ -1,9 +1,11 @@
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using Microsoft.EntityFrameworkCore;
 using INNOMIATE_API.Models;
 using innomiate_api.Models;
-using innomiate_api.Models.Submission;
 using innomiate_api.Models.Badging;
-
+using innomiate_api.Models.Submission;
+using innomiate_api.Models.ValidationSteps;
 
 namespace INNOMIATE_API.Data
 {
@@ -18,35 +20,22 @@ namespace INNOMIATE_API.Data
         public DbSet<CompetitionCoachingAnnounce> CompetitionCoachingAnnounces { get; set; }
         public DbSet<CompetitionPendingCoach> CompetitionPendingCoaches { get; set; }
         public DbSet<CompetitionCoachingTag> CompetitionCoachingTags { get; set; }
-
         public DbSet<CompetitionJudge> Judges { get; set; }
         public DbSet<CompetitionCreator> Creators { get; set; }
         public DbSet<CompetitionParticipant> Participants { get; set; }
-
         public DbSet<Requirement> Requirements { get; set; }
         public DbSet<User> Users { get; set; }
-       // public DbSet<Team> Teams { get; set; }
-        public DbSet<Group> Groups { get; set;  }
+        public DbSet<Group> Groups { get; set; }
         public DbSet<History> History { get; set; }
- 
-
-     //   public DbSet<SubmissionModel> SubmissionModels { get; set; }
-      //  public DbSet<FileModel> FileModels { get; set; }
- 
-
-        ///Step Models <summary>
-        /// Step Models
-        /// </summary>
-        /// 
-
-
-       // public DbSet<StepCompetition> stepCompetitions { get; set; }
-       // public DbSet<StepInput> stepInputs { get; set; }
-      //  public DbSet<SubmittedInput> submittedInputs { get; set; }
         public DbSet<Badge> Badges { get; set; }
         public DbSet<Badging> Badgings { get; set; }
         public DbSet<PlatformAdmin> PlateformAdmins { get; set; }
         public DbSet<HostingRequest> HostingRequests { get; set; }
+
+        // Step Models
+        public DbSet<StepCompetition> StepCompetitions { get; set; }
+        public DbSet<StepInput> StepInputs { get; set; }
+        public DbSet<SubmittedInput> SubmittedInputs { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -77,9 +66,10 @@ namespace INNOMIATE_API.Data
                 .HasOne(cj => cj.Competition)
                 .WithMany(c => c.Judges)
                 .HasForeignKey(cj => cj.CompetitionId);
+
             // Configure many-to-many relationship between User and CompetitionParticipant
             modelBuilder.Entity<CompetitionParticipant>()
-                .HasKey(cp => new { cp.Id});
+                .HasKey(cp => new { cp.Id });
 
             modelBuilder.Entity<CompetitionParticipant>()
                 .HasOne(cp => cp.User)
@@ -91,7 +81,6 @@ namespace INNOMIATE_API.Data
                 .WithMany(c => c.Participants)
                 .HasForeignKey(cp => cp.CompetitionId);
 
-
             modelBuilder.Entity<CompetitionCreator>()
                 .HasKey(cc => cc.CreatorId);
 
@@ -100,59 +89,42 @@ namespace INNOMIATE_API.Data
                 .WithMany(u => u.CreatedCompetitions)
                 .HasForeignKey(cc => cc.UserId);
 
-
-       /*     // Team relations 
-
             modelBuilder.Entity<CompetitionParticipant>()
-                .HasOne(cp => cp.Team)
-                .WithMany(t => t.Participants)
-                .HasForeignKey(cp => cp.TeamId);
-       */
-                   //  Group
-            modelBuilder.Entity<CompetitionParticipant>()
-      .HasOne(cp => cp.Group)                    
-      .WithMany(g => g.Participants)            
-      .HasForeignKey(cp => cp.GroupId);         
+                .HasOne(cp => cp.Group)
+                .WithMany(g => g.Participants)
+                .HasForeignKey(cp => cp.GroupId);
 
-      /*      modelBuilder.Entity<Team>()
-                .HasOne(t => t.Competition)
-      //          .WithMany(c => c.Teams)
-                .HasForeignKey(t => t.CompetitionId);
-      */
+            // Configure relationships for StepCompetition, StepInput, and SubmittedInput
+            modelBuilder.Entity<StepCompetition>()
+                .HasKey(sc => sc.IdSteps);
 
-            
+            modelBuilder.Entity<StepCompetition>()
+                .HasOne(sc => sc.Competition)
+                .WithMany(c => c.StepCompetitions)
+                .HasForeignKey(sc => sc.IdCompetition)
+                .OnDelete(DeleteBehavior.Cascade);
 
-/*
+            modelBuilder.Entity<StepInput>()
+                .HasKey(si => si.Id);
 
-            // Configure one-to-many relationship between SubmissionModel and Competition
-            modelBuilder.Entity<SubmissionModel>()
-                .HasOne(sm => sm.Competition)
-                .WithOne(c => c.SubmissionModel)
-                .HasForeignKey<SubmissionModel>(sm => sm.CompetitionId);
+            modelBuilder.Entity<StepInput>()
+                .HasOne(si => si.StepCompetition)
+                .WithMany(sc => sc.ToComplete)
+                .HasForeignKey(si => si.StepCompetitionId)
+                .OnDelete(DeleteBehavior.Cascade);
 
-            // Configure one-to-many relationship between FileModel and SubmissionModel
-            modelBuilder.Entity<FileModel>()
-                .HasOne(fm => fm.SubmissionModel)
-                .WithMany(sm => sm.FileModels)
-                .HasForeignKey(fm => fm.SubmissionModelId);
+            modelBuilder.Entity<SubmittedInput>()
+                .HasKey(si => si.Id);
 
-            // Configure the relationship between TeamSubmission, TeamSubmissionFile, and FileModel
-            modelBuilder.Entity<TeamSubmissionFile>()
-                .HasKey(tsf => tsf.TeamSubmissionFileId);
+            modelBuilder.Entity<SubmittedInput>()
+                .HasOne(si => si.StepInput)
+                .WithMany(si => si.InputValues)
+                .HasForeignKey(si => si.StepInputId);
 
-            modelBuilder.Entity<TeamSubmissionFile>()
-                .HasOne(tsf => tsf.TeamSubmission)
-                .WithMany(ts => ts.TeamSubmissionFiles)
-                .HasForeignKey(tsf => tsf.TeamSubmissionFileId);
-
-            modelBuilder.Entity<TeamSubmissionFile>()
-                .HasOne(tsf => tsf.FileModel)
-                .WithMany()
-                .HasForeignKey(tsf => tsf.FileModelId);
-           
-
-*/
-
+            modelBuilder.Entity<SubmittedInput>()
+                .HasOne(si => si.Group)
+                .WithMany(g => g.SubmittedInputs)
+                .HasForeignKey(si => si.GroupId);
 
             // Configure one-to-many relationship between Badge and Badging
             modelBuilder.Entity<Badge>()
@@ -165,6 +137,7 @@ namespace INNOMIATE_API.Data
                 .HasOne(hr => hr.User)
                 .WithMany(u => u.HostingRequests)
                 .HasForeignKey(hr => hr.UserId);
+
             // Configure Competition's relationship with Organizers
             modelBuilder.Entity<Competition>().OwnsMany(c => c.Organizers, organizers =>
             {
@@ -203,60 +176,11 @@ namespace INNOMIATE_API.Data
                 prize.Property(mapping => mapping.EndingRank).IsRequired();
                 prize.ToTable("CompetitionPrizes");
             });
-            /*         
-                     modelBuilder.Entity<StepCompetition>()
-                      .HasKey(sc=>sc.IdSteps);
 
-
-                      modelBuilder.Entity<StepCompetition>()
-                        .HasOne(sc=>sc.Competition)
-                        .WithMany(c=>c.Steps)
-                        .HasForeignKey(sc => sc.IdCompetition)
-                        .OnDelete(DeleteBehavior.Cascade);
-
-
-
-                      modelBuilder.Entity<SubmittedInput>()
-                      .HasOne(si => si.Team)
-                      .WithMany(t => t.SubmittedInputs)
-                      .HasForeignKey(si => si.TeamId);
-
-                      modelBuilder.Entity<SubmittedInput>()
-                      .HasOne(si => si.StepInput)
-                      .WithMany(i => i.InputValues)
-                      .HasForeignKey(si=>si.StepInputId);
-                      modelBuilder.Entity<StepCompetition>()
-              .HasKey(sc => sc.IdSteps);
-
-                      modelBuilder.Entity<StepInput>()
-                          .HasKey(si => si.Id);
-
-                      modelBuilder.Entity<StepInput>()
-                          .HasOne(si => si.StepCompetition)  
-                          .WithMany(sc => sc.ToComplete)      
-                          .HasForeignKey(si => si.StepCompetitionId) 
-                          .OnDelete(DeleteBehavior.Cascade);
-            */
-
-
-
-            modelBuilder.Entity<CompetitionParticipant>()
-                .HasOne(cp => cp.Group)
-                    .WithMany(g => g.Participants)
-                .HasForeignKey(cp => cp.GroupId);
-
-
-            ///////
+            // Configure History entity
             modelBuilder.Entity<History>()
-            .Property(c => c.Id)
-            .ValueGeneratedOnAdd();
-
+                .Property(c => c.Id)
+                .ValueGeneratedOnAdd();
         }
-
-
-
-
-
-
     }
 }

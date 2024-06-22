@@ -5,6 +5,6 @@
         public int Id { get; set; }
         public int TeamId { get; set; }
         public int StepInputId { get; set; }
-        public IFormFile? Value { get; set; }
+        public string? Value { get; set; }
     }
 }

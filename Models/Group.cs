@@ -1,3 +1,4 @@
+using innomiate_api.Models;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
@@ -15,6 +16,7 @@ public class Group
     public string? ProjectImage { get; set; }
     [ForeignKey("CompetitionId")]
     public int CompetitionId { get; set; }
+    public ICollection<SubmittedInput> SubmittedInputs { get; set; }
 
     public Competition Competition { get; set; }
 
