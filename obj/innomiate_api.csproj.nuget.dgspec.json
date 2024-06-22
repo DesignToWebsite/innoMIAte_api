@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\ikram\\Desktop\\pfa\\pfa_project_final_version\\innoMIAte_api\\innomiate_api.csproj": {}
+    "C:\\Users\\ikram\\Desktop\\pfa\\pfa_project_final_version\\back\\innoMIAte_api\\innomiate_api.csproj": {}
   },
   "projects": {
-    "C:\\Users\\ikram\\Desktop\\pfa\\pfa_project_final_version\\innoMIAte_api\\innomiate_api.csproj": {
+    "C:\\Users\\ikram\\Desktop\\pfa\\pfa_project_final_version\\back\\innoMIAte_api\\innomiate_api.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\ikram\\Desktop\\pfa\\pfa_project_final_version\\innoMIAte_api\\innomiate_api.csproj",
+        "projectUniqueName": "C:\\Users\\ikram\\Desktop\\pfa\\pfa_project_final_version\\back\\innoMIAte_api\\innomiate_api.csproj",
         "projectName": "innomiate_api",
-        "projectPath": "C:\\Users\\ikram\\Desktop\\pfa\\pfa_project_final_version\\innoMIAte_api\\innomiate_api.csproj",
+        "projectPath": "C:\\Users\\ikram\\Desktop\\pfa\\pfa_project_final_version\\back\\innoMIAte_api\\innomiate_api.csproj",
         "packagesPath": "C:\\Users\\ikram\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\ikram\\Desktop\\pfa\\pfa_project_final_version\\innoMIAte_api\\obj\\",
+        "outputPath": "C:\\Users\\ikram\\Desktop\\pfa\\pfa_project_final_version\\back\\innoMIAte_api\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\ikram\\AppData\\Roaming\\NuGet\\NuGet.Config"

@@ -4,6 +4,7 @@ using innomiate_api.Services.INNOMIATE_API.Services;
 using INNOMIATE_API.Data;
 using INNOMIATE_API.Services;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.FileProviders;
 using Microsoft.OpenApi.Models;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -81,6 +82,13 @@ builder.Services.AddSwaggerGen(c =>
 var app = builder.Build();
 app.UseSession();
 app.UseStaticFiles();
+// Serve static files from the uploads directory
+app.UseStaticFiles(new StaticFileOptions
+{
+    FileProvider = new PhysicalFileProvider(
+        Path.Combine(Directory.GetCurrentDirectory(), "uploads")),
+    RequestPath = "/uploads"
+});
 app.UseRouting();
 app.UseCors("_myAllowSpecificOrigins");
 

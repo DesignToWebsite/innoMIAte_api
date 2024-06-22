@@ -35,7 +35,7 @@ namespace INNOMIATE_API.Controllers
                 var fileName = Guid.NewGuid().ToString() + Path.GetExtension(file.FileName);
                 
                 // Combine the directory path and file name
-                var filePath = Path.Combine(uploadsDirectory, fileName);
+                var filePath = Path.Combine("uploads", fileName);
 
                 // Save the file to the server
                 using (var stream = new FileStream(filePath, FileMode.Create))

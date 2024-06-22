@@ -132,6 +132,49 @@ namespace innomiate_api.Services
             };
         }
 
+        public async Task<GroupDTO> LeaderCreateGroup(int participantId, GroupDTO groupDto)
+        {
+            var participant = await _context.Participants
+                .Include(p => p.User)
+                .Include(p => p.Competition)
+                .FirstOrDefaultAsync(p => p.Id == participantId);
+
+            if (participant == null)
+                return null;
+
+            var newGroup = new Group
+            {
+                CompetitionId = participant.CompetitionId,
+                Name = groupDto.Name,
+                Slogan = groupDto.Slogan,
+                ProjectDescription = groupDto.ProjectDescription,
+                ProjectImage = groupDto.ProjectImage,
+                ProjectName = groupDto.ProjectName,
+                Participants = new List<CompetitionParticipant> { participant }
+            };
+
+            participant.Group = newGroup;
+            participant.IsLeader = true;
+
+            _context.Groups.Add(newGroup);
+            await _context.SaveChangesAsync();
+
+            return new GroupDTO
+            {
+                GroupId = newGroup.GroupId,
+                Name = newGroup.Name,
+                Slogan = newGroup.Slogan,
+                ProjectName = newGroup.ProjectName,
+                ProjectDescription = newGroup.ProjectDescription,
+                ProjectImage = newGroup.ProjectImage,
+                Participants = newGroup.Participants.Select(p => new CParticipantDTO
+                {
+                    Id = p.Id,
+                    UserId = p.UserId,
+                    IsLeader = p.IsLeader
+                }).ToList()
+            };
+        }
 
         /// <summary>
         public async Task<List<CompetitionParticipantsPerTeamDto>> GetParticipantsByGroupIdAsync(int groupId)
@@ -222,7 +265,7 @@ namespace innomiate_api.Services
             {
                 participant.GroupId = null;
                 participant.IsLeader = false;
-                
+
             }
 
             _context.Groups.Remove(group);
@@ -237,11 +280,11 @@ namespace innomiate_api.Services
             var participant = await _context.Participants
                 .FirstOrDefaultAsync(p => p.Id == participantId);
 
-            if (participant == null )
+            if (participant == null)
             {
                 return false;
             }
-         
+
 
             participant.GroupId = null;
 

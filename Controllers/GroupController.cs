@@ -68,7 +68,23 @@ namespace innomiate_api.Controllers
 
             return Ok(group);
         }
+        [HttpPost("leaderCreateGroup")]
+        public async Task<ActionResult<GroupDTO>> LeaderCreateGroup([FromQuery] int participantId, [FromBody] GroupDTO groupDto)
+    {
+        if (groupDto == null)
+        {
+            return BadRequest("Group data is required.");
+        }
 
+        var result = await _groupService.LeaderCreateGroup(participantId, groupDto);
+
+        if (result == null)
+        {
+            return NotFound("Participant not found.");
+        }
+
+        return Ok(result);
+    }
         [HttpDelete("delete/{groupId}")]
         public async Task<IActionResult> DeleteGroup(int groupId)
         {
