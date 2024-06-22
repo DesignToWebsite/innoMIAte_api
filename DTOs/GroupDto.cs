@@ -9,7 +9,7 @@ namespace innomiate_api.DTOs
         public string Slogan { get; set; }
         public string ProjectName { get; set; }
         public string ProjectDescription { get; set; }
-        public string ProjectImage { get; set; }
+        public string? ProjectImage { get; set; }
         public ICollection<CParticipantDTO>? Participants { get; set; }
     }
 
